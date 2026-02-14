@@ -1,0 +1,76 @@
+/* Contenedor Principal en Cuadrícula */
+.blog-container {
+    display: grid;
+    /* Esto fuerza exactamente 3 columnas de igual tamaño */
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 30px; /* Espacio entre tarjetas */
+    padding: 40px 5%;
+    max-width: 95%; /* Opcional: para que no se estiren infinito en pantallas gigantes */
+    margin: 0 auto;    /* Centra todo el bloque en la página */
+}
+
+/* IMPORTANTE: Para que en celulares no se vea minúsculo, 
+   agregamos este "Media Query" que lo vuelve lista solo en pantallas pequeñas */
+@media (max-width: 900px) {
+    .blog-container {
+        grid-template-columns: repeat(2, 1fr); /* 2 columnas en tablets */
+    }
+}
+
+@media (max-width: 600px) {
+    .blog-container {
+        grid-template-columns: 1fr; /* 1 columna en celulares */
+    }
+}
+
+/* Estilo de la Tarjeta */
+.card {
+    background: #fff;
+    border-radius: 12px;
+    text-decoration: none; /* Quita el subrayado del link */
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #eee;
+    overflow: hidden;
+    height: 100%; /* Asegura que todas midan lo mismo */
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.card-content {
+    padding: 20px;
+}
+
+.date {
+    font-size: 8;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.card-title {
+    margin: 10px 0;
+    font-size: 12;
+    color: #2c3e50; /* Un azul oscuro elegante */
+}
+
+.card-description {
+    font-size: 11;
+    line-height: 1.5;
+    color: #555;
+}
+
+.card-footer {
+    padding: 15px 20px;
+    background: #f8f9fa;
+    border-top: 1px solid #eee;
+    font-weight: bold;
+    color: #0056b3; /* Color que combine con tu header azul */
+    text-align: right;
+}
