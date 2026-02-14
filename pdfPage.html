@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta content="IE=edge" http-equiv="X-UA-Compatible">
+  <meta content="width=device-width,initial-scale=1" name="viewport">
+  <meta content="description" name="description">
+  <meta name="google" content="notranslate" />
+  <meta content="Mashup templates have been developped by Orson.io team" name="author">
+
+  <!-- Disable tap highlight on IE -->
+  <meta name="msapplication-tap-highlight" content="no">
+  
+  
+  <link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-icon-180x180.png">
+  <link href="./assets/favicon.ico" rel="icon">
+
+  <link href="" rel="stylesheet">
+
+
+  <title>Portafolio de evidencias</title>
+
+<link href="./main.550dcf66.css" rel="stylesheet"></head>
+
+<body> <!-- Add your content of header -->
+<header>
+  <nav class="navbar navbar-default active">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="./index.html" title="">
+          <img src="./assets/images/mashup-icon.svg" class="navbar-logo-img" alt="">
+          Leonardo Serrano
+        </a>
+      </div>
+
+      <div class="collapse navbar-collapse" id="navbar-collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="./index.html" title="">Home</a></li>
+          <li><a href="./project.html" title="">Portafolio</a></li>
+
+        </ul>
+      </div> 
+    </div>
+  </nav>
+</header>
+
+
+<div id="contenedor-principal" style="width:100%; height:85vh;">
+    <iframe id="pdf-viewer" src="" width="100%" height="100%" style="border: none;">
+        Tu navegador no soporta la visualización de PDFs.
+    </iframe>
+</div>
+
+<script>
+    // Usamos window.onload para asegurar que la página cargó totalmente
+    window.onload = function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const nombreArchivo = urlParams.get('archivo');
+        const visor = document.getElementById('pdf-viewer');
+
+        if (nombreArchivo) {
+            console.log("Intentando cargar:", nombreArchivo);
+            
+            // Si el nombre viene con "https", lo usa directo. 
+            // Si no, busca en tu carpeta local.
+            const rutaFinal = nombreArchivo.startsWith('http') 
+                              ? nombreArchivo 
+                              : "documentos/" + nombreArchivo;
+
+            visor.src = rutaFinal;
+            
+            // Actualizar título
+            document.title = nombreArchivo.split('/').pop().replace('.pdf', '');
+        } else {
+            console.error("Error: No se detectó el parámetro 'archivo' en la URL");
+        }
+    };
+</script>
+
+  
+
+<footer class="footer-container white-text-container">
+  <div class="container">
+    <div class="row">
+
+     
+      <div class="col-xs-12">
+        <h3>177301</h3>
+
+        <div class="row">
+          <div class="col-xs-12 col-sm-7">
+            <p>
+              <small>Portafolio de evidencias de Leonardo Serrano Zermeño.</small>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function (event) {
+    navActivePage();
+    scrollRevelation('.reveal');
+  });
+</script>
+
+--> <script type="text/javascript" src="./main.0cf8b554.js"></script></body>
+
+</html>
