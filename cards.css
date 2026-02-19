@@ -2,7 +2,7 @@
 .blog-container {
     display: grid;
     /* Esto fuerza exactamente 3 columnas de igual tamaño */
-    grid-template-columns: repeat(2, 1fr); 
+    grid-template-columns: repeat(3, 1fr); 
     gap: 30px; /* Espacio entre tarjetas */
     padding: 40px 5%;
     max-width: 95%; /* Opcional: para que no se estiren infinito en pantallas gigantes */
@@ -73,4 +73,5 @@
     font-weight: bold;
     color: #0056b3; /* Color que combine con tu header azul */
     text-align: right;
+
 }
