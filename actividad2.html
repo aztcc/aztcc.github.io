@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta content="IE=edge" http-equiv="X-UA-Compatible">
+  <meta content="width=device-width,initial-scale=1" name="viewport">
+  <meta content="description" name="description">
+  <meta name="google" content="notranslate" />
+  <meta content="Mashup templates have been developped by Orson.io team" name="author">
+
+  <!-- Disable tap highlight on IE -->
+  <meta name="msapplication-tap-highlight" content="no">
+  
+  
+  <link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-icon-180x180.png">
+  <link href="./assets/favicon.ico" rel="icon">
+
+  <link href="" rel="stylesheet">
+
+
+  <title>Portafolio de evidencias</title>
+
+<link href="./main.550dcf66.css" rel="stylesheet">
+<link href="./cards.css" rel="stylesheet">
+<link href="./table.css" rel="stylesheet">
+<style>
+  /* Estilos para el botón flotante */
+  .boton-descarga {
+    position: fixed;
+    bottom: 20px;       /* Distancia desde abajo */
+    right: 20px;        /* Distancia desde la derecha */
+    background-color: #4457c0; /* CAMBIA ESTE COLOR AQUÍ */
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+    z-index: 1000;      /* Asegura que esté por encima de otros elementos */
+  }
+
+  /* Efecto al pasar el mouse */
+  .boton-descarga:hover {
+    background-color: #0056b3;
+    transform: translateY(-5px); /* Se eleva un poco */
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.4);
+  }
+
+  /* Estilo del icono (puedes usar una imagen o SVG) */
+  .boton-descarga svg {
+    width: 30px;
+    height: 30px;
+    fill: white;
+  }
+</style>
+
+</head>
+
+<body> <!-- Add your content of header -->
+<header>
+  <nav class="navbar navbar-default active">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="./index.html" title="">
+          <img src="./assets/images/mashup-icon.svg" class="navbar-logo-img" alt="">
+          Leonardo Serrano
+        </a>
+      </div>
+
+      <div class="collapse navbar-collapse" id="navbar-collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="./index.html" title="">Home</a></li>
+          <li><a href="./project.html" title="">Portafolio</a></li>
+
+        </ul>
+      </div> 
+    </div>
+  </nav>
+</header>
+
+<div class="section-container">
+    <div class="container">
+        <h1 class="text-center">Análisis de servicios de seguridad</h1>
+      <div class="row">
+        <div class="col-xs-12 col-md-8 col-md-offset-2">
+          <h2>Introducción</h2>
+          <p>
+            Este documento tiene como objetivo analizar diferentes escenarios de incidentes de
+            seguridad informática mediante la aplicación de los servicios definidos dentro del ITU -
+            T X.800, así como hacer uso correcto de la terminología de RFC 4949, con el propósito
+            de poder identificar, explicar y documentar vulneraciones de seguridad en contextos
+            reales.
+          </p>
+
+          <h2>Resumen de los escenarios</h2>
+          <p>
+            En esta sección presentamos una vista resumida de todos los diferentes escenarios,
+            tomando como base un análisis bajo los marcos X.800 y RFC 4949.
+          </p>
+          <table>
+    <thead>
+      <tr>
+        <th>Escenario</th>
+        <th>Clasificación X.800</th>
+        <th>Categoría RFC 4949</th>
+        <th>Medidas de Control</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td data-label="Escenario"><strong>1. LockBit</strong></td>
+            <td><span class="tag c">C</span> <span class="tag i">I</span> <span class="tag d">D</span></td>
+            <td>Multi-stage / Data Breach</td>
+            <td class="control-cell">Respaldos inmutables</td>
+        </tr>
+        <tr>
+            <td data-label="Escenario"><strong>2. Nube mal config.</strong></td>
+            <td><span class="tag c">C</span></td>
+            <td>Misconfiguration / Exposure</td>
+            <td class="control-cell">Control de acceso</td>
+        </tr>
+        <tr>
+            <td data-label="Escenario"><strong>3. Supply chain</strong></td>
+            <td><span class="tag i">I</span></td>
+            <td>Supply chain attack</td>
+            <td class="control-cell">Detección de intrusiones</td>
+        </tr>
+        <tr>
+            <td data-label="Escenario"><strong>4. Phishing/Creds</strong></td>
+            <td><span class="tag a">Autenticación</span></td>
+            <td>Credential compromise</td>
+            <td class="control-cell">MFA (Multifactor)</td>
+        </tr>
+        <tr>
+            <td data-label="Escenario"><strong>5. Destrucción Backup</strong></td>
+            <td><span class="tag d">D</span></td>
+            <td>Data destruction</td>
+            <td class="control-cell">Backups offline</td>
+        </tr>
+        <tr>
+            <td data-label="Escenario"><strong>6. Amenaza interna</strong></td>
+            <td><span class="tag c">C</span></td>
+            <td>Insider threat</td>
+            <td class="control-cell">Mínimo privilegio</td>
+        </tr>
+        <tr>
+            <td data-label="Escenario"><strong>7. Alteración Logs</strong></td>
+            <td><span class="tag nr">NR</span> <span class="tag i">I</span></td>
+            <td>Audit trail violation</td>
+            <td class="control-cell">Logs de solo escritura</td>
+        </tr>
+        <tr>
+            <td data-label="Escenario"><strong>8. Falla operacional</strong></td>
+            <td><span class="tag d">D</span></td>
+            <td>Operational failure</td>
+            <td class="control-cell">Rollbacks</td>
+        </tr>
+        <tr>
+            <td data-label="Escenario"><strong>9. Masquerade</strong></td>
+            <td><span class="tag a">Autenticación</span></td>
+            <td>Phishing / Masquerade</td>
+            <td class="control-cell">Concientización</td>
+        </tr>
+        <tr>
+            <td data-label="Escenario"><strong>10. Ataque destructivo</strong></td>
+            <td><span class="tag c">C</span> <span class="tag i">I</span> <span class="tag d">D</span></td>
+            <td>Destructive attack</td>
+            <td class="control-cell">Plan de recuperación (DRP)</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <h2>Conclusiones</h2>
+    <p>
+        El desarrollo de esta actividad sirve para la comprension de diferentes tipos de ataques, 
+        considero interesante saber los diferentes tipos de ataques, puesto que no solo estamos 
+        expuestos a hackers, si no que tambien a riesgos internos o campañas de desinformacion. 
+    </p>
+          
+          <a href="pdfPage.html?archivo=177301-act02.pdf" class="boton-descarga" download title="Descargar ahora">
+            <svg viewBox="0 0 24 24">
+            <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+            </svg>
+         </a>
+         
+
+       </div>
+      </div>
+    </div>
+  </div>
+
+<footer class="footer-container white-text-container">
+  <div class="container">
+    <div class="row">
+
+     
+      <div class="col-xs-12">
+        <h3>177301</h3>
+
+        <div class="row">
+          <div class="col-xs-12 col-sm-7">
+            <p>
+              <small>Portafolio de evidencias de Leonardo Serrano Zermeño.</small>
+            </p>
+          </div>
+        </div>
+        
+        
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function (event) {
+    navActivePage();
+    scrollRevelation('.reveal');
+  });
+</script>
+
+<!-- Google Analytics: change UA-XXXXX-X to be your site's ID 
+
+<script>
+  (function (i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+      (i[r].q = i[r].q || []).push(arguments)
+    }, i[r].l = 1 * new Date(); a = s.createElement(o),
+      m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+  })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+  ga('create', 'UA-XXXXX-X', 'auto');
+  ga('send', 'pageview');
+</script>
+
+--> <script type="text/javascript" src="./main.0cf8b554.js"></script></body>
+
+</html>
