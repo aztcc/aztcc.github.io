@@ -99,6 +99,7 @@
               <details name="laboratorios" open>
                 <summary>Lab 01: SQL injection vulnerability in WHERE clause allowing retrieval of hidden data</summary>
                 <div class="contenido">
+                  <h3 class="text-center">Descripción del laboratorio</h3>
                   <p>Este laboratorio contiene una vulnerabilidad de inyeccion de SQL en el filtro de categoria de productos. 
                     Cuando el usuario selecciona una categoría, la aplicación ejecuta una consulta SQL como la siguiente:<br>
                     <div class="text-center"><code class="code-scrollable">SELECT * FROM products WHERE category = 'Gifts' AND released = 1</code></div>
@@ -106,125 +107,406 @@
                     Para resolver el laboratorio, se debe realizar un ataque de inyección SQL que haga que la aplicación 
                     muestre uno o más productos no lanzados.
                   </p>
+                  <p><strong>Tipo de vulnerabilidaad: </strong>SQL Injection basada en manipulación lógica (Boolean-Based SQL Injection) en la cláusula WHERE.</p>
+                  <h3 class="text-center">Solucion del laboratorio</h3>
+                  <p>Los siguientes pasos fueron necesarios para la realizacion de este laboratorio</p>
+                  <ol>
+                    <li>Con Burpsuite, interceptar y modificar la solicitud que establece el filtro de categoría de producto.</li>
+                    <li>Modificar el parámetro de categoría, dándole el valor <code>'+OR+1=1--'</code>.</li>
+                    <li>Enviar la solicitud y verificar que la respuesta ahora contenga uno o más productos no publicados.</li>
+                  </ol>
+                  <h3>Evidencias</h3>
                 </div>
               </details>
 
               <details name="laboratorios">
                 <summary>Lab 02: SQL injection vulnerability allowing login bypass</summary>
                 <div class="contenido">
-                  <p>Contenido detallado sobre técnicas de inferencia y tiempos de respuesta.</p>
+                  <h3 class="text-center">Descripción del laboratorio</h3>
+                  <p>Este laboratorio contiene una vulnerabilidad de inyeccion de SQL en el filtro de categoria de productos. 
+                    Cuando el usuario selecciona una categoría, la aplicación ejecuta una consulta SQL como la siguiente:<br>
+                    <div class="text-center"><code class="code-scrollable">SELECT * FROM products WHERE category = 'Gifts' AND released = 1</code></div>
+                    <br>
+                    Para resolver el laboratorio, se debe realizar un ataque de inyección SQL que haga que la aplicación 
+                    muestre uno o más productos no lanzados.
+                  </p>
+                  <p><strong>Tipo de vulnerabilidaad: </strong>SQL Injection basada en manipulación lógica (Boolean-Based SQL Injection) en la cláusula WHERE.</p>
+                  <h3 class="text-center">Solucion del laboratorio</h3>
+                  <p>LOs siguientes pasos fueron necesarios para la realizacion de este laboratorio</p>
+                  <ol>
+                    <li>Con Burpsuite, interceptar y modificar la solicitud que establece el filtro de categoría de producto.</li>
+                    <li>Modificar el parámetro de categoría, dándole el valor <code>'+OR+1=1--'</code>.</li>
+                    <li>Enviar la solicitud y verificar que la respuesta ahora contenga uno o más productos no publicados.</li>
+                  </ol>
+                  <h3>Evidencias</h3>
                 </div>
               </details>
 
               <details name="laboratorios">
                 <summary>Lab 03: SQL injection attack, querying the database type and version on Oracle</summary>
                 <div class="contenido">
-                  <p>Explotación mediante el uso de sentencias UNION SELECT.</p>
+                  <h3 class="text-center">Descripción del laboratorio</h3>
+                  <p>Este laboratorio contiene una vulnerabilidad de inyeccion de SQL en el filtro de categoria de productos. 
+                    Cuando el usuario selecciona una categoría, la aplicación ejecuta una consulta SQL como la siguiente:<br>
+                    <div class="text-center"><code class="code-scrollable">SELECT * FROM products WHERE category = 'Gifts' AND released = 1</code></div>
+                    <br>
+                    Para resolver el laboratorio, se debe realizar un ataque de inyección SQL que haga que la aplicación 
+                    muestre uno o más productos no lanzados.
+                  </p>
+                  <p><strong>Tipo de vulnerabilidaad: </strong>SQL Injection basada en manipulación lógica (Boolean-Based SQL Injection) en la cláusula WHERE.</p>
+                  <h3 class="text-center">Solucion del laboratorio</h3>
+                  <p>LOs siguientes pasos fueron necesarios para la realizacion de este laboratorio</p>
+                  <ol>
+                    <li>Con Burpsuite, interceptar y modificar la solicitud que establece el filtro de categoría de producto.</li>
+                    <li>Modificar el parámetro de categoría, dándole el valor <code>'+OR+1=1--'</code>.</li>
+                    <li>Enviar la solicitud y verificar que la respuesta ahora contenga uno o más productos no publicados.</li>
+                  </ol>
+                  <h3>Evidencias</h3>
                 </div>
               </details>
 
               <details name="laboratorios">
                 <summary>Lab 04: SQL injection attack, querying the database type and version on MySQL and Microsoft</summary>
                 <div class="contenido">
-                  <p>Explotación mediante el uso de sentencias UNION SELECT.</p>
+                  <h3 class="text-center">Descripción del laboratorio</h3>
+                  <p>Este laboratorio contiene una vulnerabilidad de inyeccion de SQL en el filtro de categoria de productos. 
+                    Cuando el usuario selecciona una categoría, la aplicación ejecuta una consulta SQL como la siguiente:<br>
+                    <div class="text-center"><code class="code-scrollable">SELECT * FROM products WHERE category = 'Gifts' AND released = 1</code></div>
+                    <br>
+                    Para resolver el laboratorio, se debe realizar un ataque de inyección SQL que haga que la aplicación 
+                    muestre uno o más productos no lanzados.
+                  </p>
+                  <p><strong>Tipo de vulnerabilidaad: </strong>SQL Injection basada en manipulación lógica (Boolean-Based SQL Injection) en la cláusula WHERE.</p>
+                  <h3 class="text-center">Solucion del laboratorio</h3>
+                  <p>LOs siguientes pasos fueron necesarios para la realizacion de este laboratorio</p>
+                  <ol>
+                    <li>Con Burpsuite, interceptar y modificar la solicitud que establece el filtro de categoría de producto.</li>
+                    <li>Modificar el parámetro de categoría, dándole el valor <code>'+OR+1=1--'</code>.</li>
+                    <li>Enviar la solicitud y verificar que la respuesta ahora contenga uno o más productos no publicados.</li>
+                  </ol>
+                  <h3>Evidencias</h3>
                 </div>
               </details>
 
               <details name="laboratorios">
                 <summary>Lab 05: SQL injection attack, listing the database contents on non-Oracle databases</summary>
                 <div class="contenido">
-                  <p>Explotación mediante el uso de sentencias UNION SELECT.</p>
+                  <h3 class="text-center">Descripción del laboratorio</h3>
+                  <p>Este laboratorio contiene una vulnerabilidad de inyeccion de SQL en el filtro de categoria de productos. 
+                    Cuando el usuario selecciona una categoría, la aplicación ejecuta una consulta SQL como la siguiente:<br>
+                    <div class="text-center"><code class="code-scrollable">SELECT * FROM products WHERE category = 'Gifts' AND released = 1</code></div>
+                    <br>
+                    Para resolver el laboratorio, se debe realizar un ataque de inyección SQL que haga que la aplicación 
+                    muestre uno o más productos no lanzados.
+                  </p>
+                  <p><strong>Tipo de vulnerabilidaad: </strong>SQL Injection basada en manipulación lógica (Boolean-Based SQL Injection) en la cláusula WHERE.</p>
+                  <h3 class="text-center">Solucion del laboratorio</h3>
+                  <p>LOs siguientes pasos fueron necesarios para la realizacion de este laboratorio</p>
+                  <ol>
+                    <li>Con Burpsuite, interceptar y modificar la solicitud que establece el filtro de categoría de producto.</li>
+                    <li>Modificar el parámetro de categoría, dándole el valor <code>'+OR+1=1--'</code>.</li>
+                    <li>Enviar la solicitud y verificar que la respuesta ahora contenga uno o más productos no publicados.</li>
+                  </ol>
+                  <h3>Evidencias</h3>
                 </div>
               </details>
 
               <details name="laboratorios">
                 <summary>Lab 06: SQL injection attack, listing the database contents on Oracle</summary>
                 <div class="contenido">
-                  <p>Explotación mediante el uso de sentencias UNION SELECT.</p>
+                  <h3 class="text-center">Descripción del laboratorio</h3>
+                  <p>Este laboratorio contiene una vulnerabilidad de inyeccion de SQL en el filtro de categoria de productos. 
+                    Cuando el usuario selecciona una categoría, la aplicación ejecuta una consulta SQL como la siguiente:<br>
+                    <div class="text-center"><code class="code-scrollable">SELECT * FROM products WHERE category = 'Gifts' AND released = 1</code></div>
+                    <br>
+                    Para resolver el laboratorio, se debe realizar un ataque de inyección SQL que haga que la aplicación 
+                    muestre uno o más productos no lanzados.
+                  </p>
+                  <p><strong>Tipo de vulnerabilidaad: </strong>SQL Injection basada en manipulación lógica (Boolean-Based SQL Injection) en la cláusula WHERE.</p>
+                  <h3 class="text-center">Solucion del laboratorio</h3>
+                  <p>LOs siguientes pasos fueron necesarios para la realizacion de este laboratorio</p>
+                  <ol>
+                    <li>Con Burpsuite, interceptar y modificar la solicitud que establece el filtro de categoría de producto.</li>
+                    <li>Modificar el parámetro de categoría, dándole el valor <code>'+OR+1=1--'</code>.</li>
+                    <li>Enviar la solicitud y verificar que la respuesta ahora contenga uno o más productos no publicados.</li>
+                  </ol>
+                  <h3>Evidencias</h3>
                 </div>
               </details>
 
               <details name="laboratorios">
                 <summary>Lab 07: SQL injection UNION attack, determining the number of columns returned by the query</summary>
                 <div class="contenido">
-                  <p>Explotación mediante el uso de sentencias UNION SELECT.</p>
+                  <h3 class="text-center">Descripción del laboratorio</h3>
+                  <p>Este laboratorio contiene una vulnerabilidad de inyeccion de SQL en el filtro de categoria de productos. 
+                    Cuando el usuario selecciona una categoría, la aplicación ejecuta una consulta SQL como la siguiente:<br>
+                    <div class="text-center"><code class="code-scrollable">SELECT * FROM products WHERE category = 'Gifts' AND released = 1</code></div>
+                    <br>
+                    Para resolver el laboratorio, se debe realizar un ataque de inyección SQL que haga que la aplicación 
+                    muestre uno o más productos no lanzados.
+                  </p>
+                  <p><strong>Tipo de vulnerabilidaad: </strong>SQL Injection basada en manipulación lógica (Boolean-Based SQL Injection) en la cláusula WHERE.</p>
+                  <h3 class="text-center">Solucion del laboratorio</h3>
+                  <p>LOs siguientes pasos fueron necesarios para la realizacion de este laboratorio</p>
+                  <ol>
+                    <li>Con Burpsuite, interceptar y modificar la solicitud que establece el filtro de categoría de producto.</li>
+                    <li>Modificar el parámetro de categoría, dándole el valor <code>'+OR+1=1--'</code>.</li>
+                    <li>Enviar la solicitud y verificar que la respuesta ahora contenga uno o más productos no publicados.</li>
+                  </ol>
+                  <h3>Evidencias</h3>
                 </div>
               </details>
 
               <details name="laboratorios">
                 <summary>Lab 08: SQL injection UNION attack, finding a column containing text</summary>
                 <div class="contenido">
-                  <p>Explotación mediante el uso de sentencias UNION SELECT.</p>
+                  <h3 class="text-center">Descripción del laboratorio</h3>
+                  <p>Este laboratorio contiene una vulnerabilidad de inyeccion de SQL en el filtro de categoria de productos. 
+                    Cuando el usuario selecciona una categoría, la aplicación ejecuta una consulta SQL como la siguiente:<br>
+                    <div class="text-center"><code class="code-scrollable">SELECT * FROM products WHERE category = 'Gifts' AND released = 1</code></div>
+                    <br>
+                    Para resolver el laboratorio, se debe realizar un ataque de inyección SQL que haga que la aplicación 
+                    muestre uno o más productos no lanzados.
+                  </p>
+                  <p><strong>Tipo de vulnerabilidaad: </strong>SQL Injection basada en manipulación lógica (Boolean-Based SQL Injection) en la cláusula WHERE.</p>
+                  <h3 class="text-center">Solucion del laboratorio</h3>
+                  <p>LOs siguientes pasos fueron necesarios para la realizacion de este laboratorio</p>
+                  <ol>
+                    <li>Con Burpsuite, interceptar y modificar la solicitud que establece el filtro de categoría de producto.</li>
+                    <li>Modificar el parámetro de categoría, dándole el valor <code>'+OR+1=1--'</code>.</li>
+                    <li>Enviar la solicitud y verificar que la respuesta ahora contenga uno o más productos no publicados.</li>
+                  </ol>
+                  <h3>Evidencias</h3>
                 </div>
               </details>
 
               <details name="laboratorios">
                 <summary>Lab 09: SQL injection UNION attack, retrieving data from other tables</summary>
                 <div class="contenido">
-                  <p>Explotación mediante el uso de sentencias UNION SELECT.</p>
+                  <h3 class="text-center">Descripción del laboratorio</h3>
+                  <p>Este laboratorio contiene una vulnerabilidad de inyeccion de SQL en el filtro de categoria de productos. 
+                    Cuando el usuario selecciona una categoría, la aplicación ejecuta una consulta SQL como la siguiente:<br>
+                    <div class="text-center"><code class="code-scrollable">SELECT * FROM products WHERE category = 'Gifts' AND released = 1</code></div>
+                    <br>
+                    Para resolver el laboratorio, se debe realizar un ataque de inyección SQL que haga que la aplicación 
+                    muestre uno o más productos no lanzados.
+                  </p>
+                  <p><strong>Tipo de vulnerabilidaad: </strong>SQL Injection basada en manipulación lógica (Boolean-Based SQL Injection) en la cláusula WHERE.</p>
+                  <h3 class="text-center">Solucion del laboratorio</h3>
+                  <p>LOs siguientes pasos fueron necesarios para la realizacion de este laboratorio</p>
+                  <ol>
+                    <li>Con Burpsuite, interceptar y modificar la solicitud que establece el filtro de categoría de producto.</li>
+                    <li>Modificar el parámetro de categoría, dándole el valor <code>'+OR+1=1--'</code>.</li>
+                    <li>Enviar la solicitud y verificar que la respuesta ahora contenga uno o más productos no publicados.</li>
+                  </ol>
+                  <h3>Evidencias</h3>
                 </div>
               </details>
 
               <details name="laboratorios">
                 <summary>Lab 10: SQL injection UNION attack, retrieving multiple values in a single column</summary>
                 <div class="contenido">
-                  <p>Explotación mediante el uso de sentencias UNION SELECT.</p>
+                  <h3 class="text-center">Descripción del laboratorio</h3>
+                  <p>Este laboratorio contiene una vulnerabilidad de inyeccion de SQL en el filtro de categoria de productos. 
+                    Cuando el usuario selecciona una categoría, la aplicación ejecuta una consulta SQL como la siguiente:<br>
+                    <div class="text-center"><code class="code-scrollable">SELECT * FROM products WHERE category = 'Gifts' AND released = 1</code></div>
+                    <br>
+                    Para resolver el laboratorio, se debe realizar un ataque de inyección SQL que haga que la aplicación 
+                    muestre uno o más productos no lanzados.
+                  </p>
+                  <p><strong>Tipo de vulnerabilidaad: </strong>SQL Injection basada en manipulación lógica (Boolean-Based SQL Injection) en la cláusula WHERE.</p>
+                  <h3 class="text-center">Solucion del laboratorio</h3>
+                  <p>LOs siguientes pasos fueron necesarios para la realizacion de este laboratorio</p>
+                  <ol>
+                    <li>Con Burpsuite, interceptar y modificar la solicitud que establece el filtro de categoría de producto.</li>
+                    <li>Modificar el parámetro de categoría, dándole el valor <code>'+OR+1=1--'</code>.</li>
+                    <li>Enviar la solicitud y verificar que la respuesta ahora contenga uno o más productos no publicados.</li>
+                  </ol>
+                  <h3>Evidencias</h3>
                 </div>
               </details>
 
               <details name="laboratorios">
                 <summary>Lab 11: Blind SQL injection with conditional responses</summary>
                 <div class="contenido">
-                  <p>Explotación mediante el uso de sentencias UNION SELECT.</p>
+                  <h3 class="text-center">Descripción del laboratorio</h3>
+                  <p>Este laboratorio contiene una vulnerabilidad de inyeccion de SQL en el filtro de categoria de productos. 
+                    Cuando el usuario selecciona una categoría, la aplicación ejecuta una consulta SQL como la siguiente:<br>
+                    <div class="text-center"><code class="code-scrollable">SELECT * FROM products WHERE category = 'Gifts' AND released = 1</code></div>
+                    <br>
+                    Para resolver el laboratorio, se debe realizar un ataque de inyección SQL que haga que la aplicación 
+                    muestre uno o más productos no lanzados.
+                  </p>
+                  <p><strong>Tipo de vulnerabilidaad: </strong>SQL Injection basada en manipulación lógica (Boolean-Based SQL Injection) en la cláusula WHERE.</p>
+                  <h3 class="text-center">Solucion del laboratorio</h3>
+                  <p>LOs siguientes pasos fueron necesarios para la realizacion de este laboratorio</p>
+                  <ol>
+                    <li>Con Burpsuite, interceptar y modificar la solicitud que establece el filtro de categoría de producto.</li>
+                    <li>Modificar el parámetro de categoría, dándole el valor <code>'+OR+1=1--'</code>.</li>
+                    <li>Enviar la solicitud y verificar que la respuesta ahora contenga uno o más productos no publicados.</li>
+                  </ol>
+                  <h3>Evidencias</h3>
                 </div>
               </details>
 
               <details name="laboratorios">
                 <summary>Lab 12: Blind SQL injection with conditional errors</summary>
                 <div class="contenido">
-                  <p>Explotación mediante el uso de sentencias UNION SELECT.</p>
+                  <h3 class="text-center">Descripción del laboratorio</h3>
+                  <p>Este laboratorio contiene una vulnerabilidad de inyeccion de SQL en el filtro de categoria de productos. 
+                    Cuando el usuario selecciona una categoría, la aplicación ejecuta una consulta SQL como la siguiente:<br>
+                    <div class="text-center"><code class="code-scrollable">SELECT * FROM products WHERE category = 'Gifts' AND released = 1</code></div>
+                    <br>
+                    Para resolver el laboratorio, se debe realizar un ataque de inyección SQL que haga que la aplicación 
+                    muestre uno o más productos no lanzados.
+                  </p>
+                  <p><strong>Tipo de vulnerabilidaad: </strong>SQL Injection basada en manipulación lógica (Boolean-Based SQL Injection) en la cláusula WHERE.</p>
+                  <h3 class="text-center">Solucion del laboratorio</h3>
+                  <p>LOs siguientes pasos fueron necesarios para la realizacion de este laboratorio</p>
+                  <ol>
+                    <li>Con Burpsuite, interceptar y modificar la solicitud que establece el filtro de categoría de producto.</li>
+                    <li>Modificar el parámetro de categoría, dándole el valor <code>'+OR+1=1--'</code>.</li>
+                    <li>Enviar la solicitud y verificar que la respuesta ahora contenga uno o más productos no publicados.</li>
+                  </ol>
+                  <h3>Evidencias</h3>
                 </div>
               </details>
 
               <details name="laboratorios">
                 <summary>Lab 13: Visible error-based SQL injection</summary>
                 <div class="contenido">
-                  <p>Explotación mediante el uso de sentencias UNION SELECT.</p>
+                  <h3 class="text-center">Descripción del laboratorio</h3>
+                  <p>Este laboratorio contiene una vulnerabilidad de inyeccion de SQL en el filtro de categoria de productos. 
+                    Cuando el usuario selecciona una categoría, la aplicación ejecuta una consulta SQL como la siguiente:<br>
+                    <div class="text-center"><code class="code-scrollable">SELECT * FROM products WHERE category = 'Gifts' AND released = 1</code></div>
+                    <br>
+                    Para resolver el laboratorio, se debe realizar un ataque de inyección SQL que haga que la aplicación 
+                    muestre uno o más productos no lanzados.
+                  </p>
+                  <p><strong>Tipo de vulnerabilidaad: </strong>SQL Injection basada en manipulación lógica (Boolean-Based SQL Injection) en la cláusula WHERE.</p>
+                  <h3 class="text-center">Solucion del laboratorio</h3>
+                  <p>LOs siguientes pasos fueron necesarios para la realizacion de este laboratorio</p>
+                  <ol>
+                    <li>Con Burpsuite, interceptar y modificar la solicitud que establece el filtro de categoría de producto.</li>
+                    <li>Modificar el parámetro de categoría, dándole el valor <code>'+OR+1=1--'</code>.</li>
+                    <li>Enviar la solicitud y verificar que la respuesta ahora contenga uno o más productos no publicados.</li>
+                  </ol>
+                  <h3>Evidencias</h3>
                 </div>
               </details>
 
               <details name="laboratorios">
                 <summary>Lab 14: Blind SQL injection with time delays</summary>
                 <div class="contenido">
-                  <p>Explotación mediante el uso de sentencias UNION SELECT.</p>
+                  <h3 class="text-center">Descripción del laboratorio</h3>
+                  <p>Este laboratorio contiene una vulnerabilidad de inyeccion de SQL en el filtro de categoria de productos. 
+                    Cuando el usuario selecciona una categoría, la aplicación ejecuta una consulta SQL como la siguiente:<br>
+                    <div class="text-center"><code class="code-scrollable">SELECT * FROM products WHERE category = 'Gifts' AND released = 1</code></div>
+                    <br>
+                    Para resolver el laboratorio, se debe realizar un ataque de inyección SQL que haga que la aplicación 
+                    muestre uno o más productos no lanzados.
+                  </p>
+                  <p><strong>Tipo de vulnerabilidaad: </strong>SQL Injection basada en manipulación lógica (Boolean-Based SQL Injection) en la cláusula WHERE.</p>
+                  <h3 class="text-center">Solucion del laboratorio</h3>
+                  <p>LOs siguientes pasos fueron necesarios para la realizacion de este laboratorio</p>
+                  <ol>
+                    <li>Con Burpsuite, interceptar y modificar la solicitud que establece el filtro de categoría de producto.</li>
+                    <li>Modificar el parámetro de categoría, dándole el valor <code>'+OR+1=1--'</code>.</li>
+                    <li>Enviar la solicitud y verificar que la respuesta ahora contenga uno o más productos no publicados.</li>
+                  </ol>
+                  <h3>Evidencias</h3>
                 </div>
               </details>
               
               <details name="laboratorios">
                 <summary>Lab 15: Blind SQL injection with time delays and information retrieval</summary>
                 <div class="contenido">
-                  <p>Explotación mediante el uso de sentencias UNION SELECT.</p>
+                  <h3 class="text-center">Descripción del laboratorio</h3>
+                  <p>Este laboratorio contiene una vulnerabilidad de inyeccion de SQL en el filtro de categoria de productos. 
+                    Cuando el usuario selecciona una categoría, la aplicación ejecuta una consulta SQL como la siguiente:<br>
+                    <div class="text-center"><code class="code-scrollable">SELECT * FROM products WHERE category = 'Gifts' AND released = 1</code></div>
+                    <br>
+                    Para resolver el laboratorio, se debe realizar un ataque de inyección SQL que haga que la aplicación 
+                    muestre uno o más productos no lanzados.
+                  </p>
+                  <p><strong>Tipo de vulnerabilidaad: </strong>SQL Injection basada en manipulación lógica (Boolean-Based SQL Injection) en la cláusula WHERE.</p>
+                  <h3 class="text-center">Solucion del laboratorio</h3>
+                  <p>LOs siguientes pasos fueron necesarios para la realizacion de este laboratorio</p>
+                  <ol>
+                    <li>Con Burpsuite, interceptar y modificar la solicitud que establece el filtro de categoría de producto.</li>
+                    <li>Modificar el parámetro de categoría, dándole el valor <code>'+OR+1=1--'</code>.</li>
+                    <li>Enviar la solicitud y verificar que la respuesta ahora contenga uno o más productos no publicados.</li>
+                  </ol>
+                  <h3>Evidencias</h3>
                 </div>
               </details>
 
               <details name="laboratorios">
                 <summary>Lab 16: Blind SQL injection with out-of-band interaction</summary>
                 <div class="contenido">
-                  <p>Explotación mediante el uso de sentencias UNION SELECT.</p>
+                  <h3 class="text-center">Descripción del laboratorio</h3>
+                  <p>Este laboratorio contiene una vulnerabilidad de inyeccion de SQL en el filtro de categoria de productos. 
+                    Cuando el usuario selecciona una categoría, la aplicación ejecuta una consulta SQL como la siguiente:<br>
+                    <div class="text-center"><code class="code-scrollable">SELECT * FROM products WHERE category = 'Gifts' AND released = 1</code></div>
+                    <br>
+                    Para resolver el laboratorio, se debe realizar un ataque de inyección SQL que haga que la aplicación 
+                    muestre uno o más productos no lanzados.
+                  </p>
+                  <p><strong>Tipo de vulnerabilidaad: </strong>SQL Injection basada en manipulación lógica (Boolean-Based SQL Injection) en la cláusula WHERE.</p>
+                  <h3 class="text-center">Solucion del laboratorio</h3>
+                  <p>LOs siguientes pasos fueron necesarios para la realizacion de este laboratorio</p>
+                  <ol>
+                    <li>Con Burpsuite, interceptar y modificar la solicitud que establece el filtro de categoría de producto.</li>
+                    <li>Modificar el parámetro de categoría, dándole el valor <code>'+OR+1=1--'</code>.</li>
+                    <li>Enviar la solicitud y verificar que la respuesta ahora contenga uno o más productos no publicados.</li>
+                  </ol>
+                  <h3>Evidencias</h3>
                 </div>
               </details>
 
               <details name="laboratorios">
                 <summary>Lab 17: Blind SQL injection with out-of-band data exfiltration</summary>
                 <div class="contenido">
-                  <p>Explotación mediante el uso de sentencias UNION SELECT.</p>
+                  <h3 class="text-center">Descripción del laboratorio</h3>
+                  <p>Este laboratorio contiene una vulnerabilidad de inyeccion de SQL en el filtro de categoria de productos. 
+                    Cuando el usuario selecciona una categoría, la aplicación ejecuta una consulta SQL como la siguiente:<br>
+                    <div class="text-center"><code class="code-scrollable">SELECT * FROM products WHERE category = 'Gifts' AND released = 1</code></div>
+                    <br>
+                    Para resolver el laboratorio, se debe realizar un ataque de inyección SQL que haga que la aplicación 
+                    muestre uno o más productos no lanzados.
+                  </p>
+                  <p><strong>Tipo de vulnerabilidaad: </strong>SQL Injection basada en manipulación lógica (Boolean-Based SQL Injection) en la cláusula WHERE.</p>
+                  <h3 class="text-center">Solucion del laboratorio</h3>
+                  <p>LOs siguientes pasos fueron necesarios para la realizacion de este laboratorio</p>
+                  <ol>
+                    <li>Con Burpsuite, interceptar y modificar la solicitud que establece el filtro de categoría de producto.</li>
+                    <li>Modificar el parámetro de categoría, dándole el valor <code>'+OR+1=1--'</code>.</li>
+                    <li>Enviar la solicitud y verificar que la respuesta ahora contenga uno o más productos no publicados.</li>
+                  </ol>
+                  <h3>Evidencias</h3>
                 </div>
               </details>
 
               <details name="laboratorios">
                 <summary>Lab 18: SQL injection with filter bypass via XML encoding</summary>
                 <div class="contenido">
-                  <p>Explotación mediante el uso de sentencias UNION SELECT.</p>
+                  <h3 class="text-center">Descripción del laboratorio</h3>
+                  <p>Este laboratorio contiene una vulnerabilidad de inyeccion de SQL en el filtro de categoria de productos. 
+                    Cuando el usuario selecciona una categoría, la aplicación ejecuta una consulta SQL como la siguiente:<br>
+                    <div class="text-center"><code class="code-scrollable">SELECT * FROM products WHERE category = 'Gifts' AND released = 1</code></div>
+                    <br>
+                    Para resolver el laboratorio, se debe realizar un ataque de inyección SQL que haga que la aplicación 
+                    muestre uno o más productos no lanzados.
+                  </p>
+                  <p><strong>Tipo de vulnerabilidaad: </strong>SQL Injection basada en manipulación lógica (Boolean-Based SQL Injection) en la cláusula WHERE.</p>
+                  <h3 class="text-center">Solucion del laboratorio</h3>
+                  <p>LOs siguientes pasos fueron necesarios para la realizacion de este laboratorio</p>
+                  <ol>
+                    <li>Con Burpsuite, interceptar y modificar la solicitud que establece el filtro de categoría de producto.</li>
+                    <li>Modificar el parámetro de categoría, dándole el valor <code>'+OR+1=1--'</code>.</li>
+                    <li>Enviar la solicitud y verificar que la respuesta ahora contenga uno o más productos no publicados.</li>
+                  </ol>
+                  <h3>Evidencias</h3>
                 </div>
               </details>
             </div>
