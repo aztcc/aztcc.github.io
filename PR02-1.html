@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta content="IE=edge" http-equiv="X-UA-Compatible">
   <meta content="width=device-width,initial-scale=1" name="viewport">
-  <meta content="Fundamento teorico del segundo proyecto de Seguridad Informatica" name="description">
+  <meta content="description" name="description">
   <meta name="google" content="notranslate" />
   <meta content="Mashup templates have been developped by Orson.io team" name="author">
 
@@ -128,9 +128,109 @@ en acción (guía y video).
             Este cambio de paradigma reconoce que el factor humano es el vector de ataque más explotado, involucrando un elemento de manipulación en el 60% de las 
             brechas de seguridad actuales. 
           </p>
-          
+          <h3>2.1 Ingeniería social y el Vector de Phishing</h3>
+          <p>La ingeniería social es el arte de manipular psicológicamente a las personas para que divulguen 
+            información confidencial o realicen acciones que comprometan la seguridad. El phishing es su variante 
+            técnica más extendida, utilizando el correo electrónico o mensajería para la suplantación de las identidades de confianza. <br>
+            Para que una simulación sea efectiva, debe basarse en escenarios realistas que emulen las tácticas 
+            actuales de los atacantes, tales como el sentido de urgencia, autoridad o el miedo</p>
+          <h3>2.2 Metodología de simulación educativa</h3>
+          <p>A diferencia de un ataque real, la simulación educativa busca la retroalimentación formativa. Según los 
+            objetivos de esta investigación, la simulación no es una prueba de “atrapado”, sino que se trata de una 
+            oportunidad de aprendizaje inmediato.</p>
+          <ul>
+            <li>Momentos de enseñanza: Se refiere al instante en el que un usuario interactúa con un elemento
+sospechoso. En este momento, la plataforma debe mostrar una explicación visual de las señales
+de alerta (pistas) que el usuario pasó por alto.</li>
+            <li>Diseño de escenarios: Los 10 escenarios requeridos deben cubrir diversos niveles de dificultad y
+vectores para medir la resiliencia de forma integral.</li>
+          </ul>
+          <h3>2.3 Métricas críticas de resiliencia</h3>
+          <ul>
+            <li>Click rate (Tasa de clicks)</li>
+            <li>Reporting Rate (Tasa de reportes)</li>
+            <li>Risk Score (Puntuacion de riesgo)</li>
+            <li>Dwell Time (tiempo de permanencia)</li>
+          </ul>
+          <h3>2.4 Fundamentos de ética y privacidad digital</h3>
+          <ul>
+            <li>Consentimiento Informado</li>
+            <li>No captura de credenciales</li>
+            <li>Seguridad Psicologica</li>
+          </ul>
 
-          <h2>3. Bibliografias </h2>
+          <h2>3. Tabla comparativa</h2>
+          <table border="1" style="width:100%; border-collapse: collapse; font-family: Arial, sans-serif;">
+            <thead>
+              <tr style="background-color: #f2f2f2; text-align: left;">
+                <th style="padding: 12px;">Plataforma</th>
+                <th style="padding: 12px;">Analítica Avanzada</th>
+                <th style="padding: 12px;">Integración Técnica</th>
+                <th style="padding: 12px;">Enfoque Ético</th>
+                <th style="padding: 12px;">Limitaciones Críticas</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="padding: 10px; font-weight: bold;">HoxHunt</td>
+                <td style="padding: 10px;">Seguimiento de rachas (streaks) y niveles de experiencia (XP).</td>
+                <td style="padding: 10px;">Integración fluida con Microsoft 365 y Google Workspace (botón de reporte).</td>
+                <td style="padding: 10px;">Prohíbe el castigo; sólo premia el reporte y la detección exitosa (refuerzo positivo).</td>
+                <td style="padding: 10px;">Se enfoca casi exclusivamente en phishing, dejando fuera otros temas de ciberseguridad.</td>
+              </tr>
+              <tr>
+                <td style="padding: 10px; font-weight: bold;">Proofpoint</td>
+                <td style="padding: 10px;">Cruza quién es el más atacado con quién tiene menos formación.</td>
+                <td style="padding: 10px;">Nativa con su propio Gateway de correo y herramientas de respuesta (TAP/TRAP).</td>
+                <td style="padding: 10px;">Basado en el cumplimiento (Compliance) y protección de datos de alto nivel.</td>
+                <td style="padding: 10px;">Es extremadamente cara y difícil de configurar si no usas todo su ecosistema.</td>
+              </tr>
+              <tr>
+                <td style="padding: 10px; font-weight: bold;">KnowBe4</td>
+                <td style="padding: 10px;">Permite comparar tu "Phish-prone %" con otras empresas del mismo sector.</td>
+                <td style="padding: 10px;">Muy amplia: AD, Okta, Slack, Teams y casi cualquier LMS (SCORM).</td>
+                <td style="padding: 10px;">Transparente, aunque su escala masiva puede llevar a un enfoque de "vigilancia".</td>
+                <td style="padding: 10px;">Al tener tanto material, el usuario puede sentirse abrumado o hacer los cursos por compromiso.</td>
+              </tr>
+              <tr>
+                <td style="padding: 10px; font-weight: bold;">Cofense</td>
+                <td style="padding: 10px;">Resiliency Score: Mide la velocidad de reporte y la calidad de la alerta humana.</td>
+                <td style="padding: 10px;">Diseñada para el SOC; integración directa con herramientas de orquestación (SOAR).</td>
+                <td style="padding: 10px;">No busca "atrapar" al usuario, sino convertirlo en un sensor útil.</td>
+                <td style="padding: 10px;">Su contenido educativo suele ser menos "atractivo" o visual que el de la competencia.</td>
+              </tr>
+              <tr>
+                <td style="padding: 10px; font-weight: bold;">Phished</td>
+                <td style="padding: 10px;">Zero Incident Index (ZII): Algoritmo predictivo de probabilidad de incidente real.</td>
+                <td style="padding: 10px;">Automatización de protocolos DMARC/SPF/DKIM integrada.</td>
+                <td style="padding: 10px;">Privacy by Design: IA que individualiza sin necesidad de que el admin vea datos sensibles.</td>
+                <td style="padding: 10px;">Al ser 100% automatizada, el administrador tiene poco control sobre qué correo exacto se envía.</td>
+              </tr>
+              <tr>
+                <td style="padding: 10px; font-weight: bold;">NINJIO</td>
+                <td style="padding: 10px;">Emotional Susceptibility: Identifica qué emoción (miedo, codicia) hace caer al usuario.</td>
+                <td style="padding: 10px;">Integración con Slack/Teams y sistemas de gestión de aprendizaje (LMS).</td>
+                <td style="padding: 10px;">Bienestar Digital: Incluye a la familia del empleado; busca proteger el entorno personal.</td>
+                <td style="padding: 10px;">Su modelo mensual puede ser insuficiente para empresas que necesitan refuerzo semanal.</td>
+              </tr>
+              <tr>
+                <td style="padding: 10px; font-weight: bold;">Mimecast</td>
+                <td style="padding: 10px;">Encuestas para medir si el empleado se siente seguro o frustrado (Sentiment Analysis).</td>
+                <td style="padding: 10px;">Sincronización total con su solución de filtrado y archivado de correo.</td>
+                <td style="padding: 10px;">Usa la risa para educar sin generar estrés o ansiedad en el trabajador (Humor no invasivo).</td>
+                <td style="padding: 10px;">Muchas de sus mejores analíticas requieren que Mimecast sea también tu filtro de correo.</td>
+              </tr>
+              <tr>
+                <td style="padding: 10px; font-weight: bold;">Infosec IQ</td>
+                <td style="padding: 10px;">Reportes detallados sobre la preparación de departamentos específicos.</td>
+                <td style="padding: 10px;">API abierta muy robusta; excelente integración con SIEM y herramientas de BI.</td>
+                <td style="padding: 10px;">Profesionalismo académico: evita el engaño "cruel" y se enfoca en la habilidad laboral.</td>
+                <td style="padding: 10px;">La plataforma de administración es menos intuitiva y más "técnica" que el resto.</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h2>4. Bibliografias </h2>
           <ol>
             <li>CIRA Cybersecurity Services. (2024, 6 de enero). How to measure a phishing test program. CIRA. https://www.cira.ca/en/resources/news/cybersecurity/phishing-test-metrics-measurement/</li>
             <li>Cofense. (2024). Annual State of Phishing Report 2024. Cofense Resource Center. https://cofense.com/state-of-phishing-report/</li>
@@ -146,7 +246,7 @@ en acción (guía y video).
             <li>Verizon. (2024). 2024 Data Breach Investigations Report (DBIR). Verizon Business. https://www.verizon.com/business/resources/reports/dbir/</li>
           </ol>
           
-          <a href="pdfPage.html?archivo=177301-PR02-1.pdf" class="boton-descarga" title="Descargar ahora">
+          <a href="pdfPage.html?archivo=177301-PR02-1.pdf" class="boton-descarga" download title="Descargar ahora">
             <svg viewBox="0 0 24 24">
             <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
             </svg>
@@ -202,6 +302,4 @@ en acción (guía y video).
 
 --> <script type="text/javascript" src="./main.0cf8b554.js"></script></body>
 
-
 </html>
-
