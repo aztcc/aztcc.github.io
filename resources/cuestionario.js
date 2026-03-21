@@ -397,7 +397,7 @@ async function renderResultsTop3() {
 //  LEADERBOARD — Firebase Realtime Database (REST API)
 //  ► Reemplaza YOUR_PROJECT_ID con el ID de tu proyecto Firebase
 // ════════════════════════════════════════════════════════
-const FB_URL = 'https://YOUR_PROJECT_ID-default-rtdb.firebaseio.com/leaderboard';
+const FB_URL = 'https://cybersec-test-results-default-rtdb.firebaseio.com/leaderboard';
 
 async function saveToLeaderboard(alias, pts, metrics) {
   const entry = {
