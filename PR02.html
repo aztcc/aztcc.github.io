@@ -199,7 +199,7 @@ vectores para medir la resiliencia de forma integral.</li>
             <li>Verizon. (2024). 2024 Data Breach Investigations Report (DBIR). Verizon Business. https://www.verizon.com/business/resources/reports/dbir/</li>
           </ol>
           
-          <a href="pdfPage.html?archivo=177301-PR02-1.pdf" class="boton-descarga" download title="Descargar ahora">
+          <a href="pdfPage.html?archivo=177301-PR02-1.pdf" class="boton-descarga" title="Descargar ahora">
             <svg viewBox="0 0 24 24">
             <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
             </svg>
@@ -299,25 +299,76 @@ vectores para medir la resiliencia de forma integral.</li>
               </div>
             </div>
 
-            <div class="leaderboard-section">
-              <div class="leaderboard-title">🏆 Ranking Global</div>
-              <table class="lb-table">
-                <thead>
-                  <tr><th>#</th><th>Alias</th><th>Puntuación</th><th>Fecha</th></tr>
-                </thead>
-                <tbody id="leaderboard-body"></tbody>
-              </table>
-              <button class="btn-clear-lb" onclick="clearLeaderboard()">Limpiar ranking</button>
-            </div>
-            <button class="btn-retry" onclick="retryQuiz()">🔄 Intentar de nuevo</button>
+          
+            <button class="btn-retry" onclick="retryQuiz()">Intentar de nuevo</button>
           </div>
 
         </div><!-- /quiz-container -->
 
         <!-- FEEDBACK MODAL (injected by JS) -->
         <div id="modal-overlay" style="display:none;"></div>
+        <h1 class="text-center">Leaderboard</h1>
+        <!-- ═══════════════════════════════════════════════════════
+         STANDALONE GLOBAL LEADERBOARD — always visible
+    ════════════════════════════════════════════════════════ -->
+    <div id="global-leaderboard-section">
 
-  
+      <div class="glb-header">
+        <div class="glb-header-left">
+          <span>📊</span>
+          <div>
+            Ranking Global — Análisis de Resiliencia
+            <div class="glb-header-sub">Métricas agregadas de todos los participantes · se actualiza automáticamente al completar el quiz</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="glb-body">
+
+        <!-- Aggregate stats cards -->
+        <div id="global-stats-bar">
+          <div class="gstat-empty">Completa el quiz para ver estadísticas globales aquí.</div>
+        </div>
+
+        <!-- Full table -->
+        <div class="glb-table-wrap">
+          <table class="lb-table-full">
+            <thead>
+              <tr>
+                <th style="width:36px;">#</th>
+                <th>Alias</th>
+                <th>Score</th>
+                <th class="th-help" title="% de intentos de phishing que engañaron al usuario (idealmente 0%)">
+                  Click Rate <span class="th-sub">% phishing engañoso</span>
+                </th>
+                <th class="th-help" title="% de intentos de phishing que el usuario detectó (idealmente 100%)">
+                  Tasa de Reporte <span class="th-sub">% phishing detectado</span>
+                </th>
+                <th class="th-help" title="Puntuación de riesgo 0–100. Menor = más seguro. Basada en score + velocidad de respuesta.">
+                  Risk Score <span class="th-sub">0 seguro · 100 riesgo alto</span>
+                </th>
+                <th class="th-help" title="Tiempo promedio que el usuario pasó leyendo cada escenario antes de responder.">
+                  Dwell Time <span class="th-sub">prom. por escenario</span>
+                </th>
+                <th>Fecha</th>
+              </tr>
+            </thead>
+            <tbody id="global-lb-body">
+              <tr>
+                <td colspan="8" style="text-align:center;color:#aaa;padding:24px;">
+                  Sin registros aún. ¡Completa el quiz para aparecer aquí!
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="glb-actions">
+          <button class="btn-refresh-lb" onclick="renderGlobalLeaderboard()">↻ Actualizar</button>
+        </div>
+
+      </div><!-- /glb-body -->
+    </div><!-- /global-leaderboard-section -->
   </div>
 </div>
 
