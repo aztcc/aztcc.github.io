@@ -263,7 +263,7 @@ function nextScenario() {
 // ════════════════════════════════════════════════════════
 //  RESULTS SCREEN
 // ════════════════════════════════════════════════════════
-function showResults() {
+async function showResults() {
   document.getElementById('quiz-main').style.display = 'none';
   document.getElementById('results-screen').style.display = 'block';
 
@@ -292,9 +292,9 @@ function showResults() {
   else                      { gl.textContent = '🚨 Alto riesgo de engaño';     gl.className = 'grade-label grade-D'; }
 
   renderPersonalMetrics(metrics);
-  saveToLeaderboard(userAlias, finalScore, metrics);
-  renderResultsTop3();
-  renderGlobalLeaderboard();
+  await saveToLeaderboard(userAlias, finalScore, metrics);
+  await renderResultsTop3();
+  await renderGlobalLeaderboard();
 
   // Scroll to results
   document.getElementById('results-screen').scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -371,10 +371,10 @@ function renderPersonalMetrics(m) {
 // ════════════════════════════════════════════════════════
 //  RESULTS TOP-3 MINI LEADERBOARD
 // ════════════════════════════════════════════════════════
-function renderResultsTop3() {
+async function renderResultsTop3() {
   const tbody = document.getElementById('results-top3-body');
   if (!tbody) return;
-  const top3   = getLeaderboard().slice(0, 3);
+  const top3   = (await getLeaderboard()).slice(0, 3);
   const medals = ['🥇', '🥈', '🥉'];
   if (!top3.length) {
     tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;color:#aaa;">Sin registros aún.</td></tr>';
@@ -394,32 +394,57 @@ function renderResultsTop3() {
 }
 
 // ════════════════════════════════════════════════════════
-//  LEADERBOARD — localStorage
+//  LEADERBOARD — Firebase Realtime Database (REST API)
+//  ► Reemplaza YOUR_PROJECT_ID con el ID de tu proyecto Firebase
 // ════════════════════════════════════════════════════════
-const LB_KEY = 'phishing_quiz_leaderboard_v2';
+const FB_URL = 'https://YOUR_PROJECT_ID-default-rtdb.firebaseio.com/leaderboard';
 
-function saveToLeaderboard(alias, pts, metrics) {
-  let lb = getLeaderboard();
-  lb.push({ alias, pts, date: new Date().toLocaleDateString('es-MX'), sid: sessionId,
-    clickRate: metrics.clickRate, reportRate: metrics.reportRate,
-    riskScore: metrics.riskScore, avgDwellMs: metrics.avgDwellMs,
-    dwellTimes: metrics.dwellTimes, phishingFellCount: metrics.phishingFellCount,
+async function saveToLeaderboard(alias, pts, metrics) {
+  const entry = {
+    alias, pts,
+    date: new Date().toLocaleDateString('es-MX'),
+    sid: sessionId,
+    clickRate: metrics.clickRate,
+    reportRate: metrics.reportRate,
+    riskScore: metrics.riskScore,
+    avgDwellMs: metrics.avgDwellMs,
+    phishingFellCount: metrics.phishingFellCount,
     phishingReportedCount: metrics.phishingReportedCount,
-    totalPhishing: metrics.totalPhishing, fellForScenarioIds: metrics.fellForScenarioIds });
-  lb.sort((a, b) => b.pts - a.pts || (a.riskScore ?? 99) - (b.riskScore ?? 99));
-  lb = lb.slice(0, 50);
-  try { localStorage.setItem(LB_KEY, JSON.stringify(lb)); } catch (e) {}
+    totalPhishing: metrics.totalPhishing,
+    fellForScenarioIds: metrics.fellForScenarioIds,
+    timestamp: Date.now()
+  };
+  try {
+    const res = await fetch(FB_URL + '.json', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(entry)
+    });
+    if (!res.ok) console.error('Firebase save error:', res.status);
+  } catch (e) {
+    console.error('Error guardando en leaderboard:', e);
+  }
 }
 
-function getLeaderboard() {
-  try { return JSON.parse(localStorage.getItem(LB_KEY)) || []; } catch (e) { return []; }
+async function getLeaderboard() {
+  try {
+    const res = await fetch(FB_URL + '.json');
+    const data = await res.json();
+    if (!data) return [];
+    const lb = Object.values(data);
+    lb.sort((a, b) => b.pts - a.pts || (a.riskScore ?? 99) - (b.riskScore ?? 99));
+    return lb.slice(0, 50);
+  } catch (e) {
+    console.error('Error cargando leaderboard:', e);
+    return [];
+  }
 }
 
 // ════════════════════════════════════════════════════════
 //  GLOBAL LEADERBOARD SECTION
 // ════════════════════════════════════════════════════════
-function renderGlobalLeaderboard() {
-  const lb = getLeaderboard();
+async function renderGlobalLeaderboard() {
+  const lb = await getLeaderboard();
   renderGlobalStats(lb);
 
   const tbody = document.getElementById('global-lb-body');
@@ -496,12 +521,7 @@ function renderGlobalStats(lb) {
 }
 
 function clearLeaderboard() {
-  if (confirm('¿Seguro que deseas borrar todo el ranking global?')) {
-    localStorage.removeItem(LB_KEY);
-    renderGlobalLeaderboard();
-    const t3 = document.getElementById('results-top3-body');
-    if (t3) t3.innerHTML = '<tr><td colspan="5" style="text-align:center;color:#aaa;">Sin registros aún.</td></tr>';
-  }
+  alert('El leaderboard ahora está en Firebase. Para borrarlo, hazlo directamente desde la consola de Firebase.');
 }
 
 // ════════════════════════════════════════════════════════
@@ -520,6 +540,6 @@ function retryQuiz() {
 // ════════════════════════════════════════════════════════
 //  INIT
 // ════════════════════════════════════════════════════════
-document.addEventListener('DOMContentLoaded', function () {
-  renderGlobalLeaderboard();
+document.addEventListener('DOMContentLoaded', async function () {
+  await renderGlobalLeaderboard();
 });
