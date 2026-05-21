@@ -11,6 +11,28 @@
   font-family: 'Segoe UI', sans-serif;
 }
 
+.botones {
+  padding: 15px 20px;
+  background: #f8f9fa;
+  max-width: 20%;
+  border-top: 1px solid #eee;
+  border-radius: 15px;
+  font-weight: bold;
+  color: #fdfeff; /* Color que combine con tu header azul */
+  text-align: center;
+  background-color: #0056b3;
+}
+
+.pdf-container {
+    width: 100%;          /* Takes up the full width of your card */
+    max-width: 800px;     /* Limits it so it doesn't look too wide on desktop */
+    height: 500px;        /* Gives it a good scrolling height */
+    margin: 20px auto;    /* Centers the container and adds spacing top/bottom */
+    border: 1px solid #e0e0e0; /* Optional: adds a subtle border matching the card */
+    border-radius: 8px;   /* Optional: rounds the corners to match modern UI */
+    overflow: hidden;     /* Keeps the rounded corners clean */
+}
+
 .titulo-seccion {
   color: var(--azul-principal);
   text-align: center;
