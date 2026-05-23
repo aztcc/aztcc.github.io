@@ -68,10 +68,10 @@
 
 .card-footer {
     padding: 15px 20px;
-    background: #f8f9fa;
+    background: #4457c0;
     border-top: 1px solid #eee;
     border-radius: 15px;
     font-weight: bold;
-    color: #0056b3; /* Color que combine con tu header azul */
+    color: #ffffff; /* Color que combine con tu header azul */
     text-align: right;
 }

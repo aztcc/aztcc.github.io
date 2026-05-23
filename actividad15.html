@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta content="IE=edge" http-equiv="X-UA-Compatible">
+  <meta content="width=device-width,initial-scale=1" name="viewport">
+  <meta content="Phishing con SET " name="description">
+  <meta name="google" content="notranslate" />
+  <meta content="Mashup templates have been developped by Orson.io team" name="author">
+
+  <!-- Disable tap highlight on IE -->
+  <meta name="msapplication-tap-highlight" content="no">
+  
+  
+  <link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-icon-180x180.png">
+  <link href="./assets/favicon.ico" rel="icon">
+
+  <link href="./table.css" rel="stylesheet">
+
+
+  <title>Actividad 15</title>
+
+  <link href="./main.550dcf66.css" rel="stylesheet">
+  <link href="./cards.css" rel="stylesheet">
+  <link href="./terminal.css" rel="stylesheet">
+  <script src="./terminal.js" defer></script>
+  <style>
+    /* Estilos para el botón flotante */
+  .boton-descarga {
+    position: fixed;
+    bottom: 20px;       /* Distancia desde abajo */
+    right: 20px;        /* Distancia desde la derecha */
+    background-color: #4457c0; /* CAMBIA ESTE COLOR AQUÍ */
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+    z-index: 1000;      /* Asegura que esté por encima de otros elementos */
+  }
+
+  /* Efecto al pasar el mouse */
+  .boton-descarga:hover {
+    background-color: #0056b3;
+    transform: translateY(-5px); /* Se eleva un poco */
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.4);
+  }
+
+  /* Estilo del icono (puedes usar una imagen o SVG) */
+  .boton-descarga svg {
+    width: 30px;
+    height: 30px;
+    fill: white;
+  }
+  </style>
+</head>
+
+<body> <!-- Add your content of header -->
+<header>
+  <nav class="navbar navbar-default active">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="./index.html" title="">
+          <img src="./assets/images/mashup-icon.svg" class="navbar-logo-img" alt="">
+          Leonardo Serrano
+        </a>
+      </div>
+
+      <div class="collapse navbar-collapse" id="navbar-collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="./index.html" title="">Home</a></li>
+          <li><a href="./project.html" title="">Portafolio</a></li>
+
+        </ul>
+      </div> 
+    </div>
+  </nav>
+</header>
+
+<div class="section-container">
+    <div class="container">
+        <h1 class="text-center">Creando una campaña de phishing con SET</h1>
+        <p class="text-center">Diseño, simulación y análisis de ingeniería social empleando Social Engineer Toolkit (SET) en un entorno de laboratorio controlado. </p>
+      <div class="row">
+        <div class="col-xs-12 col-md-8 col-md-offset-2">
+          <h2>1. Resumen ejecutivo</h2>
+            <p>
+              Este reporte técnico documenta la simulación y análisis de una campaña de phishing orientada al contexto escolar de la Universidad Politécnica 
+              de San Luis Potosí (UPSLP). La simulación fue desplegada a través de la herramienta Social Engineer Toolkit (SET) para observar cómo vectores de 
+              ingeniería social explotan impulsos humanos básicos como la autoridad institucional, la urgencia de respuesta y el temor a consecuencias administrativas graves.  
+            </p>
+
+            <p>
+              Nota de Manejo de Información: Con fines estrictamente didácticos, las evidencias no han sido anonimizadas dentro de este portafolio con el objetivo de demostrar 
+              la trazabilidad completa requerida por la rúbrica docente. Este material representa una simulación cerrada y controlada. 
+            </p>
+
+          <h2>2. Relacion con la Actividad de Clase</h2>
+            <p>
+              La práctica se encuadra dentro de los contenidos sobre técnicas de explotación de vulnerabilidades y seguridad defensiva. 
+              Específicamente, aplica los conceptos de clasificación del phishing (masivo vs. dirigido), psicología de la ingeniería social y medidas 
+              institucionales para mitigar ataques a nivel humano. La actividad evidencia la transición entre el análisis teórico y la experimentación práctica 
+              con frameworks estándar de pruebas de penetración. 
+            </p>
+
+          <h2>3. Alcance, Límites y Consideraciones Éticas</h2>
+            <p>
+              La ingeniería social ética exige regulaciones estrictas para proteger la confianza organizacional. Los parámetros que rigieron esta práctica fueron: 
+            </p>
+
+            <h3>3.1. Alcance de la Práctica</h3>
+              <ul>
+                <li>Simulación limitada a la infraestructura interna del laboratorio escolar.</li>
+                <li>Uso de pretextos típicos que enfrentan los estudiantes en su ciclo académico habitual.</li>
+                <li>Análisis visual del mensaje recibido para determinar los indicadores técnicos que exponen el engaño.</li>
+              </ul>
+
+            <h3>3.2. Límites de Seguridad</h3>
+              <ul>
+                <li><strong>No captura de credenciales:</strong> Los enlaces de la campaña no redirigían a portales activos de recolección de contraseñas (Credential Harvesting) ni registraban datos personales.</li>
+                <li><strong>Origen SMTP controlado:</strong> Empleo de un servidor local de correo (laboratorio) sin salida hacia Internet para prevenir incidentes de suplantación externos.</li>
+                <li><strong>Población acotada:</strong> Envío restringido exclusivamente a las direcciones de prueba de los integrantes del equipo evaluador.</li>
+              </ul>
+
+          <h2>4. Objetivos</h2>
+            <ul>
+              <li><strong>Objetivo General:</strong> Analizar el funcionamiento de una campaña de phishing simulada mediante SET, caracterizando los disparadores psicológicos involucrados y formulando controles técnicos y de concientización corporativos.</li>
+              <li><strong>Objetivos Específicos:</strong>
+                <ol>
+                  <li>Estructurar narrativas basadas en procesos estudiantiles críticos (seguridad de cuenta, inasistencias y estatus de reinscripción).</li>
+                  <li>Configurar y desplegar el módulo de envío de correo masivo en SET.</li>
+                  <li>Realizar una autopsia visual y técnica de los correos resultantes.</li>
+                  <li>Elaborar un plan de remediación integral que contemple controles para el usuario final y la institución.</li>
+                </ol>
+              </li>
+            </ul>
+
+          <h2>5. Marco Teórico</h2>
+          <p>
+              El phishing es una forma de ingeniería social que engaña a las víctimas para que ejecuten una acción no segura (ingresar datos, descargar malware). Se apoya en disparadores de influencia social descritos por la psicología de la persuasión:
+          </p>
+          <ul>
+            <li><strong>Autoridad:</strong> El destinatario obedece porque el mensaje parece provenir de un área con jerarquía (ej. Servicios Escolares o Administración).</li>
+            <li><strong>Urgencia:</strong> Se define un marco de tiempo estricto (ej. 12-24 horas) para suspender el análisis crítico del receptor.</li>
+            <li><strong>Temor/Pérdida:</strong> Se amenaza con consecuencias desfavorables de gran impacto (baja académica, suspensión de cuenta, pérdida de derechos a examen).</li>
+          </ul>
+
+          <h2>6. Diseño de la Campaña Simulada</h2>
+          <p>
+            Se definieron tres variantes con un enfoque de ingeniería social adecuado al público estudiantil de la UPSLP:
+          </p>
+          
+          <table>
+            <thead>
+              <tr>
+                <th>Variante</th>
+                <th>Pretexto (Narrativa)</th>
+                <th>Mecanismo Psicológico</th>
+                <th>Consecuencia Amenazada</th>
+              </tr>
+            </thead>
+          <tbody>
+              <tr>
+                <td><strong>1. Seguridad de Cuenta</strong></td>
+                <td>Alerta de actividad inusual en la cuenta y obligatoriedad de validación de identidad.</td>
+                <td>Autoridad Técnica + Urgencia</td>
+                <td>Desactivación o bloqueo temporal del correo institucional.</td>
+              </tr>
+              <tr>
+                <td><strong>2. Límite de Faltas</strong></td>
+                <td>Advertencia de inasistencias acumuladas fuera del límite del reglamento general de la UPSLP.</td>
+                <td>Temor / Castigo Académico</td>
+                <td>Pérdida inminente de derecho a presentar exámenes ordinarios.</td>
+              </tr>
+              <tr>
+                <td><strong>3. Reinscripción</strong></td>
+                <td>Inconsistencias técnicas en el registro administrativo de materias asignadas.</td>
+                <td>Urgencia Operativa</td>
+                <td>Baja definitiva de las asignaturas en la plataforma escolar.</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h2>7. Evidencias de la Práctica (Simulación de Configuración)</h2>
+          <p>
+            Las siguientes evidencias muestran el proceso de simulación de la campaña. Se conservan íntegras para
+            que el docente pueda revisar datos visibles del remitente, destinatario, asunto, enlaces y contenido del
+            mensaje.
+          </p>
+
+            <!-- Terminal SET Interactiva -->
+            <div class="terminal">
+              <div class="terminal__header">
+                <div class="terminal__dots">
+                  <div class="terminal__dot terminal__dot--red"></div>
+                  <div class="terminal__dot terminal__dot--yellow"></div>
+                  <div class="terminal__dot terminal__dot--green"></div>
+                </div>
+                <div class="terminal__title">setoolkit@laboratory-node:~</div>
+              </div>
+              <div class="terminal__body" id="terminalConsole">
+                  <!-- Dinámico -->
+              </div>
+              <div class="terminal__controls">
+                <button class="terminal__btn" id="btnPrevStep" disabled>← Anterior</button>
+                <span class="terminal__step-indicator" id="terminalStepText">Paso 1 de 6</span>
+                <button class="terminal__btn" id="btnNextStep">Siguiente →</button>
+              </div>
+            </div>
+
+            <!-- Terminal estática para el PDF -->
+            <div class="terminal-print-version">
+              === SOCIAL-ENGINEER TOOLKIT (SET) SIMULATION SUMMARY ===
+              $ sudo setoolkit
+              [+] Select from the menu:
+              1) Social-Engineering Attacks
+              2) Penetration Testing (Fast-Track)
+              3) Third-Party Modules
+              set> 1
+
+              [+] Select module:
+              5) Mass Mailer Attack
+              set> 5
+
+              [+] Mass Mailer Options:
+              1) E-Mail Attack Single Email Address
+              2) E-Mail Attack Mass Mailer
+              set> 1
+
+              [+] Define Email Configuration:
+              Send email to: target_student@alumno.upslp.edu.mx
+              Use a 1) Gmail Account or 2) Custom SMTP Server
+              Option: 2
+              SMTP Server address: 127.0.0.1
+              Port: 25
+              From Address: alertas@soporte-academico.net
+              From Name: Seguridad Universitaria
+              Subject: NOTIFICACIÓN DE SEGURIDAD
+              Body Format: HTML
+              Message body loaded from: campaign_template.html
+
+              [+] Sending simulated email to target_student@alumno.upslp.edu.mx...
+              [+] Email sent successfully. Monitoring SMTP logs...
+            </div>
+
+          <h2>8. Análisis Técnico de los Correos (Inspector Interactivo)</h2>
+          <p>
+              El éxito del phishing radica en la verosimilitud del formato, sin embargo, existen múltiples señales de alerta técnicas y visuales. Interactúa con las tres variantes simuladas para analizar sus fallas de seguridad:
+          </p>
+
+          <!-- Inspector de Correos Interactivo -->
+          <div class="inspector">
+              <div class="inspector__tabs">
+                  <button class="inspector__tab active" id="tabEmailSeguridad" onclick="switchEmail('seguridad')">Seguridad de Cuenta</button>
+                  <button class="inspector__tab" id="tabEmailFaltas" onclick="switchEmail('faltas')">Límite de Faltas</button>
+                  <button class="inspector__tab" id="tabEmailReinscripcion" onclick="switchEmail('reinscripcion')">Irregularidad Reinscripción</button>
+              </div>
+              <div class="inspector__layout">
+                  <div class="inspector__email-container">
+                      <div class="email-headers" id="emailHeadersArea">
+                          <!-- Dinámico -->
+                      </div>
+                      <div class="email-body" id="emailBodyArea">
+                          <!-- Dinámico -->
+                      </div>
+                  </div>
+                  <div class="inspector__analysis-panel">
+                      <div class="analysis-card" id="analysisCard">
+                          <div class="analysis-card__placeholder" id="analysisPlaceholder">
+                              Haz clic o pasa el cursor sobre las zonas marcadas en rojo dentro del correo para analizar el indicador de phishing.
+                          </div>
+                          <div class="analysis-card__header" id="analysisHeader" style="display:none;">
+                              <span class="analysis-card__badge analysis-card__badge--high">Riesgo</span>
+                              <span id="analysisTitle">Título del Indicador</span>
+                          </div>
+                          <div class="analysis-card__content" id="analysisContent" style="display:none;">
+                              <p id="analysisDescription">Descripción técnica del indicador.</p>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+          <!-- Correos estáticos para el PDF -->
+          <div class="print-only-emails">
+              <div class="print-email-block">
+                  <h3>Variante 1: Notificación de Seguridad</h3>
+                  <p><strong>De:</strong> "Seguridad Universitaria" &lt;alertas@soporte-academico.net&gt; (Remitente no institucional)</p>
+                  <p><strong>Para:</strong> target_student@alumno.upslp.edu.mx</p>
+                  <p><strong>Asunto:</strong> NOTIFICACIÓN DE SEGURIDAD</p>
+                  <hr>
+                  <p>Estimado alumno:</p>
+                  <p>Se ha detectado una actividad de inicio de sesión inusual en su cuenta institucional desde una dirección IP fuera de la región. Para evitar la <span class="phish-spot">suspensión temporal</span> (Lenguaje de Urgencia) de sus servicios y cuentas académicas, es obligatorio que vincule su cuenta con nuestro nuevo sistema de verificación en un plazo no mayor a <span class="phish-spot">24 horas</span> (Plazo Limitado).</p>
+                  <p>Vincule sus servicios haciendo clic en el siguiente enlace:</p>
+                  <p><strong>[ <span class="phish-spot">VALIDAR MI IDENTIDAD Y SERVICIOS</span> ]</strong> (Redirección a bit.ly/upslp-auth - Enlace acortado sospechoso)</p>
+                  <p>Atentamente,<br>Servicio de Soporte y Seguridad UPSLP</p>
+                  
+                  <div class="print-analysis-list">
+                      <strong>Indicadores clave analizados:</strong>
+                      <ul>
+                          <li><strong>Remitente sospechoso:</strong> El dominio '@soporte-academico.net' no corresponde a la UPSLP.</li>
+                          <li><strong>Urgencia desmedida:</strong> Plazo de 24 horas para evitar la desactivación.</li>
+                          <li><strong>Enlace encubierto:</strong> Se utiliza un acortador para ocultar el sitio final de captura de credenciales.</li>
+                      </ul>
+                  </div>
+              </div>
+
+              <div class="print-email-block">
+                  <h3>Variante 2: Límite de Faltas</h3>
+                  <p><strong>De:</strong> "Control Escolar UPSLP" &lt;avisos@control-escolar-adm.org&gt; (Remitente no institucional)</p>
+                  <p><strong>Para:</strong> target_student@alumno.upslp.edu.mx</p>
+                  <p><strong>Asunto:</strong> ALERTA DE INASISTENCIAS - LÍMITE EXCEDIDO</p>
+                  <hr>
+                  <p>Aviso de Urgencia Académica:</p>
+                  <p>Se le notifica que ha superado el porcentaje permitido de inasistencias en una o más asignaturas del presente ciclo escolar. De acuerdo con el reglamento de la Universidad Politécnica de San Luis Potosí, esto conlleva la <span class="phish-spot">pérdida del derecho a examen ordinario</span> (Impacto intimidatorio).</p>
+                  <p>Usted cuenta con un plazo de <span class="phish-spot">12 horas</span> (Urgencia) para ingresar al portal de aclaraciones y regularizar su situación o agendar una cita con su tutor académico.</p>
+                  <p>Ingrese al portal para registrar su justificación:</p>
+                  <p><strong>[ <span class="phish-spot">ACCEDER AL PORTAL DE ACLARACIONES</span> ]</strong> (Redirección a bit.ly/upslp-justifica - Enlace acortado)</p>
+                  <p>Dirección de Servicios Escolares</p>
+              </div>
+
+              <div class="print-email-block">
+                  <h3>Variante 3: Irregularidad en Reinscripción</h3>
+                  <p><strong>De:</strong> "Servicios Escolares UPSLP" &lt;reinscripciones@upslp-portal.com&gt;</p>
+                  <p><strong>Para:</strong> target_student@alumno.upslp.edu.mx</p>
+                  <p><strong>Asunto:</strong> NOTIFICACIÓN - IRREGULARIDAD EN REINSCRIPCIÓN</p>
+                  <hr>
+                  <p>Notificación urgente de reinscripción:</p>
+                  <p>Hemos detectado una inconsistencia en el registro de su inscripción para el ciclo escolar actual, lo que podría resultar en la <span class="phish-spot">suspensión definitiva de sus materias</span> (Amenaza grave) registradas en la plataforma académica.</p>
+                  <p>Para validar su estatus e impedir la baja de sus asignaturas, ingrese de manera inmediata a la plataforma oficial de confirmación de datos:</p>
+                  <p><strong>[ <span class="phish-spot">CONFIRMAR DATOS DE ACCESO Y MATERIAS</span> ]</strong> (Redirección a bit.ly/upslp-reinscripcion)</p>
+                  <p>Tiene un plazo límite de <span class="phish-spot">24 horas</span> a partir del recibo de esta comunicación.</p>
+                  <p>Departamento de Control Escolar</p>
+              </div>
+            </div>
+
+            <h3>8.1. Tabla de Indicadores de Phishing Identificados</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Indicador Detectado</th>
+                        <th>Observación Técnica en la Simulación</th>
+                        <th>Criterio Defensivo (Contramedida)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Remitente No Oficial </strong></td>
+                        <td>Uso de dominios ajenos como <code>@soporte-academico.net</code> o <code>@control-escolar-adm.org</code> en lugar del dominio oficial <code>@upslp.edu.mx</code>.</td>
+                        <td>Ignorar el nombre visible y verificar la dirección de correo SMTP en las cabeceras del correo.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Uso de Enlaces Acortados</strong></td>
+                        <td>Direccionamiento a través de servicios como <code>bit.ly/upslp-auth</code> para ocultar la URL final de destino.</td>
+                        <td>No hacer clic. Examinar la URL real pasando el cursor (hover) o utilizar herramientas de expansión de enlaces.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Plazos Impositivos</strong></td>
+                        <td>Establecimiento de límites estrictos (12 o 24 horas) bajo apercibimiento de penalización inmediata.</td>
+                        <td>Validar el estatus académico a través del portal oficial del alumno o llamando por teléfono a Control Escolar.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Solicitud de Credenciales</strong></td>
+                        <td>Invitación a "validar" o "confirmar" datos de acceso (usuario y contraseña) a través del enlace.</td>
+                        <td>Ninguna autoridad legítima solicita contraseñas por correo electrónico. Utilizar autenticación de doble factor (MFA).</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>8.2. Evaluación de Riesgo de las Variantes</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Variante</th>
+                        <th>Rango de Severidad</th>
+                        <th>Justificación Técnica y Psicológica</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Seguridad de Cuenta</strong></td>
+                        <td><span class="tag c">ALTO</span></td>
+                        <td>La advertencia sobre accesos no autorizados asusta al usuario y lo empuja a validar credenciales rápidamente bajo la premisa de protegerse, generando el efecto contrario.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Límite de Faltas</strong></td>
+                        <td><span class="tag c">ALTO</span></td>
+                        <td>Ataca directamente el temor de perder el semestre. El impacto académico y la urgencia (12 horas) disminuyen notablemente la probabilidad de que el alumno valide el dominio.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Reinscripción</strong></td>
+                        <td><span class="tag i">MEDIO-ALTO</span></td>
+                        <td>La posibilidad de perder la inscripción de materias es alarmante, pero su efectividad depende de la época del año (solo es altamente efectiva al inicio del ciclo escolar).</td>
+                    </tr>
+                </tbody>
+            </table>
+          <h2>9. Controles recomendados </h2>
+          <h3>9.1 Para estudiantes y usuarios finales</h3>
+          <ul>
+            <li>No abrir enlaces de correos que amenacen con consecuencias inmediatas sin verificar primero en el portal oficial</li>
+            <li>Revisar el dominio completo del remitente, no solo el nombre visible.</li>
+            <li>Desconfiar de enlaces acortados o dominios externos cuando el trámite supuestamente sea institucional</li>
+            <li>No ingresar contraseña después de abrir un enlace recibido por correo. Es mejor escribir manualmente la URL oficial en el navegador</li>
+            <li>Reportar correos sospechosos al área correspondiente antes de reenviarlos a otros usuarios.</li>
+          </ul>
+
+          <h3>9.2 Para la institución</h3>
+          <ul>
+            <li>Implementar y monitorear SPF, DKIM y DMARC para reducir suplantación de dominio.</li>
+            <li>Usar campañas periódicas de concientización con ejemplos reales y simulados.</li>
+            <li>Establecer una ruta oficial de reporte de phishing visible para estudiantes y personal.</li>
+            <li>Bloquear o advertir sobre URL acortadas y dominios recién creados cuando se usen en correos institucionales</li>
+            <li>Aplicar autenticación multifactor en portales escolares y cuentas institucionales.</li>
+            <li>Mantener plantillas oficiales de comunicación para que los usuarios reconozcan diferencias de estilo, dominio y firma</li>
+          </ul>
+
+          <h2>10. Buenas practicas para campañas eticas de concientizacion </h2>
+          <p>
+            Una campaña de phishing ética no debe buscar humillar ni castigar al usuario. Su objetivo correcto es
+            medir exposición, enseñar señales de alerta y mejorar controles. Para que sea válida, debe cumplir al
+            menos con los siguientes criterios:
+          </p>
+          <ol>
+            <li>Autorización formal por escrito antes de ejecutar la prueba.</li>
+            <li>Alcance limitado: población, fechas, dominios, mensajes y métricas permitidas.</li>
+            <li>Protección de datos personales y prohibición de almacenar contraseñas reales.</li>
+            <li>Página educativa posterior, en caso de que el usuario haga clic.</li>
+            <li>Reporte agregado de resultados, evitando señalar públicamente a personas específicas.</li>
+            <li>Plan de mejora posterior con capacitación y endurecimiento técnico</li>
+          </ol>
+
+          <h2>11. Conclusiones </h2>
+          <p>
+            La práctica evidencia que el usuario sigue siendo un punto crítico en la seguridad informática. Un
+            correo con estructura sencilla puede generar riesgo si utiliza elementos de autoridad, urgencia y miedo
+            a consecuencias académicas. La parte técnica de SET facilita la simulación, pero el éxito del engaño
+            depende principalmente del contexto psicológico del mensaje.
+          </p>
+          <p>
+            También se comprobó que existen señales detectables: remitentes no oficiales, ligas acortadas, dominios
+            ajenos, solicitudes de validación de identidad y presión temporal. Por ello, la defensa no debe depen-
+            der únicamente de filtros de correo; necesita combinar controles técnicos, capacitación, autenticación
+            multifactor y canales claros de verificación.
+          </p>
+          <p>
+            El aprendizaje principal es directo: una institución puede tener buenas herramientas técnicas, pero si sus
+            usuarios no tienen criterios de validación, una campaña de ingeniería social puede comprometer cuentas,
+            información académica o accesos internos.
+          </p>
+
+
+          <h2>12. Bibliografias </h2>
+          <list>
+            <li>Association for Computing Machinery. (s.f.). <em>ACM Code of Ethics and Professional Conduct</em>.</li>
+            <li>Caltagirone, S., Pendergast, A., & Betz, C. (2013). <em>The Diamond Model of Intrusion Analysis</em>. Center for Cyber Intelligence Analysis and Threat Research.</li>
+            <li>Cybersecurity and Infrastructure Security Agency (CISA). (s.f.). <em>Avoiding Social Engineering and Phishing Attacks</em>. Recuperado de cisa.gov</li>
+            <li>TrustedSec. (s.f.). <em>The Social-Engineer Toolkit (SET) User Manual</em>. Recuperado de github.com/trustedsec/social-engineer-toolkit</li>
+        
+          </list>
+          
+          <a href="./pdfPage.html?archivo=act15-Equipo5.pdf" class="boton-descarga" title="Descargar ahora">
+            <svg viewBox="0 0 24 24">
+            <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+            </svg>
+         </a>
+         
+
+       </div>
+      </div>
+    </div>
+  </div>
+
+<footer class="footer-container white-text-container">
+  <div class="container">
+    <div class="row">
+
+     
+      <div class="col-xs-12">
+        <h3>177301</h3>
+
+        <div class="row">
+          <div class="col-xs-12 col-sm-7">
+            <p>
+              <small>Portafolio de evidencias de Leonardo Serrano Zermeño.</small>
+            </p>
+          </div>
+        </div>
+        
+        
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function (event) {
+    navActivePage();
+    scrollRevelation('.reveal');
+  });
+</script>
+
+
+<script type="text/javascript" src="./main.0cf8b554.js"></script></body>
+
+
+</html>
+
+

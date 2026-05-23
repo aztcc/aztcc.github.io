@@ -1,0 +1,454 @@
+/* Estilos personalizados para AC15 */
+        :root {
+            --terminal-green: #33ff33;
+            --terminal-bg: #09090b;
+            --terminal-border: #27272a;
+            --danger-glow: rgba(239, 68, 68, 0.4);
+            --danger-border: #ef4444;
+            --warning-border: #f59e0b;
+            --info-border: #3b82f6;
+        }
+
+        .highlight-box {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--stroke);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        /* --- Terminal de SET --- */
+        .terminal {
+            background-color: var(--terminal-bg);
+            border: 1px solid var(--terminal-border);
+            border-radius: 6px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            margin: 30px 0;
+            overflow: hidden;
+            font-family: var(--mono);
+        }
+
+        .terminal__header {
+            background-color: #18181b;
+            padding: 10px 15px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid var(--terminal-border);
+        }
+
+        .terminal__dots {
+            display: flex;
+            gap: 6px;
+            margin-right: 15px;
+        }
+
+        .terminal__dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .terminal__dot--red { background-color: #ef4444; }
+        .terminal__dot--yellow { background-color: #eab308; }
+        .terminal__dot--green { background-color: #22c55e; }
+
+        .terminal__title {
+            color: #a1a1aa;
+            font-size: 1.5rem;
+            flex-grow: 1;
+            text-align: center;
+            margin-right: 50px;
+        }
+
+        .terminal__body {
+            padding: 20px;
+            min-height: 280px;
+            max-height: 400px;
+            overflow-y: auto;
+            color: #e4e4e7;
+            font-size: 1.5rem;
+            line-height: 1.5;
+        }
+
+        .terminal__prompt {
+            color: var(--terminal-green);
+        }
+
+        .terminal__input {
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .terminal__controls {
+            background-color: #18181b;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid var(--terminal-border);
+        }
+
+        .terminal__btn {
+            background-color: #27272a;
+            color: #fff;
+            border: 1px solid var(--terminal-border);
+            padding: 6px 12px;
+            font-family: var(--mono);
+            font-size: 1.8rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .terminal__btn:hover:not(:disabled) {
+            background-color: #3f3f46;
+            border-color: #52525b;
+        }
+
+        .terminal__btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        .terminal__step-indicator {
+            color: #ffffff;
+            font-size: 1.5rem;
+        }
+
+        /* --- Inspector de Correos de Phishing --- */
+        .inspector {
+            border: 1px solid var(--stroke);
+            background: var(--card);
+            border-radius: 6px;
+            margin: 30px 0;
+            overflow: hidden;
+        }
+
+        .inspector__tabs {
+            display: flex;
+            background: #4457c0;
+            border-bottom: 1px solid var(--stroke);
+        }
+
+        .inspector__tab {
+            flex: 1;
+            background: transparent;
+            border: none;
+            color: #ffffff;
+            padding: 12px 15px;
+            font-family: var(--mono);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: center;
+            border-right: 1px solid var(--stroke);
+        }
+
+        .inspector__tab:last-child {
+            border-right: none;
+        }
+
+        .inspector__tab:hover {
+            color: #ffffff;
+            background: #4457c0;
+        }
+
+        .inspector__tab.active {
+            
+            background: var(--card);
+            border-bottom: 2px solid var(--accent);
+            color: #ffffff;
+        }
+
+        .inspector__layout {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+        }
+
+        .inspector__email-container {
+            padding: 25px;
+            border-right: 1px solid var(--stroke);
+            background: #ffffff;
+        }
+
+        .email-headers {
+            border-bottom: 1px solid var(--stroke);
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+            font-size: 1.6rem;
+            line-height: 1.6;
+        }
+
+        .email-headers div {
+            margin-bottom: 4px;
+        }
+
+        .email-headers strong {
+            color: var(--muted);
+            font-family: var(--mono);
+            display: inline-block;
+            width: 70px;
+        }
+
+        .email-body {
+            font-family: var(--sans);
+            font-size: 1.7rem;
+            color: #d4d4d8;
+            line-height: 1.6;
+        }
+
+        /* Áreas interactivas de phishing */
+        .phish-spot {
+            background: rgba(239, 68, 68, 0.15);
+            border-bottom: 2px dotted var(--danger-border);
+            padding: 2px 4px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+            font-weight: 500;
+        }
+
+        .phish-spot:hover, .phish-spot.active {
+            background: rgba(255, 87, 87, 0.726);
+            border-bottom-style: solid;
+            box-shadow: 0 0 8px var(--danger-glow);
+        }
+
+        .phish-spot::after {
+            
+            font-size: 1.3rem;
+            margin-left: 4px;
+            opacity: 0.6;
+        }
+
+        .email-body p {
+            margin-bottom: 16px;
+            color: #474747 !important; /* Overwrite general style to keep dark readable */
+        }
+
+        .email-btn-link {
+            display: inline-block;
+            background: #4457c0;
+            color: #fff;
+            border: 1px solid #3f3f46;
+            padding: 10px 20px;
+            border-radius: 4px;
+            text-align: center;
+            margin: 15px 0;
+            font-family: var(--sans);
+            font-size: 1.4rem;
+            text-decoration: none;
+        }
+
+        .inspector__analysis-panel {
+            padding: 25px;
+            background: #4457c0;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        .analysis-card {
+            border: 1px solid var(--stroke);
+            background: rgba(0, 0, 0, 0.4);
+            padding: 20px;
+            border-radius: 4px;
+            min-height: 180px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .analysis-card__header {
+            font-family: var(--mono);
+            font-size: 1.4rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .analysis-card__badge {
+            padding: 2px 6px;
+            border-radius: 2px;
+            font-size: 1.3rem;
+            font-weight: bold;
+        }
+
+        .analysis-card__badge--high {
+            background-color: rgba(239, 68, 68, 0.2);
+            border: 1px solid var(--danger-border);
+            color: #f87171;
+        }
+
+        .analysis-card__content p {
+            font-size: 1.6rem;
+            color: #a1a1aa;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        .analysis-card__placeholder {
+            text-align: center;
+            color: var(--muted);
+            font-style: italic;
+            font-size: 1.6rem;
+        }
+
+
+        .badge-risk {
+            font-family: var(--mono);
+            font-size: 1.5rem;
+            padding: 2px 6px;
+            font-weight: bold;
+        }
+
+        .badge-risk--high {
+            color: #ef4444;
+            border: 1px solid rgba(239, 68, 68, 0.5);
+            background: rgba(239, 68, 68, 0.1);
+        }
+
+        .badge-risk--med {
+            color: #f59e0b;
+            border: 1px solid rgba(245, 158, 11, 0.5);
+            background: rgba(245, 158, 11, 0.1);
+        }
+
+        /* Contenedor estático oculto para la impresión */
+        .print-only-emails {
+            display: none;
+        }
+
+        /* --- Media Queries --- */
+        @media (max-width: 850px) {
+            .inspector__layout {
+                grid-template-columns: 1fr;
+            }
+            .inspector__email-container {
+                border-right: none;
+                border-bottom: 1px solid var(--stroke);
+            }
+        }
+
+        /* --- Reglas de Impresión --- */
+        @media print {
+            body {
+                background: #ffffff !important;
+                color: #000000 !important;
+                font-size: 11pt;
+            }
+
+            .topbar, .back-link, .pdf-btn, .terminal__controls, .inspector, .terminal {
+                display: none !important;
+            }
+
+            .article {
+                max-width: 100%;
+                padding: 0;
+                margin: 0;
+            }
+
+            .article__header {
+                border-bottom: 2px solid #000;
+                margin-bottom: 20px;
+                padding-bottom: 10px;
+            }
+
+            .article__content p, .article__content li, td {
+                color: #000 !important;
+            }
+
+            .article__content h2 {
+                color: #000 !important;
+                border-left: 3px solid #000 !important;
+                page-break-after: avoid;
+            }
+
+            .highlight-box {
+                background: #fff;
+                border: 2px solid #000;
+                color: #000;
+                page-break-inside: avoid;
+            }
+
+            /* Mostrar la terminal de forma estática en la impresión */
+            .terminal-print-version {
+                display: block !important;
+                border: 1px solid #000;
+                padding: 15px;
+                margin: 20px 0;
+                background-color: #f8f9fa;
+                color: #000;
+                font-family: var(--mono);
+                font-size: 8.5pt;
+                white-space: pre-wrap;
+                page-break-inside: avoid;
+            }
+
+            /* Mostrar todos los correos en la impresión de forma estructurada */
+            .print-only-emails {
+                display: block !important;
+            }
+
+            .print-email-block {
+                border: 1px solid #000;
+                padding: 20px;
+                margin-top: 25px;
+                margin-bottom: 25px;
+                background: #fff;
+                color: #000;
+                page-break-inside: avoid;
+            }
+
+            .print-email-block h3 {
+                border-bottom: 1px solid #000;
+                padding-bottom: 5px;
+                margin-top: 0;
+                font-size: 12pt;
+            }
+
+            .print-email-block .phish-spot {
+                background: none !important;
+                border-bottom: 1px dashed #000 !important;
+                text-decoration: underline;
+                font-weight: bold;
+            }
+
+            .print-email-block .phish-spot::after {
+                content: " (Señal de alerta)";
+                font-size: 7.5pt;
+                font-style: italic;
+                font-weight: normal;
+            }
+
+            .print-analysis-list {
+                margin-top: 15px;
+                font-size: 9pt;
+                border-top: 1px solid #ccc;
+                padding-top: 10px;
+            }
+
+            .print-analysis-list li {
+                margin-bottom: 6px;
+            }
+
+            th, td {
+                border: 1px solid #000 !important;
+                color: #000 !important;
+            }
+
+            th {
+                background-color: #f2f2f2 !important;
+                font-weight: bold;
+            }
+
+            table {
+                page-break-inside: avoid;
+            }
+        }
+
+        .terminal-print-version {
+            display: none;
+        }
