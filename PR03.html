@@ -19,11 +19,11 @@
   <link href="./table.css" rel="stylesheet">
 
 
-  <title>Actividad 15</title>
+  <title>Proyecto P3</title>
 
   <link href="./main.550dcf66.css" rel="stylesheet">
   <link href="./cards.css" rel="stylesheet">
-  <link href="./terminal.css" rel="stylesheet">
+  <link href="./cov.css" rel="stylesheet">
   <script src="./terminal.js" defer></script>
   <style>
     /* Estilos para el botón flotante */
@@ -94,23 +94,786 @@
         <h1 class="text-center">Evaluacion de seguridad en un corporativo</h1>
       <div class="row">
         <div class="col-xs-12 col-md-8 col-md-offset-2">
-          <h2>1. Introduccion</h2>
-          <h2>2. Objetivos</h2>
-          <h2>3. Marco de analisis utilizado</h2>
-          <h2>4. Referencia conceptual: mandamientos de etica informatica</h2>
-          <h2>5. Escenario 01: Acceso no autorizado interno</h2>
-          <h2>6. Escenario 02: Vulnerabilidad critica no reportada</h2>
-          <h2>7. Escenario 03: Uso de herramientas OSINT</h2>
-          <h2>8. Comparativo general de los tres escenarios</h2>
-          <h2>9. Postura profesional final</h2>
-          <h2>10. Conclusiones</h2>
-          <h2>11. Bibliografias</h2>
-          
-          <a href="./pdfPage.html?archivo=act15-Equipo5.pdf" class="boton-descarga" title="Descargar ahora">
-            <svg viewBox="0 0 24 24">
-            <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
-            </svg>
-         </a>
+          !-- ── SECCIÓN 1 ── -->
+  <section id="s1" class="section">
+    <div class="section-header">
+      <span class="section-num">01</span>
+      <h2>Alcance</h2>
+    </div>
+
+    <h3>1.1 Datos generales de la organización</h3>
+    <div class="table-scroll">
+    <table class="data-table">
+      <thead><tr><th>Elemento</th><th>Descripción</th></tr></thead>
+      <tbody>
+        <tr><td>Nombre</td><td>Universidad Politécnica de San Luis Potosí (UPSLP)</td></tr>
+        <tr><td>Giro</td><td>Institución pública de educación superior, docencia, investigación aplicada, vinculación y servicios académicos</td></tr>
+        <tr><td>Tamaño</td><td>Comunidad integrada por estudiantes, docentes, personal administrativo, servicios informáticos, proveedores y visitantes</td></tr>
+        <tr><td>Servicios críticos</td><td>Control escolar, plataformas académicas, correo institucional, red LAN/Wi-Fi, laboratorios, sistemas administrativos, pagos, biblioteca digital y comunicación institucional</td></tr>
+        <tr><td>Usuarios</td><td>Estudiantes, aspirantes, egresados, docentes, personal administrativo, autoridades educativas, proveedores y sociedad</td></tr>
+        <tr><td>Entorno tecnológico</td><td>Infraestructura híbrida con servidores internos, red campus, servicios cloud, correo SaaS, LMS, pasarela de pagos, equipos administrativos y laboratorios</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="table-caption">Tabla 1 — Perfil organizacional considerado para el SGSI</p>
+
+    <h3>1.2 Misión, visión, objetivos y valores</h3>
+    <div class="card">
+      <p><strong>Misión.</strong> Proteger la información académica, administrativa y tecnológica de la UPSLP mediante controles proporcionales al riesgo que permitan continuidad operativa, cumplimiento normativo y confianza institucional.</p>
+      <p><strong>Visión.</strong> Consolidar un SGSI institucional medible, auditado y mejorable, capaz de reducir incidentes, fortalecer cultura de seguridad y respaldar los servicios digitales críticos de la universidad.</p>
+    </div>
+    <h3>Objetivos organizacionales del SGSI</h3>
+    <ol>
+      <li>Asegurar disponibilidad de servicios críticos durante periodos académicos sensibles.</li>
+      <li>Proteger datos personales, académicos, financieros y laborales bajo criterios de confidencialidad e integridad.</li>
+      <li>Reducir el riesgo de phishing, ransomware, fuga de información y abuso de privilegios.</li>
+      <li>Establecer evidencia documental suficiente para auditorías internas y mejora continua.</li>
+    </ol>
+    <p><strong>Valores de seguridad:</strong> Legalidad, responsabilidad, confidencialidad, trazabilidad, continuidad, colaboración institucional y mejora continua.</p>
+
+    <h3>1.3 Estructura funcional y relación con activos</h3>
+    <div class="table-scroll">
+    <table class="data-table">
+      <thead><tr><th>Área</th><th>Procesos de negocio</th><th>Activos asociados</th></tr></thead>
+      <tbody>
+        <tr><td>Rectoría / Dirección</td><td>Decisión institucional, recursos, aceptación de riesgos</td><td>Política SGSI, actas, indicadores, riesgos residuales</td></tr>
+        <tr><td>Servicios Informáticos</td><td>Red, cuentas, servidores, soporte, respaldos, incidentes</td><td>Directorio activo, firewall, LAN/Wi-Fi, backups, tickets, EDR</td></tr>
+        <tr><td>Servicios Escolares</td><td>Inscripción, expedientes, calificaciones, trayectoria académica</td><td>BD control escolar, sistema escolar, expedientes digitales</td></tr>
+        <tr><td>Administración y Finanzas</td><td>Pagos, presupuesto, nómina, facturación</td><td>Sistema financiero, nómina, pasarela de pagos, PAC</td></tr>
+        <tr><td>Áreas académicas</td><td>Cursos, laboratorios, LMS, evaluación</td><td>LMS, laboratorios, licencias académicas, biblioteca digital</td></tr>
+        <tr><td>Comunicación institucional</td><td>Sitio web, redes oficiales, avisos</td><td>Portal web, dominios, redes sociales oficiales</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="table-caption">Tabla 2 — Relación entre procesos de negocio y activos de información</p>
+
+    <h3>1.4 Dirección › Área › Proceso › Actividad</h3>
+    <div class="info-box">
+      <strong>Dirección:</strong> Rectoría / Dirección General<br>
+      <strong>Área prioritaria:</strong> Servicios Informáticos, coordinado con Servicios Escolares y Administración<br>
+      <strong>Proceso:</strong> Gestión de identidades, accesos, activos críticos y tratamiento de riesgos de servicios digitales<br>
+      <strong>Actividad específica:</strong> Implementación operativa de controles de acceso seguro y autenticación multifactor para cuentas institucionales críticas, junto con inventario de activos, matriz de riesgos, políticas, auditoría y mejora continua.
+    </div>
+
+    <h3>1.5 Justificación del SGSI y delimitación</h3>
+    <p>La UPSLP requiere un SGSI porque sus procesos académicos y administrativos dependen de información digital. Una caída de red, compromiso de correo, fuga de expedientes o alteración de calificaciones afectaría continuidad educativa, reputación, cumplimiento y confianza de la comunidad.</p>
+    <div class="card">
+      <p><strong>Alcance incluido:</strong> campus principal, red institucional, cuentas oficiales, plataformas académicas, sistemas administrativos, servicios cloud contratados, equipos administrados, respaldos, proveedores TIC y procesos de soporte tecnológico.</p>
+      <p><strong>Exclusiones justificadas:</strong> dispositivos personales no administrados cuando no accedan a servicios institucionales; redes domésticas; aplicaciones personales no autorizadas; investigación individual no alojada en recursos institucionales.</p>
+      <p style="margin:0"><strong>Restricciones:</strong> no se ejecutan cambios reales sobre infraestructura productiva; las evidencias operativas se presentan como simulación replicable; la información sensible se anonimiza.</p>
+    </div>
+  </section>
+
+  <!-- ── SECCIÓN 2 ── -->
+  <section id="s2" class="section">
+    <div class="section-header">
+      <span class="section-num">02</span>
+      <h2>Referencias normativas</h2>
+    </div>
+    <div class="table-scroll">
+    <table class="data-table">
+      <thead><tr><th>Norma</th><th>Función</th><th>Uso dentro del SGSI UPSLP</th></tr></thead>
+      <tbody>
+        <tr><td><strong>ISO/IEC 27001:2022</strong></td><td>Requisitos certificables del SGSI</td><td>Norma base para alcance, liderazgo, planificación, operación, evaluación y mejora</td></tr>
+        <tr><td>ISO/IEC 27000</td><td>Visión general y vocabulario</td><td>Base para términos: activo, riesgo, control, incidente, CIA</td></tr>
+        <tr><td>ISO/IEC 27002:2022</td><td>Guía de controles</td><td>Selección de controles del Anexo A: accesos, respaldos, proveedores, incidentes, monitoreo</td></tr>
+        <tr><td>ISO/IEC 27005</td><td>Gestión de riesgos</td><td>Identificación, análisis, valoración y tratamiento de riesgos</td></tr>
+        <tr><td>ISO/IEC 27017</td><td>Seguridad en nube</td><td>Correo, LMS, respaldos cloud y servicios SaaS</td></tr>
+        <tr><td>ISO/IEC 27018</td><td>Protección de datos personales en nube</td><td>PII alojada o procesada en plataformas cloud institucionales</td></tr>
+        <tr><td>ISO/IEC 27031</td><td>Continuidad TIC</td><td>Recuperación de servicios académicos, correo, red y sistemas administrativos</td></tr>
+        <tr><td>ISO/IEC 27035</td><td>Gestión de incidentes</td><td>Preparación, respuesta, registro y aprendizaje ante phishing, malware o fuga</td></tr>
+        <tr><td>ISO/IEC 27037</td><td>Evidencia digital</td><td>Preservar evidencias de incidentes y auditorías sin alterar su valor</td></tr>
+        <tr><td>Marco legal mexicano</td><td>Protección de datos y transparencia</td><td>Contexto regulatorio para información personal, expedientes y rendición de cuentas</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="table-caption">Tabla 3 — Referencias normativas y uso práctico dentro del SGSI</p>
+  </section>
+
+  <!-- ── SECCIÓN 3 ── -->
+  <section id="s3" class="section">
+    <div class="section-header">
+      <span class="section-num">03</span>
+      <h2>Términos y condiciones de la intervención</h2>
+    </div>
+    <h3>3.1 Términos clave del SGSI</h3>
+    <div class="table-scroll">
+    <table class="data-table">
+      <thead><tr><th>Término</th><th>Definición operativa</th><th>Ejemplo en UPSLP</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Activo de información</strong></td><td>Dato, sistema, equipo, proceso, repositorio o conocimiento con valor para la institución</td><td>BD de alumnos, correo institucional, LMS, respaldos</td></tr>
+        <tr><td><strong>Amenaza</strong></td><td>Evento o actor con potencial de causar daño a un activo</td><td>Phishing, ransomware, falla eléctrica, proveedor comprometido</td></tr>
+        <tr><td><strong>Vulnerabilidad</strong></td><td>Debilidad que puede ser explotada por una amenaza</td><td>Falta de MFA, permisos excesivos, sistemas sin parches</td></tr>
+        <tr><td><strong>Riesgo</strong></td><td>Efecto de la incertidumbre sobre CIA</td><td>Robo de credenciales de correo institucional</td></tr>
+        <tr><td><strong>Control</strong></td><td>Medida administrativa, técnica o física para modificar el riesgo</td><td>MFA, segmentación, respaldos, monitoreo</td></tr>
+        <tr><td><strong>Confidencialidad</strong></td><td>Información solo accesible a personas autorizadas</td><td>Expedientes académicos solo para personal autorizado</td></tr>
+        <tr><td><strong>Integridad</strong></td><td>Exactitud y completitud de la información</td><td>Calificaciones no alteradas sin autorización</td></tr>
+        <tr><td><strong>Disponibilidad</strong></td><td>Acceso oportuno a información y servicios</td><td>LMS disponible durante clases e inscripciones</td></tr>
+        <tr><td><strong>Incidente</strong></td><td>Evento que compromete o puede comprometer seguridad</td><td>Cuenta comprometida por phishing</td></tr>
+        <tr><td><strong>Auditoría</strong></td><td>Revisión sistemática de controles, evidencias y cumplimiento</td><td>Checklist de accesos, respaldos e incidentes</td></tr>
+        <tr><td><strong>RTO</strong></td><td>Tiempo objetivo de recuperación de un servicio</td><td>Restaurar sistema escolar en menos de 8 horas</td></tr>
+        <tr><td><strong>RPO</strong></td><td>Pérdida máxima tolerada de datos</td><td>Perder máximo 24 horas de datos respaldados</td></tr>
+        <tr><td><strong>Propietario de activo</strong></td><td>Área responsable de autorizar uso, clasificación y accesos</td><td>Servicios Escolares sobre expedientes académicos</td></tr>
+        <tr><td><strong>Custodio técnico</strong></td><td>Área que administra técnicamente el activo</td><td>Servicios Informáticos operando servidor o red</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="table-caption">Tabla 4 — Términos seleccionados por relevancia práctica</p>
+
+    <h3>3.2 Condiciones de intervención</h3>
+    <ul>
+      <li><strong>Confidencialidad:</strong> toda evidencia se maneja con datos simulados o anonimizados.</li>
+      <li><strong>Límites técnicos:</strong> no se ejecutan pruebas intrusivas ni cambios reales en producción.</li>
+      <li><strong>Evidencia:</strong> se documentan capturas simuladas, comandos representativos, tablas, tickets y bitácoras.</li>
+      <li><strong>Responsabilidad:</strong> el Comité SGSI aprueba lineamientos; TI ejecuta controles; dueños de información autorizan accesos.</li>
+      <li><strong>Exclusiones:</strong> quedan fuera dispositivos personales y servicios no institucionales salvo que accedan a información universitaria.</li>
+    </ul>
+  </section>
+
+  <!-- ── SECCIÓN 4 ── -->
+  <section id="s4" class="section">
+    <div class="section-header">
+      <span class="section-num">04</span>
+      <h2>Contexto de la organización e inventario de activos</h2>
+    </div>
+
+    <h3>4.1 Contexto interno y externo</h3>
+    <div class="table-scroll">
+    <table class="data-table">
+      <thead><tr><th>Tipo</th><th>Factor</th><th>Implicación para el SGSI</th></tr></thead>
+      <tbody>
+        <tr><td><span class="badge badge-info">Interno</span></td><td>Usuarios diversos: estudiantes, docentes, administrativos y técnicos</td><td>Políticas claras, capacitación diferenciada y controles por rol</td></tr>
+        <tr><td><span class="badge badge-info">Interno</span></td><td>Múltiples sistemas y servicios híbridos</td><td>Inventario, arquitectura documentada y gestión de cambios</td></tr>
+        <tr><td><span class="badge badge-info">Interno</span></td><td>Carga operativa de TI</td><td>Priorizar controles de alto impacto y evidencia simple de mantener</td></tr>
+        <tr><td><span class="badge badge-info">Interno</span></td><td>Información académica, financiera, laboral y técnica</td><td>Clasificación de información y dueños de activos</td></tr>
+        <tr><td><span class="badge badge-warn">Externo</span></td><td>Phishing, ransomware, robo de credenciales y ataques web</td><td>MFA, EDR, respaldos, monitoreo y respuesta a incidentes</td></tr>
+        <tr><td><span class="badge badge-warn">Externo</span></td><td>Proveedores cloud, ISP, pagos y software académico</td><td>Gestión contractual, evaluación de riesgo y revocación de accesos</td></tr>
+        <tr><td><span class="badge badge-warn">Externo</span></td><td>Regulación de datos personales y transparencia</td><td>Evidencia documental, trazabilidad y manejo seguro de PII</td></tr>
+        <tr><td><span class="badge badge-warn">Externo</span></td><td>Continuidad académica ante fallas de energía o conectividad</td><td>Redundancia, RTO/RPO, pruebas de restauración y comunicación</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="table-caption">Tabla 5 — Cuestiones internas y externas relevantes para el SGSI</p>
+
+    <h3>4.2 Partes interesadas</h3>
+    <div class="table-scroll">
+    <table class="data-table">
+      <thead><tr><th>Parte interesada</th><th>Necesidad / expectativa</th><th>Respuesta del SGSI</th></tr></thead>
+      <tbody>
+        <tr><td>Estudiantes</td><td>Disponibilidad de plataformas, privacidad de datos, acceso oportuno</td><td>MFA, soporte, respaldos, comunicación de incidentes</td></tr>
+        <tr><td>Docentes</td><td>Acceso a LMS, correo, listas y evaluaciones</td><td>Roles, capacitación y continuidad de servicios</td></tr>
+        <tr><td>Administrativos</td><td>Sistemas confiables para trámites, pagos y expedientes</td><td>Segregación de funciones, respaldos y auditoría</td></tr>
+        <tr><td>Rectoría</td><td>Continuidad, reputación, cumplimiento y uso eficiente de recursos</td><td>KPIs, revisión directiva y aceptación de riesgos</td></tr>
+        <tr><td>Servicios Informáticos</td><td>Procesos claros, apoyo directivo y herramientas</td><td>Políticas, plan de tratamiento y presupuesto</td></tr>
+        <tr><td>Proveedores</td><td>Reglas de acceso y confidencialidad</td><td>Contratos, cuentas temporales y supervisión</td></tr>
+        <tr><td>Autoridades</td><td>Cumplimiento, evidencia y trazabilidad</td><td>Auditorías, documentación y plan de mejora</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="table-caption">Tabla 6 — Partes interesadas del SGSI</p>
+
+    <h3>4.3 Inventario de 40 activos de información</h3>
+    <div class="info-box">El inventario presenta 40 activos clasificados como internos (INT) o externos (EXT), con propietario, proceso asociado, criticidad CIA y justificación de impacto.</div>
+
+    <h3 style="margin-top:20px">Activos internos (ACT-INT-01 a ACT-INT-20)</h3>
+    <div class="table-scroll">
+    <table class="data-table">
+      <thead><tr><th>Código</th><th>Activo</th><th>Propietario</th><th>Proceso</th><th>CIA</th></tr></thead>
+      <tbody>
+        <tr><td><code>ACT-INT-01</code></td><td>Base de datos de Control Escolar</td><td>Servicios Escolares</td><td>Control escolar</td><td><span class="cia cia-h">A/A/A</span></td></tr>
+        <tr><td><code>ACT-INT-02</code></td><td>Sistema de Gestión Escolar</td><td>Servicios Escolares</td><td>Inscripción y trayectoria</td><td><span class="cia cia-h">A/A/A</span></td></tr>
+        <tr><td><code>ACT-INT-03</code></td><td>Servidor de autenticación / Directorio activo</td><td>Servicios Informáticos</td><td>Gestión de identidades</td><td><span class="cia cia-h">A/A/A</span></td></tr>
+        <tr><td><code>ACT-INT-04</code></td><td>Servidor de archivos administrativos</td><td>Administración / TI</td><td>Gestión documental</td><td><span class="cia cia-h">A/A/</span><span class="cia cia-m">M</span></td></tr>
+        <tr><td><code>ACT-INT-05</code></td><td>Sistema financiero y contable</td><td>Administración y Finanzas</td><td>Pagos, presupuesto y contabilidad</td><td><span class="cia cia-h">A/A/A</span></td></tr>
+        <tr><td><code>ACT-INT-06</code></td><td>Sistema de nómina</td><td>Recursos Humanos</td><td>Pago de personal</td><td><span class="cia cia-h">A/A/</span><span class="cia cia-m">M</span></td></tr>
+        <tr><td><code>ACT-INT-07</code></td><td>Red LAN administrativa</td><td>Servicios Informáticos</td><td>Conectividad interna</td><td><span class="cia cia-h">A/A/A</span></td></tr>
+        <tr><td><code>ACT-INT-08</code></td><td>Red Wi-Fi institucional</td><td>Servicios Informáticos</td><td>Acceso de usuarios</td><td><span class="cia cia-m">M/M/A</span></td></tr>
+        <tr><td><code>ACT-INT-09</code></td><td>Firewall perimetral</td><td>Servicios Informáticos</td><td>Seguridad perimetral</td><td><span class="cia cia-h">A/A/A</span></td></tr>
+        <tr><td><code>ACT-INT-10</code></td><td>Servidor de respaldos local</td><td>Servicios Informáticos</td><td>Continuidad y recuperación</td><td><span class="cia cia-h">A/A/A</span></td></tr>
+        <tr><td><code>ACT-INT-11</code></td><td>Repositorio de documentación técnica</td><td>Servicios Informáticos</td><td>Operación TI</td><td><span class="cia cia-h">A/</span><span class="cia cia-m">M/M</span></td></tr>
+        <tr><td><code>ACT-INT-12</code></td><td>Equipos administrativos de Servicios Escolares</td><td>Servicios Escolares</td><td>Atención escolar</td><td><span class="cia cia-h">A/A/</span><span class="cia cia-m">M</span></td></tr>
+        <tr><td><code>ACT-INT-13</code></td><td>Equipos administrativos de Finanzas</td><td>Finanzas</td><td>Pagos y presupuesto</td><td><span class="cia cia-h">A/A/</span><span class="cia cia-m">M</span></td></tr>
+        <tr><td><code>ACT-INT-14</code></td><td>Laboratorios de cómputo</td><td>Áreas académicas / TI</td><td>Docencia práctica</td><td><span class="cia cia-m">M/M/A</span></td></tr>
+        <tr><td><code>ACT-INT-15</code></td><td>CCTV y NVR institucional</td><td>Seguridad física / TI</td><td>Monitoreo físico</td><td><span class="cia cia-m">M/A/M</span></td></tr>
+        <tr><td><code>ACT-INT-16</code></td><td>Sistema de tickets de soporte</td><td>Servicios Informáticos</td><td>Atención de incidentes</td><td><span class="cia cia-m">M/A/M</span></td></tr>
+        <tr><td><code>ACT-INT-17</code></td><td>Inventario de activos TIC</td><td>Servicios Informáticos</td><td>Gestión de activos</td><td><span class="cia cia-m">M/A/M</span></td></tr>
+        <tr><td><code>ACT-INT-18</code></td><td>Servidores de aplicaciones internas</td><td>Servicios Informáticos</td><td>Servicios administrativos</td><td><span class="cia cia-h">A/A/A</span></td></tr>
+        <tr><td><code>ACT-INT-19</code></td><td>UPS y energía del site</td><td>Servicios Informáticos / Mantenimiento</td><td>Continuidad energética</td><td><span class="cia cia-l">B/</span><span class="cia cia-m">M/A</span></td></tr>
+        <tr><td><code>ACT-INT-20</code></td><td>Documentación del SGSI</td><td>Responsable SGSI</td><td>Gobierno de seguridad</td><td><span class="cia cia-m">M/A/M</span></td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <h3 style="margin-top:24px">Activos externos (ACT-EXT-01 a ACT-EXT-20)</h3>
+    <div class="table-scroll">
+    <table class="data-table">
+      <thead><tr><th>Código</th><th>Activo</th><th>Propietario</th><th>Proceso</th><th>CIA</th></tr></thead>
+      <tbody>
+        <tr><td><code>ACT-EXT-01</code></td><td>Correo institucional en nube</td><td>Servicios Informáticos</td><td>Comunicación oficial</td><td><span class="cia cia-h">A/A/A</span></td></tr>
+        <tr><td><code>ACT-EXT-02</code></td><td>LMS institucional</td><td>Áreas académicas</td><td>Cursos y evaluaciones</td><td><span class="cia cia-h">A/A/A</span></td></tr>
+        <tr><td><code>ACT-EXT-03</code></td><td>Portal web institucional</td><td>Comunicación / TI</td><td>Comunicación pública</td><td><span class="cia cia-m">M/A/M</span></td></tr>
+        <tr><td><code>ACT-EXT-04</code></td><td>Dominio institucional</td><td>Servicios Informáticos</td><td>Identidad digital</td><td><span class="cia cia-h">A/A/A</span></td></tr>
+        <tr><td><code>ACT-EXT-05</code></td><td>Certificados TLS</td><td>Servicios Informáticos</td><td>Cifrado web</td><td><span class="cia cia-m">M/A/A</span></td></tr>
+        <tr><td><code>ACT-EXT-06</code></td><td>Proveedor de internet principal</td><td>Servicios Informáticos</td><td>Conectividad campus</td><td><span class="cia cia-l">B/</span><span class="cia cia-m">M/A</span></td></tr>
+        <tr><td><code>ACT-EXT-07</code></td><td>Enlace de internet secundario</td><td>Servicios Informáticos</td><td>Continuidad de red</td><td><span class="cia cia-l">B/</span><span class="cia cia-m">M/A</span></td></tr>
+        <tr><td><code>ACT-EXT-08</code></td><td>Pasarela de pagos</td><td>Finanzas</td><td>Cobro de servicios</td><td><span class="cia cia-h">A/A/A</span></td></tr>
+        <tr><td><code>ACT-EXT-09</code></td><td>Repositorio cloud de respaldos</td><td>Servicios Informáticos</td><td>Recuperación ante desastre</td><td><span class="cia cia-h">A/A/A</span></td></tr>
+        <tr><td><code>ACT-EXT-10</code></td><td>Licenciamiento académico</td><td>Áreas académicas / TI</td><td>Docencia y laboratorios</td><td><span class="cia cia-l">B/</span><span class="cia cia-m">M/M</span></td></tr>
+        <tr><td><code>ACT-EXT-11</code></td><td>Plataforma de videoconferencia</td><td>Áreas académicas</td><td>Clases y reuniones</td><td><span class="cia cia-m">M/M/M</span></td></tr>
+        <tr><td><code>ACT-EXT-12</code></td><td>Servicios de nube colaborativa</td><td>Usuarios institucionales</td><td>Colaboración documental</td><td><span class="cia cia-h">A/A/A</span></td></tr>
+        <tr><td><code>ACT-EXT-13</code></td><td>Proveedor de mantenimiento de red</td><td>Servicios Informáticos</td><td>Soporte infraestructura</td><td><span class="cia cia-h">A/A/</span><span class="cia cia-m">M</span></td></tr>
+        <tr><td><code>ACT-EXT-14</code></td><td>Servicio de monitoreo externo</td><td>Servicios Informáticos</td><td>Detección de amenazas</td><td><span class="cia cia-h">A/A/</span><span class="cia cia-m">M</span></td></tr>
+        <tr><td><code>ACT-EXT-15</code></td><td>Sistema de facturación electrónica</td><td>Finanzas</td><td>Comprobación fiscal</td><td><span class="cia cia-h">A/A/</span><span class="cia cia-m">M</span></td></tr>
+        <tr><td><code>ACT-EXT-16</code></td><td>Plataforma gubernamental de reportes</td><td>Rectoría / Administración</td><td>Cumplimiento regulatorio</td><td><span class="cia cia-h">A/A/</span><span class="cia cia-m">M</span></td></tr>
+        <tr><td><code>ACT-EXT-17</code></td><td>Redes sociales oficiales</td><td>Comunicación</td><td>Comunicación institucional</td><td><span class="cia cia-m">M/A/M</span></td></tr>
+        <tr><td><code>ACT-EXT-18</code></td><td>Sistema de biblioteca digital</td><td>Biblioteca / TI</td><td>Consulta académica</td><td><span class="cia cia-m">M/M/M</span></td></tr>
+        <tr><td><code>ACT-EXT-19</code></td><td>Antivirus/EDR administrado</td><td>Servicios Informáticos</td><td>Protección endpoint</td><td><span class="cia cia-h">A/A/A</span></td></tr>
+        <tr><td><code>ACT-EXT-20</code></td><td>Proveedor de impresión administrada</td><td>Administración / TI</td><td>Impresión institucional</td><td><span class="cia cia-m">M/M/M</span></td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="table-caption">Tablas 7 y 8 — Inventario de activos (40 activos, clasificación CIA)</p>
+    <div class="info-box"><strong>Leyenda CIA:</strong> <span class="cia cia-h">A = Alta</span> &nbsp;|&nbsp; <span class="cia cia-m">M = Media</span> &nbsp;|&nbsp; <span class="cia cia-l">B = Baja</span> &nbsp; (Confidencialidad / Integridad / Disponibilidad)</div>
+  </section>
+
+  <!-- ── SECCIÓN 5 ── -->
+  <section id="s5" class="section">
+    <div class="section-header">
+      <span class="section-num">05</span>
+      <h2>Liderazgo</h2>
+    </div>
+
+    <h3>5.1 Política general de seguridad de la información</h3>
+    <div class="card" style="border-left:4px solid var(--cobalt)">
+      <p>La Alta Dirección de la UPSLP establece que la información académica, administrativa, financiera, laboral, tecnológica y documental debe protegerse mediante controles proporcionales al riesgo, cumplimiento legal aplicable, responsabilidades definidas y mejora continua. Esta política aplica a estudiantes, docentes, personal administrativo, personal técnico y proveedores con acceso autorizado a activos institucionales.</p>
+      <p><strong>Objetivo:</strong> preservar confidencialidad, integridad y disponibilidad de los activos dentro del alcance del SGSI.</p>
+      <p><strong>Compromiso de dirección:</strong> asignar responsables, aprobar recursos razonables, revisar indicadores, atender no conformidades y aceptar formalmente riesgos residuales.</p>
+    </div>
+
+    <h3>5.2 Diez políticas específicas del SGSI</h3>
+
+    <div class="policy-card">
+      <div class="policy-header"><span class="policy-id">POL-01</span><span class="policy-name">Gestión de identidades y accesos</span></div>
+      <div class="policy-body">
+        <div class="policy-row"><span class="policy-label">Estándar</span><span class="policy-val">Todo acceso a sistemas críticos debe estar asignado a una cuenta individual, con rol autorizado y revisión periódica.</span></div>
+        <div class="policy-row"><span class="policy-label">Directriz</span><span class="policy-val">Aplicar MFA en cuentas administrativas y privilegiadas; evitar cuentas compartidas.</span></div>
+        <div class="policy-row"><span class="policy-label">Procedimiento</span><span class="policy-val">Alta/baja/cambio mediante ticket autorizado por dueño de información; TI aplica rol y registra evidencia.</span></div>
+        <div class="policy-row"><span class="policy-label">Línea base</span><span class="policy-val">100% cuentas privilegiadas con MFA y revisión trimestral.</span></div>
+      </div>
+    </div>
+
+    <div class="policy-card">
+      <div class="policy-header"><span class="policy-id">POL-02</span><span class="policy-name">Uso aceptable de red y servicios institucionales</span></div>
+      <div class="policy-body">
+        <div class="policy-row"><span class="policy-label">Estándar</span><span class="policy-val">La red institucional solo debe usarse para fines académicos, administrativos y operativos autorizados.</span></div>
+        <div class="policy-row"><span class="policy-label">Directriz</span><span class="policy-val">Separar perfiles de red: alumnos, docentes, administrativos, invitados y proveedores.</span></div>
+        <div class="policy-row"><span class="policy-label">Procedimiento</span><span class="policy-val">Autenticar acceso, aplicar VLAN, registrar eventos relevantes y bloquear abuso confirmado.</span></div>
+        <div class="policy-row"><span class="policy-label">Línea base</span><span class="policy-val">Red Wi-Fi con autenticación, segmentación por perfil e invitados aislados.</span></div>
+      </div>
+    </div>
+
+    <div class="policy-card">
+      <div class="policy-header"><span class="policy-id">POL-03</span><span class="policy-name">Protección de datos personales</span></div>
+      <div class="policy-body">
+        <div class="policy-row"><span class="policy-label">Estándar</span><span class="policy-val">Los datos personales deben tratarse bajo confidencialidad, mínima exposición y finalidad institucional.</span></div>
+        <div class="policy-row"><span class="policy-label">Directriz</span><span class="policy-val">Cifrar repositorios sensibles y evitar compartir listas por canales personales.</span></div>
+        <div class="policy-row"><span class="policy-label">Procedimiento</span><span class="policy-val">Clasificar documento, validar destinatario, usar canal institucional y registrar incidentes de fuga.</span></div>
+        <div class="policy-row"><span class="policy-label">Línea base</span><span class="policy-val">Todo expediente académico o financiero con control de confidencialidad.</span></div>
+      </div>
+    </div>
+
+    <div class="policy-card">
+      <div class="policy-header"><span class="policy-id">POL-04</span><span class="policy-name">Respaldos y recuperación</span></div>
+      <div class="policy-body">
+        <div class="policy-row"><span class="policy-label">Estándar</span><span class="policy-val">Los activos críticos deben contar con respaldos programados, protegidos y probados.</span></div>
+        <div class="policy-row"><span class="policy-label">Directriz</span><span class="policy-val">Mantener al menos una copia fuera del sitio o en nube con cifrado.</span></div>
+        <div class="policy-row"><span class="policy-label">Procedimiento</span><span class="policy-val">Programar backup, verificar finalización, probar restauración y documentar resultado.</span></div>
+        <div class="policy-row"><span class="policy-label">Línea base</span><span class="policy-val">Servicios críticos con RTO/RPO definidos y prueba de restauración trimestral.</span></div>
+      </div>
+    </div>
+
+    <div class="policy-card">
+      <div class="policy-header"><span class="policy-id">POL-05</span><span class="policy-name">Gestión de cambios</span></div>
+      <div class="policy-body">
+        <div class="policy-row"><span class="policy-label">Estándar</span><span class="policy-val">Todo cambio en sistemas, red o seguridad debe evaluarse antes de aplicarse.</span></div>
+        <div class="policy-row"><span class="policy-label">Directriz</span><span class="policy-val">Usar ventana de mantenimiento y plan de reversa para cambios de alto impacto.</span></div>
+        <div class="policy-row"><span class="policy-label">Procedimiento</span><span class="policy-val">Solicitar cambio, evaluar riesgo, aprobar, ejecutar, validar y cerrar evidencia.</span></div>
+        <div class="policy-row"><span class="policy-label">Línea base</span><span class="policy-val">Cambios críticos aprobados por Comité SGSI o responsable asignado.</span></div>
+      </div>
+    </div>
+
+    <div class="policy-card">
+      <div class="policy-header"><span class="policy-id">POL-06</span><span class="policy-name">Gestión de vulnerabilidades y parches</span></div>
+      <div class="policy-body">
+        <div class="policy-row"><span class="policy-label">Estándar</span><span class="policy-val">Los sistemas institucionales deben mantenerse actualizados según criticidad.</span></div>
+        <div class="policy-row"><span class="policy-label">Directriz</span><span class="policy-val">Priorizar parches críticos en servidores expuestos y endpoints administrativos.</span></div>
+        <div class="policy-row"><span class="policy-label">Procedimiento</span><span class="policy-val">Inventariar versión, evaluar CVSS, probar parche, desplegar y verificar.</span></div>
+        <div class="policy-row"><span class="policy-label">Línea base</span><span class="policy-val">Vulnerabilidades críticas atendidas en máximo 15 días con control documentado.</span></div>
+      </div>
+    </div>
+
+    <div class="policy-card">
+      <div class="policy-header"><span class="policy-id">POL-07</span><span class="policy-name">Respuesta a incidentes</span></div>
+      <div class="policy-body">
+        <div class="policy-row"><span class="policy-label">Estándar</span><span class="policy-val">Todo evento sospechoso debe reportarse, clasificarse y atenderse bajo procedimiento formal.</span></div>
+        <div class="policy-row"><span class="policy-label">Directriz</span><span class="policy-val">Definir canal único de reporte y roles de contención, erradicación y recuperación.</span></div>
+        <div class="policy-row"><span class="policy-label">Procedimiento</span><span class="policy-val">Registrar incidente, clasificar severidad, contener, preservar evidencia, recuperar y documentar lecciones.</span></div>
+        <div class="policy-row"><span class="policy-label">Línea base</span><span class="policy-val">Canal formal activo y bitácora de incidentes mantenida en el SGSI.</span></div>
+      </div>
+    </div>
+
+    <div class="policy-card">
+      <div class="policy-header"><span class="policy-id">POL-08</span><span class="policy-name">Seguridad de proveedores</span></div>
+      <div class="policy-body">
+        <div class="policy-row"><span class="policy-label">Estándar</span><span class="policy-val">Los proveedores con acceso a información o sistemas deben cumplir requisitos de seguridad.</span></div>
+        <div class="policy-row"><span class="policy-label">Directriz</span><span class="policy-val">Firmar acuerdos de confidencialidad y usar cuentas temporales con mínimo privilegio.</span></div>
+        <div class="policy-row"><span class="policy-label">Procedimiento</span><span class="policy-val">Evaluar proveedor, aprobar acceso, registrar actividad y revocar al terminar servicio.</span></div>
+        <div class="policy-row"><span class="policy-label">Línea base</span><td>100% proveedores críticos con NDA y acceso registrado e interno documentado.</div>
+      </div>
+    </div>
+
+    <div class="policy-card">
+      <div class="policy-header"><span class="policy-id">POL-09</span><span class="policy-name">Concienciación y capacitación</span></div>
+      <div class="policy-body">
+        <div class="policy-row"><span class="policy-label">Estándar</span><span class="policy-val">La comunidad institucional debe recibir capacitación proporcional a su rol.</span></div>
+        <div class="policy-row"><span class="policy-label">Directriz</span><span class="policy-val">Realizar campañas anti-phishing y cápsulas para manejo de datos personales.</span></div>
+        <div class="policy-row"><span class="policy-label">Procedimiento</span><span class="policy-val">Plan anual, sesiones, evaluación breve y registro de asistencia.</span></div>
+        <div class="policy-row"><span class="policy-label">Línea base</span><span class="policy-val">Al menos una campaña anti-phishing por semestre para toda la comunidad.</span></div>
+      </div>
+    </div>
+
+    <div class="policy-card">
+      <div class="policy-header"><span class="policy-id">POL-10</span><span class="policy-name">Monitoreo y auditoría</span></div>
+      <div class="policy-body">
+        <div class="policy-row"><span class="policy-label">Estándar</span><span class="policy-val">Los controles críticos deben generar evidencia para detectar fallas y mejorar.</span></div>
+        <div class="policy-row"><span class="policy-label">Directriz</span><span class="policy-val">Usar logs centralizados para cuentas privilegiadas, correo y servicios críticos.</span></div>
+        <div class="policy-row"><span class="policy-label">Procedimiento</span><span class="policy-val">Recolectar logs, revisar alertas, documentar hallazgos y generar acciones correctivas.</span></div>
+        <div class="policy-row"><span class="policy-label">Línea base</span><span class="policy-val">Revisión mensual de eventos críticos con auditoría interna semestral.</span></div>
+      </div>
+    </div>
+
+    <h3>5.3 Matriz RACI</h3>
+    <div class="table-scroll">
+    <table class="data-table">
+      <thead><tr><th>ID Política</th><th>R – Responsable</th><th>A – Aprobador</th><th>C – Consultado</th><th>I – Informado</th></tr></thead>
+      <tbody>
+        <tr><td>POL-01 Identidades y accesos</td><td><span class="raci-cell raci-r">TI / Dueño proceso</span></td><td><span class="raci-cell raci-a">Rectoría / Comité</span></td><td><span class="raci-cell raci-c">Jurídico / Dueños</span></td><td><span class="raci-cell raci-i">Comunidad / Proveedores</span></td></tr>
+        <tr><td>POL-02 Uso aceptable de red</td><td><span class="raci-cell raci-r">TI / Dueño proceso</span></td><td><span class="raci-cell raci-a">Rectoría / Comité</span></td><td><span class="raci-cell raci-c">Jurídico / Dueños</span></td><td><span class="raci-cell raci-i">Comunidad / Proveedores</span></td></tr>
+        <tr><td>POL-03 Datos personales</td><td><span class="raci-cell raci-r">TI / Dueño proceso</span></td><td><span class="raci-cell raci-a">Rectoría / Comité</span></td><td><span class="raci-cell raci-c">Jurídico / Dueños</span></td><td><span class="raci-cell raci-i">Comunidad / Proveedores</span></td></tr>
+        <tr><td>POL-04 Respaldos</td><td><span class="raci-cell raci-r">TI / Dueño proceso</span></td><td><span class="raci-cell raci-a">Rectoría / Comité</span></td><td><span class="raci-cell raci-c">Jurídico / Dueños</span></td><td><span class="raci-cell raci-i">Comunidad / Proveedores</span></td></tr>
+        <tr><td>POL-05 Gestión de cambios</td><td><span class="raci-cell raci-r">TI / Dueño proceso</span></td><td><span class="raci-cell raci-a">Rectoría / Comité</span></td><td><span class="raci-cell raci-c">Jurídico / Dueños</span></td><td><span class="raci-cell raci-i">Comunidad / Proveedores</span></td></tr>
+        <tr><td>POL-06 Vulnerabilidades</td><td><span class="raci-cell raci-r">TI / Dueño proceso</span></td><td><span class="raci-cell raci-a">Rectoría / Comité</span></td><td><span class="raci-cell raci-c">Jurídico / Dueños</span></td><td><span class="raci-cell raci-i">Comunidad / Proveedores</span></td></tr>
+        <tr><td>POL-07 Respuesta incidentes</td><td><span class="raci-cell raci-r">TI / Dueño proceso</span></td><td><span class="raci-cell raci-a">Rectoría / Comité</span></td><td><span class="raci-cell raci-c">Jurídico / Dueños</span></td><td><span class="raci-cell raci-i">Comunidad / Proveedores</span></td></tr>
+        <tr><td>POL-08 Seguridad proveedores</td><td><span class="raci-cell raci-r">TI / Dueño proceso</span></td><td><span class="raci-cell raci-a">Rectoría / Comité</span></td><td><span class="raci-cell raci-c">Jurídico / Dueños</span></td><td><span class="raci-cell raci-i">Comunidad / Proveedores</span></td></tr>
+        <tr><td>POL-09 Concienciación</td><td><span class="raci-cell raci-r">TI / Dueño proceso</span></td><td><span class="raci-cell raci-a">Rectoría / Comité</span></td><td><span class="raci-cell raci-c">Jurídico / Dueños</span></td><td><span class="raci-cell raci-i">Comunidad / Proveedores</span></td></tr>
+        <tr><td>POL-10 Monitoreo y auditoría</td><td><span class="raci-cell raci-r">TI / Dueño proceso</span></td><td><span class="raci-cell raci-a">Rectoría / Comité</span></td><td><span class="raci-cell raci-c">Jurídico / Dueños</span></td><td><span class="raci-cell raci-i">Comunidad / Proveedores</span></td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="table-caption">Tabla 10 — Matriz RACI por política de seguridad</p>
+  </section>
+
+  <!-- ── SECCIÓN 6 ── -->
+  <section id="s6" class="section">
+    <div class="section-header">
+      <span class="section-num">06</span>
+      <h2>Planificación</h2>
+    </div>
+
+    <h3>6.1 Metodología de evaluación de riesgos</h3>
+    <div class="table-scroll">
+    <table class="data-table">
+      <thead><tr><th>Elemento</th><th>Criterio</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Probabilidad</strong></td><td>Escala 1–5: 1 rara, 2 poco probable, 3 posible, 4 probable, 5 casi segura</td></tr>
+        <tr><td><strong>Impacto</strong></td><td>Escala 1–5 considerando continuidad académica, datos personales, reputación, costo y cumplimiento</td></tr>
+        <tr><td><strong>Fórmula</strong></td><td><strong>Riesgo = Probabilidad × Impacto</strong></td></tr>
+        <tr><td><strong>Interpretación</strong></td><td>Bajo 1–6 | Medio 7–12 | <span style="color:#e67e22;font-weight:600">Alto 13–19</span> | <span style="color:#c0392b;font-weight:600">Crítico 20–25</span></td></tr>
+        <tr><td><strong>Tratamiento</strong></td><td>Mitigar, transferir, evitar/rechazar o aceptar con justificación y aprobación</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <h3>6.2 Matriz de riesgos prioritaria</h3>
+    <div class="table-scroll">
+    <table class="data-table">
+      <thead><tr><th>ID</th><th>Activo</th><th>Amenaza</th><th>Vulnerabilidad</th><th>Consecuencia</th><th>I</th><th>P</th><th>Score</th></tr></thead>
+      <tbody>
+        <tr><td><strong>R-01</strong></td><td>ACT-EXT-01</td><td>Phishing y robo de credenciales</td><td>Usuarios sin MFA o baja conciencia</td><td>Acceso no autorizado, correos fraudulentos, exposición de información</td><td>5</td><td>4</td><td><span class="score score-crit">20 ★</span></td></tr>
+        <tr><td><strong>R-04</strong></td><td>ACT-INT-08</td><td>Acceso indebido o abuso de red</td><td>Segmentación insuficiente</td><td>Movimiento lateral o consumo indebido de recursos</td><td>4</td><td>4</td><td><span class="score score-high">16</span></td></tr>
+        <tr><td><strong>R-09</strong></td><td>ACT-EXT-12</td><td>Exposición accidental de documentos</td><td>Compartición pública sin revisión</td><td>Fuga de datos personales o documentos internos</td><td>4</td><td>4</td><td><span class="score score-high">16</span></td></tr>
+        <tr><td><strong>R-02</strong></td><td>ACT-INT-02</td><td>Interrupción en periodo de inscripción</td><td>Sin prueba de continuidad</td><td>Suspensión de reinscripciones y atención escolar</td><td>5</td><td>3</td><td><span class="score score-high">15</span></td></tr>
+        <tr><td><strong>R-03</strong></td><td>ACT-INT-01</td><td>Acceso no autorizado a expedientes</td><td>Permisos excesivos, baja revisión</td><td>Fuga o alteración de calificaciones y datos personales</td><td>5</td><td>3</td><td><span class="score score-high">15</span></td></tr>
+        <tr><td><strong>R-05</strong></td><td>ACT-INT-12</td><td>Ransomware en endpoint administrativo</td><td>Parches incompletos y apertura de adjuntos</td><td>Cifrado de documentos y afectación de atención escolar</td><td>5</td><td>3</td><td><span class="score score-high">15</span></td></tr>
+        <tr><td><strong>R-06</strong></td><td>ACT-EXT-08</td><td>Fraude o uso indebido de credenciales</td><td>Credenciales compartidas</td><td>Pagos alterados, pérdida económica y reclamos</td><td>5</td><td>3</td><td><span class="score score-high">15</span></td></tr>
+        <tr><td><strong>R-07</strong></td><td>ACT-INT-10</td><td>Respaldo inutilizable</td><td>No se prueban restauraciones</td><td>Imposibilidad de recuperación tras incidente</td><td>5</td><td>3</td><td><span class="score score-high">15</span></td></tr>
+        <tr><td><strong>R-08</strong></td><td>ACT-EXT-03</td><td>Defacement del sitio</td><td>CMS o plugins desactualizados</td><td>Daño reputacional y publicación de contenido falso</td><td>4</td><td>3</td><td><span class="score score-med">12</span></td></tr>
+        <tr><td><strong>R-11</strong></td><td>ACT-EXT-13</td><td>Abuso de acceso de tercero</td><td>Cuentas temporales no revocadas</td><td>Acceso no autorizado por proveedor o cuenta comprometida</td><td>4</td><td>3</td><td><span class="score score-med">12</span></td></tr>
+        <tr><td><strong>R-10</strong></td><td>ACT-INT-09</td><td>Exposición de servicio interno</td><td>Reglas obsoletas o sin revisión</td><td>Acceso externo a servicios no autorizados</td><td>5</td><td>2</td><td><span class="score score-med">10</span></td></tr>
+        <tr><td><strong>R-12</strong></td><td>ACT-INT-20</td><td>Pérdida de evidencia de auditoría</td><td>Sin control de versiones</td><td>No conformidades y falta de trazabilidad</td><td>3</td><td>3</td><td><span class="score score-med">9</span></td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="table-caption">Tabla 12 — Matriz de riesgos (valoración técnica, ordenada por score)</p>
+
+    <h3>6.3 Justificación de priorización</h3>
+    <div class="warn-box">R-01 se prioriza como <strong>crítico (score 20)</strong> porque el correo institucional es punto de entrada para recuperación de contraseñas, phishing, suplantación e incidentes encadenados. La administración del riesgo se realizará principalmente mediante mitigación, porque aceptar o transferir estos riesgos sin controles dejaría expuesta la operación académica.</div>
+
+    <div class="priority-grid">
+      <div class="priority-item crit"><h4>R-01 — Crítico</h4><p>Phishing y robo de credenciales en correo institucional. Score: 20/25.</p></div>
+      <div class="priority-item high"><h4>R-04 y R-09 — Altos</h4><p>Abuso de red y exposición de documentos cloud. Score: 16/25.</p></div>
+      <div class="priority-item high"><h4>R-02, R-03, R-05, R-06, R-07</h4><p>Continuidad académica, expedientes, ransomware, pagos y respaldos. Score: 15/25.</p></div>
+      <div class="priority-item med"><h4>R-08, R-10, R-11, R-12</h4><p>Defacement, exposición interna, terceros y trazabilidad. Score: 9–12.</p></div>
+    </div>
+
+    <h3>6.4 Declaración de aplicabilidad resumida</h3>
+    <div class="table-scroll">
+    <table class="data-table">
+      <thead><tr><th>Control ISO 27002:2022</th><th>Estado</th><th>Justificación</th></tr></thead>
+      <tbody>
+        <tr><td>5.9 Inventario de activos</td><td><span class="badge badge-ok">Aplicable</span></td><td>La planificación del SGSI depende de un inventario completo y trazable</td></tr>
+        <tr><td>5.15 Control de acceso</td><td><span class="badge badge-ok">Aplicable</span></td><td>Riesgos de credenciales, proveedores y datos personales</td></tr>
+        <tr><td>5.16 Gestión de identidades</td><td><span class="badge badge-ok">Aplicable</span></td><td>Cuentas institucionales, roles y bajas</td></tr>
+        <tr><td>5.17 Información de autenticación</td><td><span class="badge badge-ok">Aplicable</span></td><td>MFA y credenciales seguras</td></tr>
+        <tr><td>5.19 Seguridad con proveedores</td><td><span class="badge badge-ok">Aplicable</span></td><td>Servicios cloud, ISP, pagos y mantenimiento</td></tr>
+        <tr><td>5.24 Planificación y preparación de incidentes</td><td><span class="badge badge-ok">Aplicable</span></td><td>Phishing, ransomware y fuga de información</td></tr>
+        <tr><td>5.30 Preparación TIC para continuidad</td><td><span class="badge badge-ok">Aplicable</span></td><td>Continuidad académica y administrativa</td></tr>
+        <tr><td>8.8 Gestión de vulnerabilidades técnicas</td><td><span class="badge badge-ok">Aplicable</span></td><td>Parches de portal, endpoints y servidores</td></tr>
+        <tr><td>8.13 Respaldo de información</td><td><span class="badge badge-ok">Aplicable</span></td><td>Recuperación ante ransomware o errores</td></tr>
+        <tr><td>8.16 Actividades de monitoreo</td><td><span class="badge badge-ok">Aplicable</span></td><td>Logs, alertas y auditoría de accesos</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="table-caption">Tabla 14 — Declaración de aplicabilidad resumida de controles</p>
+  </section>
+
+  <!-- ── SECCIÓN 7 ── -->
+  <section id="s7" class="section">
+    <div class="section-header">
+      <span class="section-num">07</span>
+      <h2>Soporte</h2>
+    </div>
+
+    <h3>7.1 Minuta formal de reunión</h3>
+    <div class="card">
+      <table class="data-table" style="margin:0;box-shadow:none;border:none">
+        <tbody>
+          <tr><td style="font-weight:600;width:160px">Fecha</td><td>20 de mayo de 2026</td></tr>
+          <tr><td style="font-weight:600">Asistentes</td><td>Rectoría, Servicios Informáticos, Servicios Escolares, Administración y Finanzas, Responsable SGSI, representante académico</td></tr>
+          <tr><td style="font-weight:600">Objetivo</td><td>Presentar avance del SGSI, justificar la intervención y acordar próximos pasos para controles prioritarios</td></tr>
+          <tr><td style="font-weight:600">Temas tratados</td><td>Alcance del SGSI, inventario de activos, riesgos críticos, políticas, MFA, respaldos, auditoría interna y campaña de concienciación</td></tr>
+          <tr><td style="font-weight:600">Acuerdos</td><td>Validar alcance, aprobar políticas base, iniciar piloto MFA en cuentas privilegiadas, programar auditoría interna y campaña anti-phishing</td></tr>
+          <tr><td style="font-weight:600">Próximos pasos</td><td>Publicar política, ejecutar procedimiento piloto, reunir evidencias, revisar indicadores y cerrar acciones correctivas</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>7.2 Lenguaje técnico vs. lenguaje ejecutivo</h3>
+    <div class="table-scroll">
+    <table class="data-table">
+      <thead><tr><th>Lenguaje técnico</th><th>Lenguaje ejecutivo</th></tr></thead>
+      <tbody>
+        <tr><td>Implementar MFA en cuentas privilegiadas y revisar RBAC</td><td>Reducir la probabilidad de accesos no autorizados a sistemas críticos</td></tr>
+        <tr><td>Probar restauración de backups con RTO/RPO definidos</td><td>Asegurar que la universidad pueda recuperarse después de una falla o ransomware</td></tr>
+        <tr><td>Segmentar VLAN para alumnos, docentes e invitados</td><td>Limitar el daño si una cuenta o dispositivo queda comprometido</td></tr>
+        <tr><td>Centralizar logs y revisar eventos críticos</td><td>Tener evidencia y alertas para detectar incidentes a tiempo</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <h3>7.3 Presentación ejecutiva propuesta</h3>
+    <div class="priority-grid">
+      <div class="priority-item"><h4>Slide 1 — ¿Por qué un SGSI?</h4><p>La universidad depende de servicios digitales críticos y datos personales.</p></div>
+      <div class="priority-item"><h4>Slide 2 — Alcance</h4><p>Servicios académicos, administrativos, red, correo y proveedores TIC.</p></div>
+      <div class="priority-item"><h4>Slide 3 — Riesgos principales</h4><p>Phishing, ransomware, fuga de datos, caída de plataformas y abuso de privilegios.</p></div>
+      <div class="priority-item"><h4>Slide 4 — Controles prioritarios</h4><p>MFA, respaldos, segmentación, revisión de accesos, capacitación y monitoreo.</p></div>
+      <div class="priority-item"><h4>Slide 5 — Decisiones requeridas</h4><p>Aprobar política, responsables, recursos mínimos y revisión periódica.</p></div>
+      <div class="priority-item"><h4>Slide 6 — Indicadores</h4><p>Incidentes, MFA, respaldos probados, capacitación y hallazgos cerrados.</p></div>
+    </div>
+  </section>
+
+  <!-- ── SECCIÓN 8 ── -->
+  <section id="s8" class="section">
+    <div class="section-header">
+      <span class="section-num">08</span>
+      <h2>Operación</h2>
+    </div>
+
+    <div class="info-box"><strong>Política seleccionada para implementación operativa:</strong> POL-01 — Gestión de identidades y accesos. Se relaciona directamente con los riesgos R-01, R-03, R-06 y R-11. La medida operativa seleccionada es un piloto de autenticación multifactor y revisión de cuentas privilegiadas.</div>
+
+    <h3>8.2 Procedimiento operativo replicable</h3>
+    <div class="table-scroll">
+    <table class="data-table">
+      <thead><tr><th>Paso</th><th>Actividad</th><th>Ejecución</th><th>Evidencia</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>Identificar cuentas críticas</td><td>Exportar listado de administradores de correo, directorio activo, pasarela de pagos y sistema escolar</td><td>EVID-OP-01</td></tr>
+        <tr><td>2</td><td>Validar propietario</td><td>Confirmar con dueño de proceso si cada cuenta sigue requerida</td><td>EVID-OP-02</td></tr>
+        <tr><td>3</td><td>Clasificar privilegio</td><td>Marcar cuenta como administrativa, operador, consulta o proveedor temporal</td><td>EVID-OP-03</td></tr>
+        <tr><td>4</td><td>Activar MFA</td><td>Habilitar segundo factor en cuentas privilegiadas y correo institucional</td><td>EVID-OP-04</td></tr>
+        <tr><td>5</td><td>Revocar cuentas obsoletas</td><td>Deshabilitar cuentas sin propietario o sin uso mayor a 90 días</td><td>EVID-OP-05</td></tr>
+        <tr><td>6</td><td>Registrar excepción</td><td>Si una cuenta no puede usar MFA, documentar causa, vigencia y control compensatorio</td><td>EVID-OP-06</td></tr>
+        <tr><td>7</td><td>Validar acceso</td><td>Probar inicio de sesión con MFA y confirmar acceso solo a sistemas autorizados</td><td>EVID-OP-07</td></tr>
+        <tr><td>8</td><td>Monitorear eventos</td><td>Revisar intentos fallidos, inicios desde ubicaciones anómalas y cambios de rol</td><td>EVID-OP-08</td></tr>
+        <tr><td>9</td><td>Cerrar ticket</td><td>Adjuntar evidencias, responsable, fecha y resultado</td><td>EVID-OP-09</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <h3>8.3 Evidencia técnica simulada</h3>
+    <div class="code-block">
+<span class="comment"># EVID-OP-01 — Exportación de cuentas privilegiadas</span>
+<span class="key">Get-PrivilegedUsers</span> -System "Correo Institucional" -Role Admin
+> cuentas_privilegiadas.csv
+
+<span class="comment"># Resultado simulado:</span>
+<span class="comment"># 18 cuentas privilegiadas detectadas</span>
+<span class="comment"># 14 activas y justificadas</span>
+<span class="comment"># 3 obsoletas para deshabilitar</span>
+<span class="comment"># 1 proveedor temporal sin fecha de expiración</span>
+    </div>
+    <div class="code-block">
+<span class="comment"># EVID-OP-04 — Configuración MFA (panel simulado)</span>
+<span class="key">MFA_Status</span>: Enabled
+<span class="key">Scope</span>: Administradores correo, sistema escolar, pasarela de pagos
+<span class="key">Method</span>: Aplicación autenticadora | Token
+<span class="key">Excepción temporal</span>: Ninguna
+
+<span class="comment"># EVID-OP-07 — Validación posterior</span>
+<span class="comment"># Prueba 1: contraseña correcta + segundo factor válido   → PERMITIDO ✓</span>
+<span class="comment"># Prueba 2: contraseña correcta sin segundo factor        → BLOQUEADO ✗</span>
+<span class="comment"># Prueba 3: cuenta proveedor fuera de ventana autorizada → BLOQUEADO ✗</span>
+    </div>
+
+    <h3>8.4 Responsables, frecuencia y posibles fallos</h3>
+    <div class="table-scroll">
+    <table class="data-table">
+      <thead><tr><th>Elemento</th><th>Responsable</th><th>Frecuencia</th><th>Posibles fallos / Respuesta</th></tr></thead>
+      <tbody>
+        <tr><td>Revisión de cuentas</td><td>Dueño del proceso + TI</td><td>Trimestral</td><td>Cuentas sin dueño: deshabilitar preventivamente y escalar</td></tr>
+        <tr><td>MFA privilegiado</td><td>Servicios Informáticos</td><td>Permanente</td><td>Usuario sin segundo factor: recuperación por mesa de ayuda con validación de identidad</td></tr>
+        <tr><td>Proveedores</td><td>Responsable interno</td><td>Por servicio</td><td>Cuenta no revocada: fecha de expiración obligatoria y revisión semanal</td></tr>
+        <tr><td>Logs de acceso</td><td>TI / SGSI</td><td>Mensual</td><td>Eventos anómalos: abrir incidente y preservar evidencia</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </section>
+
+  <!-- ── SECCIÓN 9 ── -->
+  <section id="s9" class="section">
+    <div class="section-header">
+      <span class="section-num">09</span>
+      <h2>Evaluación del desempeño</h2>
+    </div>
+
+    <h3>9.1.1 Checklist de auditoría interna</h3>
+    <div class="card">
+      <div class="audit-item">
+        <span class="audit-id">AUD-01</span>
+        <div class="audit-criterion">
+          Existe política general aprobada y comunicada
+          <div class="audit-evidence">Política SGSI v1.0, minuta de aprobación</div>
+        </div>
+        <span class="badge badge-ok">Cumple</span>
+      </div>
+      <div class="audit-item">
+        <span class="audit-id">AUD-02</span>
+        <div class="audit-criterion">
+          Las cuentas privilegiadas tienen MFA
+          <div class="audit-evidence">14/18 cuentas con MFA; 3 obsoletas y 1 proveedor pendiente</div>
+        </div>
+        <span class="badge badge-warn">Parcial</span>
+      </div>
+      <div class="audit-item">
+        <span class="audit-id">AUD-03</span>
+        <div class="audit-criterion">
+          Hay inventario de activos con propietario y CIA
+          <div class="audit-evidence">Inventario ACT-INT/EXT con 40 activos</div>
+        </div>
+        <span class="badge badge-ok">Cumple</span>
+      </div>
+      <div class="audit-item">
+        <span class="audit-id">AUD-04</span>
+        <div class="audit-criterion">
+          Respaldos críticos tienen prueba de restauración
+          <div class="audit-evidence">Última prueba documentada solo para sistema escolar</div>
+        </div>
+        <span class="badge badge-warn">Parcial</span>
+      </div>
+      <div class="audit-item">
+        <span class="audit-id">AUD-05</span>
+        <div class="audit-criterion">
+          Proveedores críticos tienen acceso documentado
+          <div class="audit-evidence">Proveedor de mantenimiento sin fecha de expiración</div>
+        </div>
+        <span class="badge badge-warn">Parcial</span>
+      </div>
+      <div class="audit-item">
+        <span class="audit-id">AUD-06</span>
+        <div class="audit-criterion">
+          Incidentes se registran en canal formal
+          <div class="audit-evidence">Tickets INC-2026-014 a INC-2026-018</div>
+        </div>
+        <span class="badge badge-ok">Cumple</span>
+      </div>
+      <div class="audit-item">
+        <span class="audit-id">AUD-07</span>
+        <div class="audit-criterion">
+          Campañas anti-phishing tienen evidencia
+          <div class="audit-evidence">No se encontró lista de asistencia o reporte de campaña reciente</div>
+        </div>
+        <span class="badge badge-fail">No cumple</span>
+      </div>
+    </div>
+
+    <h3>9.1.2 Guía de entrevista</h3>
+    <div class="table-scroll">
+    <table class="data-table">
+      <thead><tr><th>ID</th><th>Entrevistado</th><th>Pregunta clave</th></tr></thead>
+      <tbody>
+        <tr><td>ENT-01</td><td>Rectoría</td><td>¿Cómo revisa dirección los riesgos residuales y recursos del SGSI?</td></tr>
+        <tr><td>ENT-02</td><td>Servicios Informáticos</td><td>¿Cómo se autorizan altas, bajas y cambios de privilegios?</td></tr>
+        <tr><td>ENT-03</td><td>Servicios Escolares</td><td>¿Quién aprueba accesos a expedientes académicos?</td></tr>
+        <tr><td>ENT-04</td><td>Finanzas</td><td>¿Cómo se protege la pasarela de pagos y credenciales bancarias?</td></tr>
+        <tr><td>ENT-05</td><td>Proveedor TIC</td><td>¿Qué controles siguen al acceder remotamente a la infraestructura?</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <h3>9.2 Hallazgos y plan de acción</h3>
+    <div class="table-scroll">
+    <table class="data-table">
+      <thead><tr><th>ID</th><th>Tipo</th><th>Hallazgo</th><th>Prioridad</th><th>Acción correctiva</th><th>Responsable / Fecha</th></tr></thead>
+      <tbody>
+        <tr><td><strong>H-01</strong></td><td><span class="badge badge-fail">No conformidad menor</span></td><td>No todas las cuentas privilegiadas tienen MFA activo</td><td><span style="color:#c0392b;font-weight:600">Alta</span></td><td>Activar MFA y deshabilitar cuentas obsoletas</td><td>TI / 30 mayo 2026</td></tr>
+        <tr><td><strong>H-02</strong></td><td><span class="badge badge-warn">Observación</span></td><td>Pruebas de restauración incompletas</td><td>Media</td><td>Calendarizar pruebas trimestrales para activos críticos</td><td>TI / 15 junio 2026</td></tr>
+        <tr><td><strong>H-03</strong></td><td><span class="badge badge-fail">No conformidad menor</span></td><td>Proveedor sin fecha de expiración de acceso</td><td><span style="color:#c0392b;font-weight:600">Alta</span></td><td>Crear cuenta temporal con expiración y responsable interno</td><td>Redes / 25 mayo 2026</td></tr>
+        <tr><td><strong>H-04</strong></td><td><span class="badge badge-info">Oportunidad de mejora</span></td><td>Campaña anti-phishing sin evidencia reciente</td><td>Media</td><td>Ejecutar campaña y registrar asistencia/resultados</td><td>SGSI / 10 junio 2026</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <h3>9.3 Resultado ejecutivo de auditoría</h3>
+    <div class="warn-box">El estado general del SGSI se clasifica como <strong>madurez inicial controlada</strong>. Existen elementos documentales sólidos: alcance, inventario, políticas, riesgos y procedimiento operativo. Sin embargo, la auditoría identifica brechas en MFA total, pruebas de restauración, control de proveedores y evidencia de capacitación. La prioridad ejecutiva es cerrar <strong>H-01 y H-03</strong> por estar vinculados con accesos privilegiados y riesgo de credenciales.</div>
+  </section>
+
+  <!-- ── SECCIÓN 10 ── -->
+  <section id="s10" class="section">
+    <div class="section-header">
+      <span class="section-num">10</span>
+      <h2>Mejora</h2>
+    </div>
+
+    <h3>10.1 Incidente verosímil: phishing a cuenta administrativa</h3>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-dot red"></div>
+        <div class="tl-title">18 mayo 2026 — Detección del incidente</div>
+        <div class="tl-body">Una cuenta administrativa recibió un correo de phishing simulando notificación de actualización de contraseña. La cuenta ingresó sus credenciales en un sitio falso.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot red"></div>
+        <div class="tl-title">Activos afectados</div>
+        <div class="tl-body">Correo institucional (ACT-EXT-01), directorio de identidades (ACT-INT-03) y nube colaborativa (ACT-EXT-12). Impacto potencial: exposición de documentos internos y envío de correos fraudulentos.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-title">Contención</div>
+        <div class="tl-body">Bloqueo de la sesión sospechosa, restablecimiento de contraseña, activación de MFA y revisión de reglas de reenvío.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot green"></div>
+        <div class="tl-title">Recuperación y lecciones</div>
+        <div class="tl-body">Preservación de logs, apertura de campaña anti-phishing, actualización de POL-01 y POL-09, monitoreo de inicios de sesión anómalos.</div>
+      </div>
+    </div>
+
+    <h3>10.3 Medidas para evitar recurrencia</h3>
+    <ul>
+      <li>MFA obligatorio para cuentas administrativas y privilegiadas.</li>
+      <li>Campaña anti-phishing semestral con simulación y medición.</li>
+      <li>Revisión de reglas de reenvío y sesiones activas en correo institucional.</li>
+      <li>Playbook de respuesta a phishing con roles, tiempos y evidencias.</li>
+      <li>Ajuste de POL-01 y POL-09 para incluir control mínimo obligatorio.</li>
+      <li>Monitoreo de inicios de sesión anómalos y bloqueo automático.</li>
+    </ul>
+
+    <h3>10.4 Material de prevención para usuarios finales</h3>
+    <div class="campaign-box">
+      <h3>Campaña interna UPSLP: Alto al phishing</h3>
+      <p style="color:rgba(255,255,255,.7);font-size:14px;margin-bottom:0">PAUSA · VERIFICA · REPORTA — Antes de escribir tu contraseña, confirma que el mensaje sea legítimo.</p>
+      <div class="steps-row">
+        <div class="step-item">
+          <span class="step-num">1</span>
+          <div class="step-title">Pausa</div>
+          <div class="step-desc">No respondas con prisa a correos que amenazan con bloquear tu cuenta o generar una sanción inmediata.</div>
+        </div>
+        <div class="step-item">
+          <span class="step-num">2</span>
+          <div class="step-title">Verifica</div>
+          <div class="step-desc">Revisa dominio, remitente, enlace, ortografía y solicitud. La UPSLP no debe pedir contraseñas por correo o formularios externos.</div>
+        </div>
+        <div class="step-item">
+          <span class="step-num">3</span>
+          <div class="step-title">Reporta</div>
+          <div class="step-desc">Si el mensaje es sospechoso, no abras adjuntos ni enlaces. Reenvíalo a Mesa de Ayuda o al canal SGSI definido.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3 style="margin-top:0">Guía de revisión de 60 segundos</h3>
+      <table class="data-table" style="margin:0;box-shadow:none;border:none">
+        <tbody>
+          <tr><td style="font-weight:600;width:100px">Remitente</td><td>¿Proviene de una cuenta institucional o proveedor autorizado? Desconfía de dominios parecidos o cuentas personales.</td></tr>
+          <tr><td style="font-weight:600">Enlace</td><td>Pasa el cursor sobre el vínculo y valida el dominio antes de abrirlo. Si usa acortadores o dominios extraños, repórtalo.</td></tr>
+          <tr><td style="font-weight:600">Solicitud</td><td>Ningún área debe pedir contraseña, token, código MFA o datos bancarios por correo.</td></tr>
+          <tr><td style="font-weight:600">Urgencia</td><td>Frases como "último aviso", "bloqueo inmediato" o "verificación obligatoria" son señales de presión.</td></tr>
+          <tr><td style="font-weight:600">Adjuntos</td><td>No abras archivos inesperados, especialmente si solicitan habilitar macros, iniciar sesión o descargar complementos.</td></tr>
+          <tr><td style="font-weight:600">Reporte</td><td>Conserva el correo y repórtalo; no lo borres de inmediato porque puede servir como evidencia.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>10.5 Conexión con mejora continua</h3>
+    <p>El incidente se convierte en insumo de mejora del SGSI. No basta con cerrar el ticket: se actualiza la matriz de riesgos, se ajustan políticas, se mejora el procedimiento de MFA, se ejecuta capacitación y se mide si los usuarios reducen clics en simulaciones de phishing. La mejora continua queda registrada en acciones correctivas, responsables, fechas y revisión directiva.</p>
+  </section>
+
+  <!-- ── SECCIÓN 11 ── -->
+  <section id="s11" class="section">
+    <div class="section-header">
+      <span class="section-num">11</span>
+      <h2>Verificación final de cobertura del SGSI</h2>
+    </div>
+    <div class="coverage-grid">
+      <div class="cov-item"><div class="cov-num">Sección 01</div><div class="cov-title">Alcance</div><div class="cov-tags"><span class="cov-tag">Empresa verosímil</span><span class="cov-tag">Misión / Visión</span><span class="cov-tag">Justificación</span><span class="cov-tag">Límites</span></div></div>
+      <div class="cov-item"><div class="cov-num">Sección 02</div><div class="cov-title">Referencias</div><div class="cov-tags"><span class="cov-tag">ISO 27001</span><span class="cov-tag">Familia ISO 27</span><span class="cov-tag">Marco legal</span></div></div>
+      <div class="cov-item"><div class="cov-num">Sección 03</div><div class="cov-title">Términos</div><div class="cov-tags"><span class="cov-tag">14 términos clave</span><span class="cov-tag">Condiciones</span></div></div>
+      <div class="cov-item"><div class="cov-num">Sección 04</div><div class="cov-title">Contexto y activos</div><div class="cov-tags"><span class="cov-tag">40 activos CIA</span><span class="cov-tag">Partes interesadas</span><span class="cov-tag">Trazabilidad</span></div></div>
+      <div class="cov-item"><div class="cov-num">Sección 05</div><div class="cov-title">Liderazgo</div><div class="cov-tags"><span class="cov-tag">Política general</span><span class="cov-tag">10 políticas</span><span class="cov-tag">RACI</span></div></div>
+      <div class="cov-item"><div class="cov-num">Sección 06</div><div class="cov-title">Planificación</div><div class="cov-tags"><span class="cov-tag">12 riesgos</span><span class="cov-tag">Controles</span><span class="cov-tag">Aplicabilidad</span></div></div>
+      <div class="cov-item"><div class="cov-num">Sección 07</div><div class="cov-title">Soporte</div><div class="cov-tags"><span class="cov-tag">Minuta formal</span><span class="cov-tag">Lenguaje ejecutivo</span></div></div>
+      <div class="cov-item"><div class="cov-num">Sección 08</div><div class="cov-title">Operación</div><div class="cov-tags"><span class="cov-tag">Procedimiento MFA</span><span class="cov-tag">Evidencia simulada</span></div></div>
+      <div class="cov-item"><div class="cov-num">Sección 09</div><div class="cov-title">Evaluación</div><div class="cov-tags"><span class="cov-tag">Checklist</span><span class="cov-tag">Hallazgos</span><span class="cov-tag">Acciones correctivas</span></div></div>
+      <div class="cov-item"><div class="cov-num">Sección 10</div><div class="cov-title">Mejora</div><div class="cov-tags"><span class="cov-tag">Incidente phishing</span><span class="cov-tag">Campaña preventiva</span><span class="cov-tag">Mejora continua</span></div></div>
+    </div>
+
+    <!-- CONCLUSIÓN -->
+    <div class="exec-summary" style="margin-top:40px">
+      <h2>Conclusión</h2>
+      <p>La propuesta desarrolla un SGSI institucional realista para la UPSLP y conecta todos los elementos evaluables: alcance, referencias normativas, términos, contexto, activos, liderazgo, riesgos, soporte, operación, auditoría y mejora. El valor del documento está en la trazabilidad: cada riesgo proviene de activos identificados, cada control responde a una política y cada evidencia permite demostrar avance ante auditoría. Con este enfoque, la seguridad deja de ser una responsabilidad aislada de TI y se convierte en un sistema de gestión institucional con responsables, medición y mejora continua.</p>
+    </div>
+
+    <!-- REFERENCIAS -->
+    <h3 style="margin-top:40px">Referencias</h3>
+    <ul class="ref-list">
+      <li>Computer Security Resource Center. (s. f.). <em>Information Security Management System.</em> National Institute of Standards and Technology.</li>
+      <li>FIRST. (s. f.). <em>Common Vulnerability Scoring System v3.1: Specification Document.</em></li>
+      <li>International Organization for Standardization. (2022). <em>ISO/IEC 27001:2022 Information security, cybersecurity and privacy protection — ISMS Requirements.</em> ISO.</li>
+      <li>International Organization for Standardization. (2022). <em>ISO/IEC 27002:2022 Information security controls.</em> ISO.</li>
+      <li>International Organization for Standardization. (2022). <em>ISO/IEC 27005 Information security risk management.</em> ISO.</li>
+      <li>López Contreras, S. (2026). <em>CNO V: Seguridad Informática.</em> Material de clase S06 y lineamientos S08. Universidad Politécnica de San Luis Potosí.</li>
+    </ul>
+  </section>
          
 
        </div>
