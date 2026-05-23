@@ -95,19 +95,128 @@
       <div class="row">
         <div class="col-xs-12 col-md-8 col-md-offset-2">
           <h2>1. Introduccion</h2>
+          <p>
+                El estándar **CVSS v3.1** (Common Vulnerability Scoring System) es una metodología de evaluación abierta diseñada para cuantificar la gravedad de vulnerabilidades de seguridad en sistemas de software. Esta puntuación se calcula analizando tres grupos de métricas: base, temporales y ambientales.
+            </p>
+            <p>
+                El grupo de métricas base representa los atributos constantes de la vulnerabilidad que son independientes del tiempo y del entorno del usuario final. En esta actividad, se documenta la evaluación de un fallo en un sistema web interno organizacional. La meta no es únicamente obtener un puntaje abstracto, sino justificar conceptualmente cómo impacta la vulnerabilidad y argumentar la prioridad del riesgo en el contexto del negocio.
+            </p>
           <h2>2. Objetivos</h2>
+          <ul>
+                <li><strong>Objetivo General:</strong> Aplicar el modelo CVSS v3.1 para caracterizar una vulnerabilidad de red, interpretando sus métricas base y formulando recomendaciones prácticas de mitigación basadas en riesgos.</li>
+                <li><strong>Objetivos Específicos:</strong>
+                    <ol>
+                        <li>Construir la cadena vector correspondiente a los parámetros del escenario.</li>
+                        <li>Desplegar una calculadora interactiva que implemente la especificación matemática de FIRST.</li>
+                        <li>Analizar por qué la vulnerabilidad retiene relevancia crítica a pesar de requerir privilegios elevados de administrador.</li>
+                        <li>Perfilar los actores de amenazas con capacidad para explotar esta debilidad.</li>
+                    </ol>
+                </li>
+            </ul>
           <h2>3. Escenario de Evaluación</h2>
-          <h2>4. Construccion del vector CVSS v3.1</h2>
-          <h2>5. Calculo de la puntuacion</h2>
-          <h2>6. Evidencia del uso de la calculadora oficial</h2>
-          <h2>7. Interpretacion tecnica</h2>
-          <h2>8. Analisis de riesgo y priorizacion</h2>
-          <h2>9. Recomendaciones de mitigacion</h2>
-          <h2>10. Conclusiones</h2>
-          <h2>11. Anexos de evidencia complementaria</h2>
-          <h2>12. Bibliografias</h2>
+          <p>
+                El caso proporcionado detalla una vulnerabilidad con las siguientes propiedades operativas de explotación:
+            </p>
+            <ul>
+                <li><strong>Vía de Explotación:</strong> Puede ejecutarse directamente de manera remota a través de la red (Network).</li>
+                <li><strong>Nivel de Complejidad:</strong> Baja complejidad. No depende de condiciones externas de red ni de estados poco probables del sistema.</li>
+                <li><strong>Privilegios Requeridos:</strong> El atacante necesita contar con privilegios de cuenta elevados (High) de tipo administrador.</li>
+                <li><strong>Interacción del Usuario:</strong> No se requiere ninguna interacción por parte de un segundo usuario.</li>
+                <li><strong>Alcance:</strong> No hay cambio de alcance (Unchanged). El impacto se limita exclusivamente a los recursos del propio sistema web vulnerable.</li>
+                <li><strong>Impacto en Confidencialidad, Integridad y Disponibilidad:</strong> Bajo impacto en los tres factores (Low / Low / Low).</li>
+            </ul>
           
-          <a href="./pdfPage.html?archivo=act15-Equipo5.pdf" class="boton-descarga" title="Descargar ahora">
+          <h2>5. Interpretacion tecnica</h2>
+          <table>
+                <thead>
+                    <tr>
+                        <th>Métrica Base</th>
+                        <th>Valor Escenario</th>
+                        <th>Justificación Técnica y Operativa</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Vector de Ataque (AV)</strong></td>
+                        <td>Network (N)</td>
+                        <td>La vulnerabilidad está expuesta en un puerto web accesible. Su explotación puede ser ejecutada de forma remota por red, sin requerir proximidad física ni acceso local.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Complejidad del Ataque (AC)</strong></td>
+                        <td>Low (L)</td>
+                        <td>No existen precondiciones del sistema o técnicas complejas requeridas para evadir defensas. Una vez que se tienen las credenciales, la ejecución es directa.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Privilegios Requeridos (PR)</strong></td>
+                        <td>High (H)</td>
+                        <td>El adversario debe autenticarse de forma previa y poseer privilegios de tipo administrativo o de gestión avanzada para acceder a la funcionalidad vulnerable.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Interacción del Usuario (UI)</strong></td>
+                        <td>None (N)</td>
+                        <td>Una vez ejecutada la orden por el atacante, el sistema procesa el exploit de manera autónoma, sin necesidad de que un usuario legítimo haga clics o abra archivos.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Alcance (S)</strong></td>
+                        <td>Unchanged (U)</td>
+                        <td>La explotación del fallo no compromete sistemas anexos o componentes que se ubiquen bajo una autoridad de seguridad diferente a la del servidor web de origen.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Impacto CIA (C, I, A)</strong></td>
+                        <td>Low / Low / Low</td>
+                        <td>La vulnerabilidad solo compromete una porción menor de la información corporativa, impide modificaciones masivas de bases de datos y no causa denegación de servicios total.</td>
+                    </tr>
+                </tbody>
+            </table>
+          <h3>5.1. Relevancia del Fallo a pesar de requerir Privilegios Altos (PR:H)</h3>
+            <p>
+                Es un error metodológico ignorar vulnerabilidades solo porque su métrica de privilegios requeridos sea alta. Aunque esta propiedad limita drásticamente la cantidad de atacantes capaces de iniciar la explotación, no nulifica el riesgo. Un adversario externo persistente o sofisticado puede obtener credenciales administrativas por vías alternativas (phishing dirigido, inyección SQL previa, contraseñas débiles por defecto, robo de tokens de sesión) y utilizar este fallo secundario para consolidar su presencia o saltar a capas más profundas de la red.
+            </p>
+            
+            <h3>5.2. Perfil de Atacante que podría Explotar la Vulnerabilidad</h3>
+            <ul>
+                <li><strong>Amenazas Internas (Insider Threat):</strong> Administradores de TI insatisfechos, analistas internos abusando de permisos o personal con accesos legítimos excesivos.</li>
+                <li><strong>Ex-empleados:</strong> Cuentas de administradores antiguos que no hayan sido debidamente revocadas del Directorio Activo institucional.</li>
+                <li><strong>Atacantes Externos Autenticados:</strong> Hackers externos que lograron comprometer credenciales privilegiadas y combinaron este fallo en una "cadena de explotación" para cumplir sus objetivos.</li>
+            </ul>
+
+            <h3>5.3. Significado de Impacto Bajo</h3>
+            <p>
+                Un impacto "Bajo" (Low) en los tres pilares de la seguridad de la información implica:
+            </p>
+            <ul>
+                <li><strong>Confidencialidad:</strong> El atacante puede leer datos sensibles limitados, no el inventario completo de la base de datos ni credenciales maestras.</li>
+                <li><strong>Integridad:</strong> El atacante puede alterar registros específicos de poca criticidad operativa, sin comprometer la base de datos del negocio.</li>
+                <li><strong>Disponibilidad:</strong> La explotación ralentiza temporalmente el servidor web o degrada el rendimiento, pero no detiene la operación ni apaga el sistema de forma permanente.</li>
+            </ul>
+          <h2>6. Analisis de riesgo y priorizacion</h2>
+          <p>
+                El cálculo oficial CVSS otorga una calificación base de **4.7 (Severidad Media)**. En un marco de remediación de vulnerabilidades corporativo, este fallo no requiere de atención de emergencia como ocurriría ante brechas Críticas o Altas (puntuaciones mayores a 7.0). Sin embargo, debe ingresarse formalmente a la cola de parches planificados y resolverse en los ciclos semanales o mensuales.
+            </p>
+            <div class="card">
+                El riesgo final se incrementa si en la auditoría ambiental se constata la existencia de políticas de contraseñas deficientes, carencia de autenticación de doble factor (MFA) para administradores o falta de monitoreo continuo de logs en consolas de gestión.
+            </div>
+          <h2>7. Recomendaciones de mitigacion</h2>
+          <ol>
+                <li><strong>Principio de Mínimo Privilegio (PoLP):</strong> Restringir los accesos privilegiados de administración y asegurar que solo las cuentas indispensables cuenten con este nivel de permisos.</li>
+                <li><strong>Auditoría Periódica de Accesos:</strong> Revisar activamente el estatus de las cuentas activas e inhabilitar de inmediato accesos obsoletos.</li>
+                <li><strong>Establecimiento de MFA:</strong> Exigir segundo factor de autenticación para toda sesión administrativa de red.</li>
+                <li><strong>Aplicación de Parches:</strong> Programar la aplicación del parche del fabricante o, en su defecto, implementar reglas en el WAF (Web Application Firewall) para detectar y bloquear el patrón de explotación específico.</li>
+            </ol>
+          <h2>8. Conclusiones</h2>
+                <p>
+                    La evaluación con CVSS v3.1 del escenario arrojó un puntaje base final de 4.7 Medium. Este análisis demuestra que la severidad no se evalúa de manera instintiva, sino a través de variables predefinidas que aseguran consistencia metodológica. Si bien los impactos son reducidos y el requerimiento de credenciales administrativas mitiga la probabilidad del ataque, la vulnerabilidad sigue siendo una vía de intrusión real expuesta por red que debe remediarse para impedir cadenas de ataques complejas dirigidas a la infraestructura corporativa.
+                </p>
+
+          <h2>9. Bibliografias</h2>
+        
+          <ul>
+              <li>FIRST. (s.f.). <em>Common Vulnerability Scoring System Version 3.1 Calculator</em>. Recuperado de first.org/cvss/calculator/3.1</li>
+              <li>FIRST. (s.f.). <em>Common Vulnerability Scoring System v3.1: Specification Document</em>.</li>
+              <li>NIST. (s.f.). <em>National Vulnerability Database (NVD) CVSS Guide</em>.</li>
+          </ul>
+          
+          <a href="./pdfPage.html?archivo=act17-Equipo5.pdf" class="boton-descarga" title="Descargar ahora">
             <svg viewBox="0 0 24 24">
             <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
             </svg>
