@@ -19,7 +19,7 @@
   <link href="./table.css" rel="stylesheet">
 
 
-  <title>Actividad 15</title>
+  <title>Actividad 18</title>
 
   <link href="./main.550dcf66.css" rel="stylesheet">
   <link href="./cards.css" rel="stylesheet">
@@ -95,16 +95,240 @@
       <div class="row">
         <div class="col-xs-12 col-md-8 col-md-offset-2">
           <h2>1. Introducción</h2>
+          <p>
+                El Modelo Diamante de Análisis de Intrusiones (Diamond Model) establece las relaciones fundamentales entre cuatro componentes básicos presentes en todo evento malicioso: el Adversario, la Capacidad, la Infraestructura y la Víctima. Esta metodología permite analizar los incidentes no como alertas aisladas, sino como procesos estructurados y vinculados con propósitos operacionales específicos del atacante.
+            </p>
+            <p>
+                Este informe documenta el análisis y estructuración de un incidente técnico en el que una organización detecta malware con capacidades de Comando y Control (C2) en su infraestructura interna. Con base en los datos de monitoreo, logs DNS y auditorías WHOIS, correlacionamos los eventos del incidente utilizando el Modelo Diamante y los ordenamos cronológicamente dentro de las fases de la Cyber Kill Chain, describiendo a su vez un escenario de persistencia avanzada (APT) con pivoteo de red.
+            </p>
           <h2>2. Objetivos</h2>
+          <h3>2.1. Objetivo General</h3>
+            <p>
+                Aplicar el Modelo Diamante del Análisis de Intrusiones para identificar, estructurar y correlacionar eventos de ciberataques, relacionándolos con la Cadena de Eliminación Cibernética (Cyber Kill Chain) para comprender el comportamiento del adversario y coordinar la respuesta defensiva.
+            </p>
+            <h3>2.2. Objetivos Específicos</h3>
+            <ol>
+                <li>Identificar y clasificar los elementos del modelo diamante: adversario, capacidad, infraestructura y víctima en un escenario real.</li>
+                <li>Descomponer un incidente de red en eventos específicos documentados mediante metacaracterísticas temporales y procedimentales.</li>
+                <li>Mapear cronológicamente los eventos detectados dentro de las etapas técnicas de la Cyber Kill Chain de Lockheed Martin.</li>
+                <li>Modelar y describir las relaciones de pivote (pivoting) entre múltiples hosts y redes a través de hilos de actividad del atacante.</li>
+            </ol>
           <h2>3. Parte 01. Comprension del modelo diamante</h2>
+          <p>
+                La utilidad del modelo radica en que obliga a estructurar la información técnica disponible para responder las preguntas clave sobre la intrusión: quién ataca (Adversario), con qué herramientas técnicas opera (Capacidad), a través de qué redes o plataformas ejecuta el ataque (Infraestructura) y hacia quién se dirige el daño (Víctima). Estos cuatro vértices están conectados por ejes que definen relaciones socio-políticas y tecnológicas.
+            </p>
+
+            <!-- Tabla 1: Elementos principales del Modelo Diamante -->
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 20%;">Elemento</th>
+                        <th style="width: 40%;">Descripción</th>
+                        <th style="width: 40%;">Ejemplo Práctico en el Escenario</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="font-family: var(--mono); color: var(--cyber-red); font-weight: bold;">Adversario</td>
+                        <td>Entidad responsable de conducir o dirigir la intrusión. Puede ser un atacante individual, grupo criminal, actor interno malicioso, grupo APT o un operador externo que controla la campaña.</td>
+                        <td>Operador o grupo APT externo que envía phishing dirigido a un administrador y controla la infraestructura C2 para mantener control en los equipos comprometidos.</td>
+                    </tr>
+                    <tr>
+                        <td style="font-family: var(--mono); color: var(--cyber-purple); font-weight: bold;">Capacidad</td>
+                        <td>Herramientas, técnicas, procedimientos y recursos técnicos usados por el adversario para ejecutar la intrusión. Incluye malware, scripts, exploits, payloads y métodos de evasión de defensas.</td>
+                        <td>Malware compilado con comunicación C2, correo de phishing con vector inicial de explotación, persistencia en disco y uso del host víctima como proxy de retransmisión.</td>
+                    </tr>
+                    <tr>
+                        <td style="font-family: var(--mono); color: var(--cyber-yellow); font-weight: bold;">Infraestructura</td>
+                        <td>Sistemas físicos, lógicos, redes, dominios, direcciones IP, servidores DNS, cuentas o proxies empleados por el adversario para desplegar capacidades y comunicarse con la víctima.</td>
+                        <td>Dominios de Comando y Control (C2), servidores de resolución de nombres, direcciones IP externas asociadas a los dominios maliciosos, y el host infectado de la víctima cuando se usa como proxy interno.</td>
+                    </tr>
+                    <tr>
+                        <td style="font-family: var(--mono); color: var(--cyber-cyan); font-weight: bold;">Víctima</td>
+                        <td>Persona, equipo, sistema operativo, cuenta de usuario, segmento de red o toda la organización afectada por la actividad maliciosa del adversario. Se divide en primaria y secundaria.</td>
+                        <td>Administrador de sistemas que recibe el phishing, el equipo del administrador infectado en T1 (Víctima 1), y la base de datos o segunda víctima comprometida mediante pivoteo (Víctima 2).</td>
+                    </tr>
+                </tbody>
+            </table>
           <h2>4. Parte 02 Analisis del incidente en eventos</h2>
+          <h3>4.1. Escenario Base</h3>
+            <p>
+                El equipo de operaciones de seguridad de la organización detecta comportamiento anómalo en un host interno. Al iniciar la investigación forense digital y respuesta a incidentes (DFIR), se recolectan los siguientes hallazgos correlacionados cronológicamente:
+            </p>
+            <ol>
+                <li>La víctima detecta malware activo en un endpoint corporativo.</li>
+                <li>El análisis estático/dinámico del malware revela la presencia de dominios de Comando y Control (C2) embebidos en el binario.</li>
+                <li>Las consultas de red de los dominios maliciosos resuelven a un grupo de direcciones IP externas.</li>
+                <li>Los logs del firewall y proxy registran que múltiples hosts de la red interna están intentando establecer conexiones salientes a esas mismas direcciones IP externas.</li>
+                <li>El análisis de WHOIS e inteligencia de amenazas (OSINT) sobre las IP externas revela la identidad de los proveedores de red (ASN) y un posible origen geográfico del atacante.</li>
+            </ol>
+
+            <h3>4.2. Descomposición del Incidente en Eventos</h3>
+            <p>
+                Para lograr un entendimiento estructurado, el incidente se desglosa en 5 eventos técnicos correlacionados. 
+                Cada evento es analizado bajo metacaracterísticas de inteligencia de amenazas: Marca de Tiempo, Fase, Resultado, 
+                Dirección de la Actividad, Metodología Empleada y Recursos Involucrados.
+            </p>
           <h2>5. Identidicacion de elementos en el escenario</h2>
+          <p>
+                A partir de la descomposición anterior, respondemos técnicamente a las preguntas críticas del escenario de intrusión:
+            </p>
+            
+            <h3>5.1. ¿Quién es el adversario en este escenario?</h3>
+            <p>
+                El adversario es un <strong>actor externo o grupo organizado</strong> que opera la campaña de intrusión, controla la infraestructura de Comando y Control (C2) y emplea malware para comprometer los activos de la organización. Aunque la consulta WHOIS en T5 ubica geográficamente e identifica el proveedor ASN de las IP del C2, no es posible atribuir con certeza la identidad de un país o grupo específico (como un grupo APT concreto) debido a que los atacantes suelen emplear proxies, VPNs, servidores legítimos vulnerados o registrar dominios con datos falsificados para inducir a errores de atribución.
+            </p>
+
+            <h3>5.2. ¿Cuál es la capacidad utilizada?</h3>
+            <p>
+                La capacidad desplegada por el adversario incluye:
+            </p>
+            <ul>
+                <li><strong>Vector Inicial:</strong> Un correo de phishing dirigido que simula ser de una fuente legítima para engañar a un administrador.</li>
+                <li><strong>Binario Malicioso (Malware):</strong> Un ejecutable programado para evadir los controles locales, lograr persistencia en el endpoint, extraer credenciales y establecer canales de comunicación HTTP/HTTPS o TCP personalizados hacia internet.</li>
+                <li><strong>Capacidad de Pivote (Pivoting):</strong> Reconfigurar el host comprometido para actuar como un servidor proxy intermedio que permite redirigir tráfico malicioso hacia zonas internas protegidas de la red corporativa.</li>
+            </ul>
+
+            <h3>5.3. ¿Qué tipo de infraestructura se emplea?</h3>
+            <p>
+                La infraestructura empleada se compone de:
+            </p>
+            <ul>
+                <li><strong>Dominios C2 y Servidores DNS:</strong> Direcciones lógicas empleadas por el malware para resolver la dirección del servidor de control remoto del atacante.</li>
+                <li><strong>Direcciones IP Externas:</strong> Servidores web y de base de datos controlados por el atacante que escuchan y procesan las peticiones de los hosts comprometidos.</li>
+                <li><strong>Infraestructura Operativa Interna (Pivote):</strong> El propio host de la Víctima 1 (administrador), el cual, al ser comprometido, es convertido por el atacante en parte de su red operativa interna para lanzar ataques laterales contra otros servidores de la organización.</li>
+            </ul>
+
+            <h3>5.4. ¿Quién es la víctima primaria?</h3>
+            <p>
+                La <strong>víctima primaria es el host y la cuenta del administrador</strong> que recibió el correo de phishing y ejecutó el archivo malicioso inicial. A nivel institucional, la víctima final es la organización y su red corporativa global, cuyo control de seguridad se vio superado al permitir el establecimiento de canales C2 salientes.
+            </p>
+
+            <h3>5.5. ¿Existe evidencia de movimiento lateral?</h3>
+            <p>
+                <strong>Sí, existe evidencia sólida de movimiento lateral.</strong> Técnicamente, el Evento 4 (T4) documenta que múltiples hosts internos están intentando conectarse a las mismas direcciones IP externas del C2, lo que indica que el malware se ha propagado de manera interna o el atacante ha utilizado el host de la víctima primaria (administrador) como un <strong>proxy de pivoteo</strong> para escanear y comprometer otros equipos internos, retransmitiendo el tráfico a través del primer equipo comprometido.
+            </p>
+
           <h2>6. Parte 03. Relacion con la Cyber Kill Chain</h2>
+          <p>
+                La integración del Modelo Diamante con la Cyber Kill Chain de Lockheed Martin permite estructurar temporalmente el ciberataque, asignando cada evento detectado a la etapa técnica correspondiente de la cadena de intrusión. Esto ayuda a comprender en qué punto el atacante ha logrado sortear las defensas y dónde es prioritario romper el flujo de su actividad.
+            </p>
+
+            <!-- Tabla 2: Relación de eventos del escenario con fases de la Cyber Kill Chain -->
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 25%;">Evento Técnico</th>
+                        <th style="width: 25%;">Fase de la Cyber Kill Chain</th>
+                        <th style="width: 50%;">Justificación del Mapeo Técnico</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="font-family: var(--mono); font-weight: bold;">Envío del correo a la bandeja de entrada</td>
+                        <td style="font-family: var(--mono); color: var(--cyber-yellow);">Entrega (Delivery)</td>
+                        <td>Representa la transmisión del vector de ataque (correo de phishing dirigido) desde la infraestructura externa del atacante hacia la bandeja de correo del administrador objetivo.</td>
+                    </tr>
+                    <tr>
+                        <td style="font-family: var(--mono); font-weight: bold;">Ejecución del archivo por el usuario</td>
+                        <td style="font-family: var(--mono); color: var(--cyber-purple);">Explotación (Exploitation)</td>
+                        <td>La acción del usuario de hacer doble clic o ejecutar el adjunto activa el código malicioso, el cual aprovecha permisos locales o vulnerabilidades del sistema operativo para iniciar su ejecución.</td>
+                    </tr>
+                    <tr>
+                        <td style="font-family: var(--mono); font-weight: bold;">Detección del malware activo en T1</td>
+                        <td style="font-family: var(--mono); color: var(--cyber-red);">Instalación (Installation)</td>
+                        <td>El malware ha completado su copia en los directorios del sistema, ha creado claves de registro para persistencia y se encuentra en ejecución activa dentro de los procesos de memoria del host.</td>
+                    </tr>
+                    <tr>
+                        <td style="font-family: var(--mono); font-weight: bold;">Conexión a IP externas y dominios C2</td>
+                        <td style="font-family: var(--mono); color: var(--cyber-green);">Comando y Control (C2)</td>
+                        <td>El malware utiliza los dominios embebidos para resolver IP externas a través del DNS corporativo y abre sockets TCP salientes para recibir comandos del panel del atacante.</td>
+                    </tr>
+                    <tr>
+                        <td style="font-family: var(--mono); font-weight: bold;">Múltiples hosts comprometidos y pivoteo</td>
+                        <td style="font-family: var(--mono); color: var(--cyber-cyan);">Acciones sobre Objetivos</td>
+                        <td>El adversario utiliza los accesos obtenidos para propagar malware internamente, recolectar credenciales y usar el host del administrador como proxy de salto para penetrar bases de datos u otros servidores internos.</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <p>
+                <strong>Análisis de la Progresión del Ataque:</strong>
+                Este mapeo secuencial demuestra que una alerta de malware en un endpoint no debe interpretarse como un hecho aislado. El ataque es una progresión continua. Si el equipo de seguridad interviene únicamente eliminando el archivo detectado en la fase de <i>Instalación</i>, sin identificar y bloquear las direcciones IP en la fase de <i>Comando y Control</i>, el atacante mantendrá abiertas sus vías de acceso en otros hosts de la red comprometidos en la etapa de <i>Acciones sobre Objetivos</i>.
+            </p>
           <h2>7. Parte 04. Hilos de actividad</h2>
+          <h3>7.1. Escenario Tipo APT</h3>
+            <p>
+                Un <strong>hilo de actividad</strong> es el conjunto de eventos de intrusión (diamantes) conectados en una secuencia temporal y causal que describen una campaña de ataque. En un escenario de persistencia avanzada (APT), la actividad del atacante no se limita a un único canal. Se modela el incidente mediante dos hilos entrelazados a través de un proceso de pivote técnico:
+            </p>
+            <ol>
+                <li><strong>Phishing dirigido:</strong> El adversario envía un correo diseñado específicamente para el administrador de sistemas (Víctima 1).</li>
+                <li><strong>Ejecución e Instalación:</strong> El administrador ejecuta el payload, comprometiendo su endpoint corporativo.</li>
+                <li><strong>Establecimiento de C2:</strong> El malware en el equipo del administrador establece comunicación con las IP externas del C2.</li>
+                <li><strong>Configuración del Proxy:</strong> El adversario instala una capacidad de proxy inverso en el equipo del administrador, convirtiéndolo en parte de su infraestructura de red operativa.</li>
+                <li><strong>Movimiento Lateral / Pivoteo:</strong> Desde el proxy del administrador (Víctima 1), el atacante lanza escaneos e inicia un exploit contra un servidor de base de datos interno (Víctima 2) que carece de salida directa a internet.</li>
+            </ol>
           <h2>8. Sintesis del analisis diamante</h2>
+          <table>
+                <thead>
+                    <tr>
+                        <th style="width: 25%;">Vértice del Diamante</th>
+                        <th style="width: 75%;">Aplicación Concreta al Incidente Corporativo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="font-family: var(--mono); color: var(--cyber-red); font-weight: bold;">Adversario</td>
+                        <td>Grupo cibercriminal externo u operador APT con capacidades avanzadas. La investigación de WHOIS en T5 geolocaliza la infraestructura, pero la identidad directa del adversario permanece oculta bajo técnicas de anonimato y falsas banderas.</td>
+                    </tr>
+                    <tr>
+                        <td style="font-family: var(--mono); color: var(--cyber-purple); font-weight: bold;">Capacidad</td>
+                        <td>Phishing dirigido contra personal de administración, binario de malware ejecutable evasivo, mecanismos de persistencia en registro de Windows, sockets TCP para comunicación C2 y scripts de reconfiguración de proxy.</td>
+                    </tr>
+                    <tr>
+                        <td style="font-family: var(--mono); color: var(--cyber-yellow); font-weight: bold;">Infraestructura</td>
+                        <td>Nombres de dominios dinámicos maliciosos incrustados en el binario, servidores DNS externos que resuelven las peticiones, direcciones IP públicas que alojan los paneles de control y el host del administrador utilizado como proxy local.</td>
+                    </tr>
+                    <tr>
+                        <td style="font-family: var(--mono); color: var(--cyber-cyan); font-weight: bold;">Víctima</td>
+                        <td><strong>Primaria:</strong> El administrador de red de la organización y su equipo de cómputo corporativo infectado.<br><strong>Secundaria:</strong> Servidor de base de datos corporativo aislado, alcanzado y comprometido mediante movimiento lateral.</td>
+                    </tr>
+                    <tr>
+                        <td style="font-family: var(--mono); font-weight: bold;">Relación Crítica (Ejes)</td>
+                        <td>El host de la primera víctima se transforma en infraestructura del atacante mediante una conexión de pivote técnico, lo que evidencia que la actividad maliciosa se extendió lateralmente por la red corporativa.</td>
+                    </tr>
+                </tbody>
+            </table>
           <h2>9. Recomendaciones de respuesta y contencion</h2>
+          <p>
+                Con base en el análisis estructurado bajo el Modelo Diamante y la Cyber Kill Chain, el equipo de respuesta a incidentes de la organización debe desplegar las siguientes contramedidas técnicas de manera inmediata:
+            </p>
+            <ol>
+                <li><strong>Aislamiento de Red Inmediato:</strong> Aislar físicamente o mediante VLAN de cuarentena todos los endpoints identificados en el Evento 4 (T4) y al host de la víctima primaria (T1) para interrumpir las conexiones de Comando y Control (C2) activas.</li>
+                <li><strong>Bloqueo Perimetral de IOCs:</strong> Implementar reglas de denegación (Drop) en el firewall perimetral, proxy de navegación y servidores DNS corporativos para todas las direcciones IP externas y nombres de dominios maliciosos identificados en T2 y T3.</li>
+                <li><strong>Cacería de Amenazas (Threat Hunting):</strong> Realizar un barrido de seguridad en todos los hosts corporativos de la red para buscar persistencia o procesos activos relacionados con el hash del malware extraído en el Evento 1.</li>
+                <li><strong>Auditoría de Cuentas y Rotación de Credenciales:</strong> Revocar todas las sesiones activas y forzar el cambio de credenciales de la cuenta del administrador afectado (Víctima 1) y de cualquier servicio expuesto en el servidor de base de datos (Víctima 2).</li>
+                <li><strong>Análisis Forense de Conexiones Internas:</strong> Analizar los logs de red interna (NetFlow) y autenticaciones recientes (Kerberos / NTML) desde el equipo de la Víctima 1 hacia la red corporativa para trazar el alcance del proxy malicioso y detectar otros servidores alcanzados.</li>
+                <li><strong>Inspección de Persistencia:</strong> Escanear tareas programadas, servicios del sistema y claves de registro en busca de mecanismos que permitan al malware reejecutarse tras el reinicio del sistema.</li>
+                <li><strong>Preservación de Evidencias Digitales:</strong> Tomar imágenes forenses de memoria RAM y clonar los discos duros de los equipos comprometidos antes de proceder con el borrado o reinstalación del sistema operativo, garantizando la cadena de custodia.</li>
+                <li><strong>Fortalecimiento Tecnológico en Correo:</strong> Mejorar los filtros de seguridad del servidor de correo institucional implementando políticas DMARC, SPF, y DKIM estrictas, además de desplegar autenticación multifactor (MFA) obligatoria para todas las cuentas con privilegios administrativos.</li>
+            </ol>
           <h2>10. Conclusiones</h2>
+          <p>
+                El Modelo Diamante permitió estructurar el incidente de forma mucho más precisa que una simple lista de alertas. La detección del malware, la presencia de dominios C2, la resolución hacia IP externas y la conexión de múltiples hosts forman una secuencia coherente de intrusión.
+            </p>
+            <p>
+                El análisis muestra que el adversario utilizó capacidades técnicas avanzadas como phishing dirigido, ejecución de malware y comunicación C2, apoyándose en infraestructura externa y, posteriormente, en un host comprometido como recurso de pivote. La relación con la Cyber Kill Chain confirma una progresión desde la entrega inicial del ataque hasta el establecimiento de comando y control y la posterior expansión hacia una segunda víctima.
+            </p>
+            <p>
+                Por ello, la respuesta no debe limitarse a eliminar el malware del primer equipo. Es necesario investigar la infraestructura, buscar indicadores en toda la red, revisar cuentas privilegiadas y comprobar si existió movimiento lateral. En conclusión, el escenario corresponde a una intrusión con comportamiento compatible con una campaña dirigida o APT básica, donde la correcta correlación de eventos permite comprender el comportamiento del adversario y priorizar acciones de contención, erradicación y monitoreo.
+            </p>
           <h2>Bibliografias</h2>
+          <ul>
+                <li>Caltagirone, S., Pendergast, A., & Betz, C. (2013). <i>The Diamond Model of Intrusion Analysis</i>. Center for Cyber Intelligence Analysis and Threat Research.</li>
+                <li>Hutchins, E. M., Cloppert, M. J., & Amin, R. M. (2011). <i>Intelligence-Driven Computer Network Defense Informed by Analysis of Adversary Campaigns and Intrusion Kill Chains</i>. Lockheed Martin Corporation.</li>
+                <li>MITRE. (s. f.). <i>ATT&CK: Enterprise Matrix</i>. MITRE Corporation.</li>
+            </ul>
           
           
           <a href="./pdfPage.html?archivo=act15-Equipo5.pdf" class="boton-descarga" title="Descargar ahora">
