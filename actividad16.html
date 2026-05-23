@@ -95,18 +95,193 @@
       <div class="row">
         <div class="col-xs-12 col-md-8 col-md-offset-2">
           <h2>1. Introduccion</h2>
+          <p>
+                La ciberseguridad no se limita al despliegue defensivo o a la explotación técnica de vulnerabilidades. Exige de los analistas un criterio ético riguroso que regule qué acciones son permitidas, cuáles son proporcionales y qué límites no deben ser traspasados. Contar con los privilegios técnicos o la capacidad operativa para invadir la privacidad, alterar activos o presionar personas no otorga legitimidad profesional para hacerlo.
+            </p>
+            <p>
+                El presente artículo evalúa tres dilemas reales asociados al control interno, pruebas de intrusión y reconocimiento pasivo. Los casos se estructuran bajo un triple marco ético (utilitarismo, enfoque de derechos y bien común), los mandamientos de la ética informática y la tipificación formal de delitos informáticos.
+            </p>
           <h2>2. Objetivos</h2>
+          <ul>
+                <li><strong>Objetivo General:</strong> Evaluar la toma de decisiones en escenarios complejos de ciberseguridad mediante la aplicación de marcos éticos, legales y de responsabilidad profesional.</li>
+                <li><strong>Objetivos Específicos:</strong>
+                    <ol>
+                        <li>Contrastar incidentes de seguridad con los Diez Mandamientos de la Ética Informática.</li>
+                        <li>Justificar decisiones organizacionales empleando las teorías de la ética utilitarista, del derecho a la privacidad y de la preservación del bien común.</li>
+                        <li>Clasificar las conductas ilícitas dentro de las categorías de delitos cibernéticos estándar.</li>
+                    </ol>
+                </li>
+            </ul>
+
           <h2>3. Marco de analisis utilizado</h2>
+          <p>
+                Para garantizar un análisis profundo, cada escenario ha sido evaluado bajo la siguiente taxonomía conceptual:
+            </p>
+            <ul>
+                <li><strong>Enfoque Utilitarista:</strong> Busca la opción que genere el mayor beneficio colectivo o reduzca el daño total para todos los involucrados.</li>
+                <li><strong>Enfoque de Derechos:</strong> Se centra en el respeto a los derechos morales de los afectados, tales como la privacidad, el debido proceso, la propiedad y la confidencialidad.</li>
+                <li><strong>Enfoque del Bien Común:</strong> Prioriza las condiciones sociales e institucionales que fortalecen la confianza mutua, el respeto a las leyes y la continuidad del ecosistema organizativo.</li>
+            </ul>
+
           <h2>4. Referencia conceptual: mandamientos de etica informatica</h2>
+          <p>
+            Para esta actividad se consideran como referencia los principios conocidos como los diez
+mandamientos de la etica informatica. No se usan como una lista decorativa, sino como
+criterios para identificar que conducta se respeta o se vulnera en cada caso. Los siguientes son  algunos de los principios eticos:
+          </p>
+          <ol>
+            <li>No usar la computadora para danar a otras personas</li>
+            <li>No interferir con el trabajo informatico de otras personas.</li>
+            <li>No revisar archivos, correos o informacion ajena sin autorizacion</li>
+            <li>No utilizar la computadora para robar</li>
+            <li>No utilizar la computadora para levantar falso testimonio o enganar</li>
+            <li>No copiar ni usar software sin pagar o sin licencia</li>
+            <li>No usar recursos informaticos ajenos sin autorizacion.</li>
+            <li>No apropiarse del trabajo intelectual de otras personas</li>
+            <li>Pensar en las consecuencias sociales de los programas, sistemas o
+acciones realizadas.</li>
+            <li>Usar la computadora con respeto, responsabilidad y consideracion
+hacia otros.</li>
+          </ol>
           <h2>5. Escenario 01: Acceso no autorizado interno</h2>
-          <h2>6. Escenario 02: Vulnerabilidad critica no reportada</h2>
-          <h2>7. Escenario 03: Uso de herramientas OSINT</h2>
-          <h2>8. Comparativo general de los tres escenarios</h2>
-          <h2>9. Postura profesional final</h2>
-          <h2>10. Conclusiones</h2>
-          <h2>11. Bibliografias</h2>
+          <h3>Descripcion del escenario</h3>
+          <p>Trabajas en el area de ciberseguridad de una empresa. Durante una revision de logs
+detectas que un companero accedio a correos privados del director general sin autoriza-
+cion. El companero argumenta que lo hizo para detectar posibles fugas de informacion.</p>
+            <div class="card">
+              <h3>Identificacion del dilema etico</h3>
+              <p>
+                El dilema consiste en decidir si se debe tolerar una accion no autorizada porque aparente-
+  mente buscaba proteger a la organizacion, o si se debe reportar porque vulnera privacidad,
+  confidencialidad y controles internos. El punto central es que una finalidad de seguridad no
+  justifica acceder a correos privados sin autorizacion formal, trazabilidad ni alcance definido.
+              </p>
+            </div>
           
-          <a href="./pdfPage.html?archivo=act15-Equipo5.pdf" class="boton-descarga" title="Descargar ahora">
+            <p><br>La accion del companero cruza un limite claro: aunque pertenezca al area de ciberseguridad,
+            no tiene derecho automatico a inspeccionar informacion privada o sensible. En seguridad
+            informatica, el acceso debe basarse en autorizacion, necesidad operativa y procedimiento
+            documentado, no en criterio individual</p>
+            <div class="card">
+              <h3>Decision recomendada</h3>
+              <p>
+                Como especialista, documentaria el hallazgo en los logs, preservaria la evidencia sin
+                alterarla y reportaria el incidente al responsable correspondiente: lider de cibersegu-
+                ridad, area legal, cumplimiento o recursos humanos, segun el protocolo interno. No
+                confrontaria informalmente al companero ni ocultaria el evento.
+              </p>
+            </div>
+          <h2>6. Escenario 02: Vulnerabilidad critica no reportada</h2>
+          <div class="card">
+            <h3>Descripcion del escenario</h3>
+            <p>
+              Durante un pentest encuentras una vulnerabilidad critica en un sistema financiero que
+              permite extraer dinero. El cliente aun no ha firmado el contrato final y sabes que
+              podrias explotarla sin ser detectado
+            </p>
+          </div>
+            <h3>Identificacion del dilema etico</h3>
+            <p>
+              El dilema consiste en elegir entre aprovechar una vulnerabilidad critica para beneficio per-
+              sonal o actuar conforme al alcance autorizado del trabajo profesional. Aunque el especialista
+              tenga la capacidad tecnica de explotar la falla, no existe autorizacion contractual final ni
+              permiso explicito para ejecutar acciones que afecten fondos, cuentas o activos financieros.
+            </p>
+            <div class="card">
+            <h3>Descision recomendada</h3>
+            <p>
+              No explotaria la vulnerabilidad para extraer dinero ni haria pruebas destructivas. Do-
+              cumentaria de forma responsable la evidencia minima necesaria para demostrar la exis-
+              tencia del hallazgo, detendria cualquier accion fuera de alcance y notificaria al canal
+              autorizado para regularizar el contrato, definir alcance y establecer reglas de prueba.
+            </p>
+          </div>
+          <h2>7. Escenario 03: Uso de herramientas OSINT</h2>
+          <div class="card">
+            <h3>Descripcion del escenario</h3>
+            <p>
+              Estas investigando a una persona sospechosa de fraude. Encuentras informacion perso-
+              nal en fuentes abiertas, como direccion, familia, habitos y datos similares. Tu superior
+              te pide usar esa informacion para presionarlo psicologicamente
+            </p>
+          </div>
+          <h3>Identificacion del dilema etico</h3>
+          <p>
+            El dilema consiste en decidir si se debe usar informacion obtenida de fuentes abiertas para
+            intimidar o manipular psicologicamente a una persona sospechosa. Aunque la informacion
+            sea publica o accesible, eso no autoriza su uso con fines de presion, amenaza, acoso o coercion
+          </p>
+          <p>
+            OSINT no significa “todo se vale”. La recoleccion de informacion debe tener finalidad legiti-
+            ma, proporcionalidad, minimizacion de datos y apego al marco legal. Usar datos familiares,
+            domicilio o habitos personales para presionar a alguien transforma una actividad de inves-
+            tigacion en una practica abusiva
+          </p>
+          <div class="card">
+            <h3>Descision recomendada</h3>
+            <p>
+              Me negaria a usar la informacion personal para presionar psicologicamente a la persona.
+              Limitaria el reporte a datos relevantes para la investigacion, eliminaria informacion ex-
+              cesiva o no necesaria, documentaria la solicitud indebida del superior y, si corresponde,
+              escalaria el caso a cumplimiento, legal o al responsable etico de la organizacion
+            </p>
+          </div>
+          <h2>8. Comparativo general de los tres escenarios</h2>
+          <table>
+                <thead>
+                    <tr>
+                        <th>Escenario</th>
+                        <th>Dilema Central</th>
+                        <th>Decisión Profesional</th>
+                        <th>Clasificación del Delito</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>01. Acceso Interno</strong></td>
+                        <td>¿Justificar o no la invasión de correos privados con el fin de detectar fugas sospechosas?</td>
+                        <td>Preservar evidencia de logs intacta y reportar por el canal formal establecido.</td>
+                        <td><strong>Delito Informático</strong> (Intrusión de comunicaciones).</td>
+                    </tr>
+                    <tr>
+                        <td><strong>02. Fallo Financiero</strong></td>
+                        <td>¿Explotar una brecha bancaria sin contrato activo o reportar el Zero-Day responsablemente?</td>
+                        <td>Documentar existencia técnica mínima sin alterar saldos y notificar por vía de remediación.</td>
+                        <td><strong>Delito Informático</strong> (Acceso ilícito y fraude).</td>
+                    </tr>
+                    <tr>
+                        <td><strong>03. Presión con OSINT</strong></td>
+                        <td>¿Aprovechar datos personales públicos para intimidar o acosar psicológicamente a un sospechoso?</td>
+                        <td>Rechazar la táctica de coacción, filtrar datos irrelevantes y apegarse al proceso de auditoría formal.</td>
+                        <td><strong>Delito Asistido por Computadora</strong> (Acoso y extorsión digital).</td>
+                    </tr>
+                </tbody>
+            </table>
+          <h2>9. Postura profesional final</h2>
+          <p>
+                Los dilemas éticos evaluados demuestran que las competencias técnicas de un especialista de ciberseguridad pierden toda validez si se desconectan de la rectitud ética y el apego a la ley. El analista ejerce una posición de confianza privilegiada dentro de los sistemas informáticos; abusar de esa posición utilizando excusas operativas ("era de buena fe", "no había contrato", "los datos eran públicos") constituye una degradación de la profesión.
+            </p>
+            <p>
+                Una postura profesional sólida requiere actuar en todo momento con **autorización explícita, proporcionalidad operativa y transparencia**. La ciberseguridad tiene como fin proteger a las personas y a las infraestructuras, por lo que recurrir a la ilegalidad o al abuso de poder desnaturaliza por completo la disciplina del hacking ético.
+            </p>
+          <h2>10. Conclusiones</h2>
+          <div class="reflection">
+                <p>
+                    El análisis de los escenarios permite concluir que las decisiones críticas en ciberseguridad rara vez son puramente técnicas; casi siempre poseen consecuencias éticas y legales directas. El primer escenario demuestra que los procedimientos de control de accesos internos deben respetarse escrupulosamente, impidiendo que la "vigilancia interna" se convierta en una invasión de la privacidad sin control. 
+                </p>
+                <p>
+                    El segundo escenario enfatiza que la ética profesional es un valor absoluto, no condicionado a la firma de un documento contractual; la honradez del analista financiero es su principal activo de credibilidad. Por último, el análisis de OSINT recuerda que el carácter público de la información no otorga derechos para su explotación maliciosa o intimidatoria. La ética aplicada a la informática es la barrera que distingue a un profesional de la seguridad de un delincuente informático.
+                </p>
+            </div>
+          <h2>11. Bibliografias</h2>
+          <ul>
+                    <li>Computer Ethics Institute. (s.f.). <em>The Ten Commandments of Computer Ethics</em>.</li>
+                    <li>Association for Computing Machinery. (s.f.). <em>ACM Code of Ethics and Professional Conduct</em>.</li>
+                    <li>National Institute of Standards and Technology (NIST). (s.f.). <em>Computer Security Incident Handling Guide</em>.</li>
+                    <li>López Contreras, S. (2026). <em>CNO V: Seguridad Informática</em>. Notas de clase, Universidad Politécnica de San Luis Potosí.</li>
+                </ul>
+          
+          <a href="./pdfPage.html?archivo=act16-Equipo5.pdf" class="boton-descarga" title="Descargar ahora">
             <svg viewBox="0 0 24 24">
             <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
             </svg>
