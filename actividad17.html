@@ -19,12 +19,12 @@
   <link href="./table.css" rel="stylesheet">
 
 
-  <title>Actividad 15</title>
+  <title>Actividad 17</title>
 
   <link href="./main.550dcf66.css" rel="stylesheet">
   <link href="./cards.css" rel="stylesheet">
-  <link href="./terminal.css" rel="stylesheet">
-  <script src="./terminal.js" defer></script>
+  <link href="./act17.css" rel="stylesheet">
+  <script src="./act17.js" defer></script>
   <style>
     /* Estilos para el botón flotante */
   .boton-descarga {
@@ -96,7 +96,7 @@
         <div class="col-xs-12 col-md-8 col-md-offset-2">
           <h2>1. Introduccion</h2>
           <p>
-                El estándar **CVSS v3.1** (Common Vulnerability Scoring System) es una metodología de evaluación abierta diseñada para cuantificar la gravedad de vulnerabilidades de seguridad en sistemas de software. Esta puntuación se calcula analizando tres grupos de métricas: base, temporales y ambientales.
+                El estándar <strong>CVSS v3.1</strong> (Common Vulnerability Scoring System) es una metodología de evaluación abierta diseñada para cuantificar la gravedad de vulnerabilidades de seguridad en sistemas de software. Esta puntuación se calcula analizando tres grupos de métricas: base, temporales y ambientales.
             </p>
             <p>
                 El grupo de métricas base representa los atributos constantes de la vulnerabilidad que son independientes del tiempo y del entorno del usuario final. En esta actividad, se documenta la evaluación de un fallo en un sistema web interno organizacional. La meta no es únicamente obtener un puntaje abstracto, sino justificar conceptualmente cómo impacta la vulnerabilidad y argumentar la prioridad del riesgo en el contexto del negocio.
@@ -125,6 +125,97 @@
                 <li><strong>Alcance:</strong> No hay cambio de alcance (Unchanged). El impacto se limita exclusivamente a los recursos del propio sistema web vulnerable.</li>
                 <li><strong>Impacto en Confidencialidad, Integridad y Disponibilidad:</strong> Bajo impacto en los tres factores (Low / Low / Low).</li>
             </ul>
+
+          <h2>4. Construccion de la calculadora CVSS</h2>
+          <!-- Calculadora CVSS -->
+            <div class="cvss-calc">
+                <div class="cvss-calc__metrics">
+                    
+                    <div class="metric-row">
+                        <label class="custom-label">Vector de Ataque (AV)</label>
+                        <div class="btn-group" id="groupAV">
+                            <button class="calc-btn" data-metric="AV" data-val="N" onclick="setMetric('AV', 'N')">Network (N)</button>
+                            <button class="calc-btn" data-metric="AV" data-val="A" onclick="setMetric('AV', 'A')">Adjacent (A)</button>
+                            <button class="calc-btn" data-metric="AV" data-val="L" onclick="setMetric('AV', 'L')">Local (L)</button>
+                            <button class="calc-btn" data-metric="AV" data-val="P" onclick="setMetric('AV', 'P')">Physical (P)</button>
+                        </div>
+                    </div>
+
+                    <div class="metric-row">
+                        <label class="custom-label">Complejidad de Ataque (AC)</label>
+                        <div class="btn-group" id="groupAC">
+                            <button class="calc-btn" data-metric="AC" data-val="L" onclick="setMetric('AC', 'L')">Low (L)</button>
+                            <button class="calc-btn" data-metric="AC" data-val="H" onclick="setMetric('AC', 'H')">High (H)</button>
+                        </div>
+                    </div>
+
+                    <div class="metric-row">
+                        <label class="custom-label">Privilegios Requeridos (PR)</label>
+                        <div class="btn-group" id="groupPR">
+                            <button class="calc-btn" data-metric="PR" data-val="N" onclick="setMetric('PR', 'N')">None (N)</button>
+                            <button class="calc-btn" data-metric="PR" data-val="L" onclick="setMetric('PR', 'L')">Low (L)</button>
+                            <button class="calc-btn" data-metric="PR" data-val="H" onclick="setMetric('PR', 'H')">High (H)</button>
+                        </div>
+                    </div>
+
+                    <div class="metric-row">
+                        <label class="custom-label">Interacción del Usuario (UI)</label>
+                        <div class="btn-group" id="groupUI">
+                            <button class="calc-btn" data-metric="UI" data-val="N" onclick="setMetric('UI', 'N')">None (N)</button>
+                            <button class="calc-btn" data-metric="UI" data-val="R" onclick="setMetric('UI', 'R')">Required (R)</button>
+                        </div>
+                    </div>
+
+                    <div class="metric-row">
+                        <label class="custom-label">Alcance (S)</label>
+                        <div class="btn-group" id="groupS">
+                            <button class="calc-btn" data-metric="S" data-val="U" onclick="setMetric('S', 'U')">Unchanged (U)</button>
+                            <button class="calc-btn" data-metric="S" data-val="C" onclick="setMetric('S', 'C')">Changed (C)</button>
+                        </div>
+                    </div>
+
+                    <div class="metric-row">
+                        <label class="custom-label">Impacto en Confidencialidad (C)</label>
+                        <div class="btn-group" id="groupC">
+                            <button class="calc-btn" data-metric="C" data-val="N" onclick="setMetric('C', 'N')">None (N)</button>
+                            <button class="calc-btn" data-metric="C" data-val="L" onclick="setMetric('C', 'L')">Low (L)</button>
+                            <button class="calc-btn" data-metric="C" data-val="H" onclick="setMetric('C', 'H')">High (H)</button>
+                        </div>
+                    </div>
+
+                    <div class="metric-row">
+                        <label class="custom-label">Impacto en Integridad (I)</label>
+                        <div class="btn-group" id="groupI">
+                            <button class="calc-btn" data-metric="I" data-val="N" onclick="setMetric('I', 'N')">None (N)</button>
+                            <button class="calc-btn" data-metric="I" data-val="L" onclick="setMetric('I', 'L')">Low (L)</button>
+                            <button class="calc-btn" data-metric="I" data-val="H" onclick="setMetric('I', 'H')">High (H)</button>
+                        </div>
+                    </div>
+
+                    <div class="metric-row">
+                        <label class="custom-label">Impacto en Disponibilidad (A)</label>
+                        <div class="btn-group" id="groupA">
+                            <button class="calc-btn" data-metric="A" data-val="N" onclick="setMetric('A', 'N')">None (N)</button>
+                            <button class="calc-btn" data-metric="A" data-val="L" onclick="setMetric('A', 'L')">Low (L)</button>
+                            <button class="calc-btn" data-metric="A" data-val="H" onclick="setMetric('A', 'H')">High (H)</button>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="cvss-calc__result">
+                    <div class="score-display" id="scoreDisplayCircle">
+                        <span class="score-num" id="scoreNumText">0.0</span>
+                        <span class="score-severity" id="scoreSeverityText">NONE</span>
+                    </div>
+                    <div class="vector-display" id="vectorStringText">
+                        CVSS:3.1/AV:_/AC:_/PR:_/UI:_/S:_/C:_/I:_/A:_
+                    </div>
+                    <button class="btn btn--ghost" style="width: 100%;" onclick="loadReportScenario()">
+                        Restablecer Escenario Base (4.7)
+                    </button>
+                </div>
+            </div>
+
           
           <h2>5. Interpretacion tecnica</h2>
           <table>

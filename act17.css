@@ -1,0 +1,220 @@
+:root {
+            --cvss-low: #22c55e;
+            --cvss-medium: #eab308;
+            --cvss-high: #f97316;
+            --cvss-critical: #ef4444;
+            --cvss-none: #71717a;
+            --calc-active-bg: #ffffff;
+            --calc-active-color: #000000;
+        }
+
+        .highlight-box {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--stroke);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        /* --- Estilos de la Calculadora CVSS --- */
+        .cvss-calc {
+            border: 1px solid var(--stroke);
+            background: #2c3e50;
+            border-radius: 6px;
+            margin: 30px 0;
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: 1.6fr 1fr;
+        }
+
+        .cvss-calc__metrics {
+            padding: 25px;
+            border-right: 1px solid var(--stroke);
+        }
+
+        .metric-row {
+            margin-bottom: 20px;
+        }
+
+        .metric-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .metric-row label {
+            display: block;
+            font-family: var(--mono);
+            font-size: 1.6rem;
+            color: var(--muted);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color:#cfcfcf;
+        }
+
+        .btn-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .calc-btn {
+            background: transparent;
+            border: 1px solid var(--stroke);
+            color: #ccc;
+            padding: 8px 14px;
+            font-family: var(--sans);
+            font-size: 1.6rem;
+            cursor: pointer;
+            border-radius: 2px;
+            transition: all 0.2s ease;
+        }
+
+        .calc-btn:hover {
+            border-color: #555;
+            color: #fff;
+        }
+
+        .calc-btn.active {
+            background: var(--calc-active-bg);
+            color: var(--calc-active-color);
+            border-color: var(--calc-active-bg);
+            font-weight: bold;
+        }
+
+        .cvss-calc__result {
+            padding: 25px;
+            background: rgba(255,255,255,0.01);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .score-display {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            border: 4px solid var(--cvss-none);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .score-num {
+            font-family: var(--mono);
+            font-size: 2.5rem;
+            font-weight: bold;
+            line-height: 1;
+        }
+
+        .score-severity {
+            font-family: var(--mono);
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 5px;
+            font-weight: bold;
+        }
+
+        .vector-display {
+            font-family: var(--mono);
+            font-size: 1.4rem;
+            background: #000;
+            border: 1px solid var(--stroke);
+            padding: 10px 15px;
+            border-radius: 4px;
+            width: 100%;
+            word-break: break-all;
+            margin-bottom: 20px;
+            color: #a1a1aa;
+        }
+        .custom-label{
+            color: black;
+        }
+
+        .score-display.low { border-color: var(--cvss-low); color: var(--cvss-low); }
+        .score-display.medium { border-color: var(--cvss-medium); color: var(--cvss-medium); }
+        .score-display.high { border-color: var(--cvss-high); color: var(--cvss-high); }
+        .score-display.critical { border-color: var(--cvss-critical); color: var(--cvss-critical); }
+                /* Responsive */
+        @media (max-width: 850px) {
+            .cvss-calc {
+                grid-template-columns: 1fr;
+            }
+            .cvss-calc__metrics {
+                border-right: none;
+                border-bottom: 1px solid var(--stroke);
+            }
+        }
+
+        /* --- Reglas de Impresión --- */
+        @media print {
+            body {
+                background: #ffffff !important;
+                color: #000000 !important;
+                font-size: 11pt;
+            }
+
+            .topbar, .back-link, .pdf-btn, .cvss-calc {
+                display: none !important;
+            }
+
+            .article {
+                max-width: 100%;
+                padding: 0;
+                margin: 0;
+            }
+
+            .article__header {
+                border-bottom: 2px solid #000;
+                margin-bottom: 20px;
+                padding-bottom: 10px;
+            }
+
+            .article__content p, .article__content li, td {
+                color: #000 !important;
+            }
+
+            .article__content h2 {
+                color: #000 !important;
+                border-left: 3px solid #000 !important;
+                page-break-after: avoid;
+            }
+
+            .highlight-box {
+                background: #fff;
+                border: 2px solid #000;
+                color: #000;
+                page-break-inside: avoid;
+            }
+
+            .print-only-calc {
+                display: block !important;
+                border: 1px solid #000;
+                padding: 20px;
+                margin: 25px 0;
+                background-color: #f8f9fa;
+                text-align: center;
+                page-break-inside: avoid;
+            }
+
+            .print-score-box {
+                display: inline-block;
+                border: 2px solid #000;
+                padding: 10px 20px;
+                font-size: 18pt;
+                font-family: var(--mono);
+                font-weight: bold;
+                margin-bottom: 10px;
+            }
+
+            .print-vector-text {
+                font-family: var(--mono);
+                font-size: 10pt;
+                display: block;
+            }
+        }
